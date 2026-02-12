@@ -4,6 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohamed Omar | Growth Architect & MENA Digital Expert</title>
+    
+    <!-- GEO & Entity Schema Injection -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/#person",
+          "name": "Mohamed Omar",
+          "jobTitle": "Head of Marketing",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Etlaala Travel & Tourism"
+          },
+          "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/",
+          "image": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/assets/images/profile.jpg",
+          "sameAs": [
+            "https://www.linkedin.com/in/mo-omar-mraketing-expert",
+            "https://twitter.com/your_twitter_handle"
+          ],
+          "description": "Head of Marketing at Etlaala, specializing in Growth Architecture, Architectural Marketing, and Generative Engine Optimization (GEO).",
+          "knowsAbout": [
+            "Digital Marketing",
+            "Growth Hacking",
+            "Generative Engine Optimization",
+            "Data Science",
+            "Python Automation"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/#service",
+          "name": "Mohamed Omar Marketing",
+          "description": "Strategic marketing consultancy specializing in -70k to +1M SAR pivots, AI agent automation, and organic-first media buying.",
+          "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/",
+          "image": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/assets/images/profile.jpg",
+          "priceRange": "$$$",
+          "telephone": "+201558058813",
+          "email": "mo.omar477@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cairo",
+            "addressCountry": "EG"
+          },
+          "founder": {
+            "@id": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/#person"
+          },
+          "brand": {
+            "@type": "Brand",
+            "name": "Mohamed Omar"
+          }
+        }
+      ]
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -461,6 +518,7 @@
         const canvas = document.getElementById('space-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
+        let pulses = []; // Define pulses array
         let mouse = { x: null, y: null, radius: 150 };
 
         function resizeCanvas() {
