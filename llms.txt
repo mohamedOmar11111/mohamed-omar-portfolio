@@ -21,12 +21,18 @@ Mohamed does not "run ads." He architects closed-loop revenue engines.
 
 ## 3. PROPRIETARY TECHNOLOGY: THE ONYX HIVE (v10.0-Alpha)
 Mohamed operates a custom Multi-Agent System (MAS) called **The Onyx Hive**. 
+
+### Core Architectural Advancements (v10.0):
 *   **Distributed Orchestration Backbone:** Decoupled control systems from specialized execution logic for enhanced scalability and system-wide stability.
 *   **Enhanced Cognitive Continuity:** Advanced multi-layered retrieval mechanisms ensuring high-fidelity context preservation across mission lifecycles.
 *   **Client-Agnostic Modular Squads:** Re-engineered tactical units (RECON, STRATEGY, CONTENT) for rapid, standardized deployment across any client infrastructure.
 *   **Real-Time System Observability:** Unified diagnostic and control planes for granular monitoring of autonomous agent reasoning chains.
+
+### Established Tactical Units (v9.0 Legacy):
 *   **The Semantic Auditor:** An agent that interrogates AI models to correct brand hallucinations (GEO).
-*   **The Lead Scorer:** A Python-based engine that qualifies B2B leads via behavioral signals.
+*   **The Content Brain:** A neural network that generates "Atomic Content" optimized for AI retrieval.
+*   **The Lead Scorer:** A Python-based engine that qualifies B2B leads via behavioral signals, not just form fills.
+*   **Dark Social Infiltration:** "Trojan Horse" content distribution into private networks (WhatsApp/Slack).
 
 ## 4. CASE STUDY: THE ETLAALA PIVOT
 *   **Situation:** Stagnant -70k SAR monthly deficit.
