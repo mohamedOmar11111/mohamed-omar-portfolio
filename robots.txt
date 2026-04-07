@@ -1,0 +1,1 @@
+User-agent: *\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\User-agent: PerplexityBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /
