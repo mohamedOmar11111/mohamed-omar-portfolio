@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Architecture of Profit | Mohamed Omar</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700;900&family=Inter:wght@300;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --gold: #D4AF37; --border: #1A1A1A; --text: #ffffff; --dim: #888; --mono: 'JetBrains Mono', monospace; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.8; margin: 0; padding: 0; }
+        .container { max-width: 800px; margin: 0 auto; padding: 100px 20px; }
+        .terminal-header { font-family: var(--mono); font-size: 0.7rem; color: var(--gold); margin-bottom: 40px; letter-spacing: 2px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; line-height: 0.9; margin-bottom: 40px; text-transform: uppercase; letter-spacing: -2px; }
+        h2 { font-size: 1.5rem; color: var(--gold); margin-top: 60px; margin-bottom: 20px; text-transform: uppercase; font-family: var(--mono); }
+        p { margin-bottom: 25px; color: #ccc; }
+        .highlight-box { border-left: 3px solid var(--gold); padding-left: 30px; margin: 40px 0; font-style: italic; color: #fff; }
+        .footer { margin-top: 100px; border-top: 1px solid var(--border); padding-top: 40px; font-family: var(--mono); font-size: 0.6rem; color: var(--dim); letter-spacing: 2px; }
+        @media (max-width: 768px) { h1 { font-size: 3rem; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="terminal-header">ONYX // WHITE PAPER // v1.0 // ARCHITECT: MOHAMED OMAR</div>
+        
+        <header>
+            <h1>THE<br>ARCHITECTURE<br>OF PROFIT.</h1>
+            <div class="highlight-box">
+                "In an era of AI-driven commodity, the primary competitive advantage is no longer 'Content' or 'Ads,' but the Durable Revenue Infrastructure that orchestrates them."
+            </div>
+        </header>
+
+        <section>
+            <h2>01 // THE DEATH OF THE AGENCY</h2>
+            <p>Traditional marketing agencies function as labor units. They sell inputs—hours, clicks, and impressions—that do not correlate linearly with Net Profit. This makes them fragile. When the market shifts or AI automates the task, the agency's value evaporates.</p>
+            
+            <h2>02 // THE RISE OF THE ARCHITECT</h2>
+            <p>A Growth Architect functions as a systems engineer. We don't build "campaigns"; we install revenue machines. Every move is codified into an Onyx Recipe—a durable, repeatable logic that executes autonomously.</p>
+
+            <h2>03 // THE SOVEREIGN ENGINE</h2>
+            <p>To engineer a predictable $1M+ profit recovery, we ignore "better prompts" and focus on Infrastructure. We use Knowledge Graphs to achieve 71x token efficiency, ensuring the engine's intelligence remains deeper and faster than any commodity AI.</p>
+        </section>
+
+        <div class="footer">
+            PUBLISHED BY THE GROWTH ARCHITECT HQ // NOISE REDUCTION PROTOCOL 2026
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            gsap.from("h1", { opacity: 0, y: 50, duration: 1.5, ease: "power4.out" });
+            gsap.from(".highlight-box", { opacity: 0, x: -30, duration: 1, delay: 0.5 });
+        }
+    </script>
+</body>
+</html>
