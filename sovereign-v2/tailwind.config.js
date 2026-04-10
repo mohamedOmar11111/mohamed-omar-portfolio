@@ -8,15 +8,16 @@ export default {
     extend: {
       colors: {
         bg: '#000000',
-        gold: '#D4AF37',
-        neon: '#00f2ff',
-        border: '#1A1A1A',
-        surface: 'rgba(255, 255, 255, 0.02)',
+        primary: '#00d1b2', // Cyan accent from Marjo
+        secondary: '#FFDD00', // Yellow accent
+        surface: '#111111',
+        border: '#222222',
+        textMuted: '#888888',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        arabic: ['Cairo', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        arabic: ['Cairo', 'sans-serif'],
       },
     },
   },
