@@ -58,14 +58,14 @@ const SKILLS_DATA = {
 // --- Components ---
 
 const Navbar: React.FC<{ lang: Language, setLang: (l: Language) => void }> = ({ lang, setLang }) => (
-  <nav className="fixed top-0 w-full p-6 flex justify-between items-center z-50 bg-black/80 backdrop-blur-xl border-b border-white/5">
-    <div className="font-mono text-[0.6rem] tracking-[0.3em] text-gold uppercase">
+  <nav className="fixed top-0 w-full p-6 flex justify-between items-center z-50 bg-black/40 backdrop-blur-2xl border-b border-gold/10">
+    <div className="font-mono text-[0.65rem] tracking-[0.4em] text-gold uppercase drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]">
       {lang === 'en' ? 'Onyx // Architect // HQ' : 'أونيكس // المهندس // المقر'}
     </div>
     <div className="flex gap-4">
       <button 
         onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-        className="text-[0.6rem] font-mono border border-white/10 px-4 py-1 hover:bg-white hover:text-black transition-all rounded-full"
+        className="text-[0.7rem] font-mono border border-gold/20 px-5 py-1.5 hover:bg-gold hover:text-black transition-all rounded-full bg-black/20"
       >
         {lang === 'en' ? 'AR' : 'EN'}
       </button>
@@ -88,74 +88,37 @@ const Hero: React.FC<{ lang: Language }> = ({ lang }) => {
   }, [lang])
 
   return (
-    <section className="h-[90vh] flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
-      <div className="absolute w-[600px] h-[600px] bg-gold/5 rounded-full blur-[150px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <section className="h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden bg-[radial-gradient(circle_at_center,_#111_0%,_#000_100%)]">
+      <div className="absolute w-[800px] h-[800px] bg-gold/10 rounded-full blur-[160px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20 pointer-events-none" />
+      
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-white/40 font-mono text-[0.6rem] mb-8 tracking-[0.5em] uppercase"
+        className="text-gold font-mono text-[0.7rem] mb-10 tracking-[0.6em] uppercase"
       >
         {lang === 'en' ? 'Signal Acquired' : 'تم استقبال الإشارة'}
       </motion.div>
+      
       <motion.h1 
-        initial={{ opacity: 0, scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="text-6xl md:text-9xl font-black tracking-tighter mb-6 uppercase leading-[0.85]"
+        transition={{ duration: 1.2, ease: "circOut" }}
+        className="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 uppercase leading-[0.8] drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
       >
         {lang === 'en' ? 'Mohamed' : 'محمد'}<br />
-        <span className="text-gold">{lang === 'en' ? 'Omar' : 'عمر'}</span>
+        <span className="text-gold drop-shadow-[0_0_40px_rgba(212,175,55,0.4)]">{lang === 'en' ? 'Omar' : 'عمر'}</span>
       </motion.h1>
-      <div className="font-mono text-xs md:text-sm text-gold tracking-[0.3em] min-h-[1.5em] opacity-80">
-        {text}<span className="animate-pulse">_</span>
+      
+      <div className="font-mono text-sm md:text-lg text-gold tracking-[0.4em] min-h-[1.5em] bg-black/40 px-6 py-2 rounded-full border border-gold/10 backdrop-blur-sm">
+        {text}<span className="animate-pulse bg-gold inline-block w-2 h-5 align-middle ml-1"></span>
       </div>
     </section>
   )
 }
 
-const Arsenal: React.FC<{ lang: Language }> = ({ lang }) => (
-  <section className="py-40 px-6 max-w-7xl mx-auto border-t border-white/5">
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
-      <div>
-        <h2 className="text-sm font-mono text-gold mb-4 tracking-widest uppercase flex items-center gap-4">
-          <Zap size={16} /> {lang === 'en' ? '04 // THE ARSENAL' : '٠٤ // الترسانة'}
-        </h2>
-        <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter">
-          {lang === 'en' ? 'Modular Strikes.' : 'ضربات نمطية.'}
-        </h3>
-      </div>
-      <p className="text-white/40 text-sm max-w-xs font-light">
-        {lang === 'en' ? 'High-velocity strategic modules priced for instant deployment.' : 'وحدات استراتيجية عالية السرعة مصممة للنشر الفوري.'}
-      </p>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 border border-white/10">
-      {ARSENAL_DATA[lang].map((item, i) => (
-        <motion.div 
-          key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-bg p-10 group relative cursor-crosshair overflow-hidden"
-        >
-          <div className="absolute top-0 right-0 p-6 opacity-0 group-hover:opacity-100 transition-opacity">
-            <Lock size={14} className="text-gold" />
-          </div>
-          <div className="font-mono text-[0.6rem] text-white/30 mb-8 tracking-widest">{item.id}</div>
-          <div className="text-gold mb-6">{item.icon}</div>
-          <h4 className="text-xl font-bold mb-4 uppercase">{item.title}</h4>
-          <p className="text-sm text-white/50 mb-8 font-light leading-relaxed">{item.desc}</p>
-          <div className="flex justify-between items-center pt-6 border-t border-white/5">
-            <span className="font-mono text-xs text-gold font-bold">{item.price}</span>
-            <ChevronRight size={16} className="text-white/20 group-hover:text-white group-hover:translate-x-1 transition-all" />
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </section>
-)
-
 const Timeline: React.FC<{ lang: Language }> = ({ lang }) => (
-  <section className="py-40 px-6 max-w-5xl mx-auto border-t border-white/5">
+  <section className="py-40 px-6 max-w-5xl mx-auto relative border-t border-white/5">
     <h2 className="text-sm font-mono text-gold mb-20 tracking-widest uppercase flex items-center gap-4">
       <Briefcase size={16} /> {lang === 'en' ? '02 // THE JOURNEY' : '٠٢ // الرحلة'}
     </h2>
@@ -187,7 +150,7 @@ const Skills: React.FC<{ lang: Language }> = ({ lang }) => (
     <h2 className="text-sm font-mono text-gold mb-20 tracking-widest uppercase flex items-center gap-4">
       <Terminal size={16} /> {lang === 'en' ? '03 // THE ENGINE' : '٠٣ // المحرك'}
     </h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/5 border border-white/10">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-1 bg-white/5 border border-white/10">
       {SKILLS_DATA[lang].map((skill, i) => (
         <motion.div 
           key={i}
@@ -210,6 +173,53 @@ const Skills: React.FC<{ lang: Language }> = ({ lang }) => (
   </section>
 )
 
+const Arsenal: React.FC<{ lang: Language }> = ({ lang }) => (
+  <section className="py-40 px-6 max-w-7xl mx-auto border-t border-white/5">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+      <div>
+        <h2 className="text-sm font-mono text-gold mb-4 tracking-widest uppercase flex items-center gap-4">
+          <Zap size={16} className="animate-bounce" /> {lang === 'en' ? '04 // THE ARSENAL' : '٠٤ // الترسانة'}
+        </h2>
+        <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white">
+          {lang === 'en' ? 'Modular Strikes.' : 'ضربات نمطية.'}
+        </h3>
+      </div>
+      <p className="text-white/40 text-sm max-w-xs font-light leading-relaxed">
+        {lang === 'en' ? 'High-velocity strategic modules priced for instant deployment.' : 'وحدات استراتيجية عالية السرعة مصممة للنشر الفوري.'}
+      </p>
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {ARSENAL_DATA[lang].map((item, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white/[0.02] p-10 border border-white/5 hover:border-gold/40 transition-all group relative rounded-3xl backdrop-blur-xl"
+        >
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity">
+            <Lock size={16} className="text-gold" />
+          </div>
+          <div className="font-mono text-[0.65rem] text-white/20 mb-10 tracking-[0.3em]">{item.id}</div>
+          <div className="text-gold mb-8 bg-gold/10 w-fit p-4 rounded-2xl group-hover:bg-gold group-hover:text-black transition-all">
+            {item.icon}
+          </div>
+          <h4 className="text-2xl font-bold mb-4 uppercase text-white group-hover:text-gold transition-colors">{item.title}</h4>
+          <p className="text-sm text-white/40 mb-10 font-light leading-relaxed h-12">{item.desc}</p>
+          <div className="flex justify-between items-center pt-8 border-t border-white/5">
+            <span className="font-mono text-base text-gold font-black tracking-tighter">{item.price}</span>
+            <div className="flex items-center gap-2 text-white/20 group-hover:text-gold transition-all">
+               <span className="text-[0.6rem] font-mono tracking-widest opacity-0 group-hover:opacity-100 uppercase">Deploy</span>
+               <ChevronRight size={18} />
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </section>
+)
+
 const App: React.FC = () => {
   const [lang, setLang] = useState<Language>('en')
 
@@ -219,26 +229,29 @@ const App: React.FC = () => {
   }, [lang])
 
   return (
-    <main className={`bg-bg min-h-screen text-white selection:bg-gold selection:text-black ${lang === 'ar' ? 'font-arabic' : 'font-sans'}`}>
+    <main className={`bg-[#050505] min-h-screen text-white selection:bg-gold selection:text-black overflow-x-hidden ${lang === 'ar' ? 'font-arabic' : 'font-sans'}`}>
+      <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_-20%,_#1a1a1a_0%,_#050505_100%)] pointer-events-none" />
+      
       <Navbar lang={lang} setLang={setLang} />
       
       <Hero lang={lang} />
 
-      <section className="py-40 px-6 max-w-4xl mx-auto border-t border-white/5">
-        <h2 className="text-sm font-mono text-gold mb-12 tracking-widest uppercase flex items-center gap-4">
+      <section className="py-60 px-6 max-w-5xl mx-auto relative border-t border-white/5">
+        <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-40 h-40 bg-gold/5 blur-[100px]" />
+        <h2 className="text-sm font-mono text-gold mb-16 tracking-widest uppercase flex items-center gap-4">
           <Terminal size={16} /> {lang === 'en' ? '01 // THE MANIFEST' : '٠١ // البيان'}
         </h2>
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-4xl font-black uppercase tracking-tighter leading-[1.1] mb-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          className="text-3xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-12 text-white"
         >
           {lang === 'en' ? 'Logic in the Magic.' : 'المنطق في السحر.'}
         </motion.p>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-lg md:text-2xl text-white/80 leading-[1.4] font-light italic"
+          className="text-xl md:text-3xl text-white/50 leading-[1.5] font-light italic border-l-4 border-gold/20 pl-10"
         >
           {lang === 'en' 
             ? '"In an era of AI-driven commodity, the primary competitive advantage is no longer \'Content\' or \'Ads,\' but the Durable Revenue Infrastructure that orchestrates them."'
@@ -252,8 +265,8 @@ const App: React.FC = () => {
 
       <Arsenal lang={lang} />
 
-      <footer className="py-20 px-6 text-center border-t border-white/5 bg-black/50">
-        <div className="font-mono text-[0.6rem] text-white/20 tracking-[0.5em] uppercase">
+      <footer className="py-20 px-6 text-center relative z-10 border-t border-white/5 bg-black">
+        <div className="font-mono text-[0.65rem] text-white/20 tracking-[0.6em] uppercase">
           {lang === 'en' ? '© 2026 Growth Architect HQ // Noise Reduction Protocol' : '© ٢٠٢٦ مقر مهندس النمو // بروتوكول تقليل الضجيج'}
         </div>
       </footer>
