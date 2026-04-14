@@ -1,215 +1,399 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Omar | Growth Architect</title>
-    
-    <!-- Authority Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700;900&family=Inter:wght@300;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Core Engine -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bg: '#050505',
-                        gold: '#D4AF37',
-                        border: 'rgba(255, 255, 255, 0.08)',
-                        dim: '#666'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        arabic: ['Cairo', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-
+    <title>Mohamed Omar | Growth Architect & AI Strategist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        * { scroll-behavior: smooth; }
-        body { background-color: #050505; color: #fff; overflow-x: hidden; }
-        .noir-gradient { background: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%); }
-        .glass { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.08); }
-        [lang="ar"] { font-family: 'Cairo', sans-serif; direction: rtl; }
-        .hidden { display: none !important; }
-        .stagger-in { opacity: 0; transform: translateY(30px); }
+        :root {
+            --bg-deep: #0a0a0f;
+            --neon-cyan: #00f3ff;
+            --neon-magenta: #ff00ff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #e0e0e0;
+            --text-dim: #94a3b8;
+            --font-header: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Background Matrix/Grid --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* --- Scrollbar --- */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); }
+
+        /* --- Typography & Accents --- */
+        h1, h2, h3 { font-family: var(--font-header); text-transform: uppercase; letter-spacing: 2px; }
+        .neon-text { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
+        .gradient-text {
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Glassmorphism UI --- */
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+        nav.scrolled {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 5%;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--neon-cyan); }
+
+        /* --- Sections Layout --- */
+        section {
+            min-height: 100vh;
+            padding: 100px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* --- Hero Section --- */
+        .hero-content { max-width: 800px; }
+        .hero-title { font-size: clamp(3rem, 8vw, 6rem); font-weight: 700; line-height: 1; margin-bottom: 1rem; }
+        .hero-sub { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 2rem; max-width: 600px; }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-family: var(--font-header);
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            animation: neonPulse 3s infinite;
+        }
+        .cta-button:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-deep);
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        /* --- Experience/Timeline --- */
+        .timeline { position: relative; border-left: 2px solid var(--glass-border); padding-left: 2rem; margin-top: 2rem; }
+        .timeline-item { margin-bottom: 4rem; position: relative; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -calc(2rem + 10px);
+            top: 5px;
+            width: 18px;
+            height: 18px;
+            background: var(--bg-deep);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+        .timeline-item h3 { color: var(--neon-cyan); margin-bottom: 0.5rem; }
+        .timeline-date { font-size: 0.8rem; color: var(--neon-magenta); font-weight: bold; margin-bottom: 1rem; display: block; }
+
+        /* --- Projects Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .project-card {
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-magenta);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+        }
+        .project-card h4 { margin-bottom: 1rem; font-size: 1.5rem; }
+        .tag {
+            font-size: 0.7rem;
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-cyan);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+        }
+
+        /* --- Skills / Tech Stack --- */
+        .skills-container { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+        .skill-node {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-family: var(--font-header);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .skill-node:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 243, 255, 0.05);
+            color: var(--neon-cyan);
+        }
+
+        /* --- Status Terminal --- */
+        .terminal {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 280px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--neon-cyan);
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.2); border-color: rgba(0, 243, 255, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.6); border-color: rgba(0, 243, 255, 1); }
+            100% { box-shadow: 0 0 5px rgba(0, 243, 255, 0.2); border-color: rgba(0, 243, 255, 0.5); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            section { padding: 80px 5%; }
+            .hero-title { font-size: 3.5rem; }
+        }
     </style>
 </head>
-<body class="font-sans">
+<body>
 
-    <!-- Global Nav -->
-    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference">
-        <div class="font-black text-xl tracking-tighter uppercase">M.Omar</div>
-        <div class="flex gap-8 items-center">
-            <button onclick="toggleLanguage()" class="font-mono text-[0.6rem] border border-white/20 px-4 py-1.5 hover:bg-white hover:text-black transition-all rounded-full uppercase">
-                <span class="en-node">AR</span>
-                <span class="ar-node hidden">EN</span>
-            </button>
-        </div>
+    <canvas id="canvas-bg"></canvas>
+
+    <nav id="navbar">
+        <div class="logo neon-text" style="font-family: var(--font-header); font-weight: bold;">MO//PORTFOLIO</div>
+        <ul class="nav-links">
+            <li><a href="#home">Initiate</a></li>
+            <li><a href="#experience">History</a></li>
+            <li><a href="#projects">Protocols</a></li>
+            <li><a href="#contact">Link</a></li>
+        </ul>
     </nav>
 
-    <!-- Hero -->
-    <section class="min-h-screen flex flex-col justify-center px-10 md:px-32 relative overflow-hidden noir-gradient">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 pointer-events-none"></div>
-        
-        <div class="stagger-in en-node">
-            <div class="font-mono text-gold text-xs tracking-[0.4em] mb-8 uppercase">Systems Engineer // Architecting Installed Revenue Machines</div>
-            <h1 class="text-7xl md:text-[160px] font-black leading-[0.8] tracking-tighter uppercase mb-12">
-                Mohamed<br><span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">Omar</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-white/40 max-w-2xl font-light">I build autonomous revenue systems that turn marketing spend into predictable profit.</p>
-        </div>
+    <div class="terminal glass-panel" id="terminal-log">
+        > system_init: complete<br>
+        > location: MENA_REGION<br>
+        > status: growth_active
+    </div>
 
-        <div class="stagger-in ar-node hidden">
-            <div class="font-mono text-gold text-xs tracking-[0.4em] mb-8 uppercase">مهندس أنظمة // أعمل على هندسة ماكينات إيرادات مُثبتة</div>
-            <h1 class="text-7xl md:text-[160px] font-black leading-[0.8] tracking-tighter mb-12">محمد<br><span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">عمر</span></h1>
-            <p class="text-xl md:text-3xl text-white/40 max-w-2xl font-light">أقوم ببناء أنظمة إيرادات ذاتية تحول الإنفاق التسويقي إلى أرباح حتمية.</p>
+    <section id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">MOHAMED <br><span class="gradient-text">OMAR.</span></h1>
+            <p class="hero-sub">
+                Growth Architect & AI Strategist. 7+ Years Engineering Digital Ecosystems. 
+                Specializing in G.E.O, Semantic Authority, and Agentic Growth Workflows.
+            </p>
+            <a href="#contact" class="cta-button">Initiate Connection</a>
         </div>
     </section>
 
-    <!-- Manifesto -->
-    <section class="py-40 px-10 md:px-32 border-t border-border">
-        <div class="max-w-5xl">
-            <div class="en-node stagger-in">
-                <h2 class="font-mono text-gold text-[0.6rem] tracking-[0.5em] mb-12 uppercase">01 // PHILOSOPHY</h2>
-                <p class="text-3xl md:text-6xl font-black leading-[1.1] text-white/90">Logic in the Magic.</p>
-                <p class="text-xl md:text-3xl text-white/40 mt-12 font-light leading-relaxed italic border-l-4 border-gold/20 pl-10">
-                    "Most marketing relies on hope. I rely on architecture. I replace manual toil with agentic systems to deliver deterministic ROI."
-                </p>
+    <section id="experience">
+        <h2 class="neon-text">History Log</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">2020 — PRESENT</span>
+                <h3>Head of Marketing @ Etlaala</h3>
+                <p>Architecting regional travel & tourism digital strategies. Scaled acquisition channels using semantic SEO frameworks and data-driven performance marketing.</p>
             </div>
-            <div class="ar-node stagger-in hidden">
-                <h2 class="font-mono text-gold text-[0.6rem] tracking-[0.5em] mb-12 uppercase">٠١ // الفلسفة</h2>
-                <p class="text-3xl md:text-6xl font-black leading-[1.1] text-white/90">المنطق في السحر.</p>
-                <p class="text-xl md:text-4xl text-white/40 mt-12 font-light leading-relaxed italic border-r-4 border-gold/20 pr-10">
-                    "يعتمد معظم التسويق على الأمل. أنا أعتمد على الهندسة. أستبدل العمل اليدوي الشاق بأنظمة ذكية لتقديم عائد استثمار حتمي."
-                </p>
+            <div class="timeline-item">
+                <span class="timeline-date">2022 — PRESENT</span>
+                <h3>Founder @ MenaVerse.online</h3>
+                <p>Building the future of digital identity in the MENA region. Developing frameworks for "Search Everywhere Optimization" and AI-integrated growth stacks.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Impact Timeline -->
-    <section class="py-40 px-10 md:px-32 bg-white/[0.01] border-t border-border">
-        <div class="en-node stagger-in"><h2 class="font-mono text-gold text-[0.6rem] tracking-[0.5em] mb-24 uppercase">02 // IMPACT LOG</h2></div>
-        <div class="ar-node stagger-in hidden"><h2 class="font-mono text-gold text-[0.6rem] tracking-[0.5em] mb-24 uppercase">٠٢ // سجل التأثير</h2></div>
-
-        <div class="space-y-32">
-            <!-- Entry 01 -->
-            <div class="stagger-in flex flex-col md:flex-row justify-between gap-10 group">
-                <div class="md:w-1/3">
-                    <div class="font-mono text-xs text-white/30 mb-4">2025 - PRESENT</div>
-                    <h3 class="text-2xl font-bold uppercase group-hover:text-gold transition-colors">Etlaala Travel</h3>
-                </div>
-                <div class="md:w-2/3">
-                    <p class="text-2xl md:text-4xl font-black mb-6 text-white/80">+1,000,000 SAR <span class="text-gold">NET PROFIT</span></p>
-                    <p class="text-white/40 leading-relaxed text-lg en-node">Recovered -70k SAR monthly deficit in 12 months. Installed the Onyx execution engine to automate 80% of tactical decision making.</p>
-                    <p class="text-white/40 leading-relaxed text-xl ar-node hidden">استعادة عجز شهري قدره -٧٠ ألف ريال في ١٢ شهرًا. تثبيت محرك تنفيذ أونيكس لأتمتة ٨٠٪ من القرارات التكتيكية.</p>
-                </div>
-            </div>
-
-            <!-- Entry 02 -->
-            <div class="stagger-in flex flex-col md:flex-row justify-between gap-10 group">
-                <div class="md:w-1/3">
-                    <div class="font-mono text-xs text-white/30 mb-4">2026</div>
-                    <h3 class="text-2xl font-bold uppercase group-hover:text-gold transition-colors">Onyx Hive MAS</h3>
-                </div>
-                <div class="md:w-2/3">
-                    <p class="text-2xl md:text-4xl font-black mb-6 text-white/80">71X <span class="text-gold">CONTEXT GAIN</span></p>
-                    <p class="text-white/40 leading-relaxed text-lg en-node">Engineered a Multi-Agent System using Knowledge Graph Synthesis. Strategic reasoning at sub-second speeds across 4,200+ data nodes.</p>
-                    <p class="text-white/40 leading-relaxed text-xl ar-node hidden">هندسة نظام وكلاء متعدد باستخدام تركيب الرسوم البيانية المعرفية. تفكير استراتيجي بسرعات فائقة عبر أكثر من ٤٢٠٠ عقدة بيانات.</p>
-                </div>
+            <div class="timeline-item">
+                <span class="timeline-date">ACADEMIC</span>
+                <h3>Masters in Digital Marketing</h3>
+                <p>University of New South Wales (UNSW). Focused on the intersection of consumer psychology and algorithmic growth.</p>
             </div>
         </div>
     </section>
 
-    <!-- Arsenal -->
-    <section class="py-40 px-10 md:px-32 border-t border-border">
-        <div class="en-node stagger-in"><h2 class="font-mono text-gold text-[0.6rem] tracking-[0.5em] mb-24 uppercase">03 // STRATEGIC ARSENAL</h2></div>
-        <div class="ar-node stagger-in hidden"><h2 class="font-mono text-gold text-[0.6rem] tracking-[0.5em] mb-24 uppercase">٠٣ // الترسانة الاستراتيجية</h2></div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border">
-            <div class="stagger-in bg-bg p-12 hover:bg-white/[0.02] transition-all group">
-                <div class="font-mono text-[0.6rem] text-gold mb-10 tracking-widest">UNIT-01</div>
-                <h4 class="text-xl font-bold uppercase mb-4 en-node">Revenue Audit</h4>
-                <h4 class="text-xl font-bold uppercase mb-4 ar-node hidden">تدقيق الإيرادات</h4>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 en-node">Hard-data identification of the 3 leaks killing your conversion velocity.</p>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 ar-node hidden">تحديد دقيق لثلاث ثغرات تقتل سرعة التحويل لديك بناءً على البيانات.</p>
-                <div class="font-mono text-gold font-black">$500</div>
+    <section id="projects">
+        <h2 class="neon-text">Active Protocols</h2>
+        <div class="projects-grid">
+            <div class="project-card glass-panel">
+                <span class="tag">AI AGENTS</span>
+                <h4>Onyx Axis</h4>
+                <p>A multi-agent system designed for automated content orchestration and semantic gap analysis. Turning raw data into growth fuel.</p>
             </div>
-            <div class="stagger-in bg-bg p-12 hover:bg-white/[0.02] transition-all group">
-                <div class="font-mono text-[0.6rem] text-gold mb-10 tracking-widest">UNIT-02</div>
-                <h4 class="text-xl font-bold uppercase mb-4 en-node">Predictive Wargame</h4>
-                <h4 class="text-xl font-bold uppercase mb-4 ar-node hidden">محاكاة المواجهة</h4>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 en-node">Simulation of competitor moves before you spend $1 on ads.</p>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 ar-node hidden">محاكاة لتحركات المنافسين قبل صرف دولار واحد على الإعلانات.</p>
-                <div class="font-mono text-gold font-black">$900</div>
+            <div class="project-card glass-panel">
+                <span class="tag">GROWTH STACK</span>
+                <h4>Onyx Hive</h4>
+                <p>Collective intelligence framework for Generative Engine Optimization (G.E.O). Ensuring brand dominance in the LLM-search era.</p>
             </div>
-            <div class="stagger-in bg-bg p-12 hover:bg-white/[0.02] transition-all group">
-                <div class="font-mono text-[0.6rem] text-gold mb-10 tracking-widest">UNIT-03</div>
-                <h4 class="text-xl font-bold uppercase mb-4 en-node">Authority Shield</h4>
-                <h4 class="text-xl font-bold uppercase mb-4 ar-node hidden">درع السلطة</h4>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 en-node">Removing AI bot-markers from copy to reclaim human trust.</p>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 ar-node hidden">إزالة بصمات البوت من النصوص لاستعادة الثقة البشرية.</p>
-                <div class="font-mono text-gold font-black">$800</div>
-            </div>
-            <div class="stagger-in bg-bg p-12 hover:bg-white/[0.02] transition-all group">
-                <div class="font-mono text-[0.6rem] text-gold mb-10 tracking-widest">UNIT-04</div>
-                <h4 class="text-xl font-bold uppercase mb-4 en-node">Cognitive Map</h4>
-                <h4 class="text-xl font-bold uppercase mb-4 ar-node hidden">الخريطة المعرفية</h4>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 en-node">Visualizing your business logic to find the God Node that scales.</p>
-                <p class="text-sm text-white/40 mb-8 font-light h-16 ar-node hidden">تصور منطق عملك للعثور على النواة التي تدفع النمو الحقيقي.</p>
-                <div class="font-mono text-gold font-black">$700</div>
+            <div class="project-card glass-panel">
+                <span class="tag">AUTOMATION</span>
+                <h4>Nexus Pipeline</h4>
+                <p>Python-based automation suite for real-time market sentiment mapping and automated G-Business optimization.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-40 px-10 md:px-32 border-t border-border text-center">
-        <div class="en-node"><h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-12">REVENUE IS<br>ENGINEERED.</h2></div>
-        <div class="ar-node hidden"><h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-12">الإيرادات<br>تُهندس.</h2></div>
-        <div class="flex justify-center gap-10 mb-20">
-            <a href="https://linkedin.com/in/mo-omar-mraketing-expert" class="font-mono text-xs text-white/40 hover:text-gold tracking-widest uppercase border-b border-white/10 pb-2">LinkedIn</a>
-            <a href="mailto:mo.omar477@gmail.com" class="font-mono text-xs text-white/40 hover:text-gold tracking-widest uppercase border-b border-white/10 pb-2">Mail</a>
+    <section id="contact" style="text-align: center;">
+        <h2 class="gradient-text" style="font-size: 3rem;">Let's Build the Future.</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-dim);">Ready to deploy high-value growth strategies?</p>
+        <div style="display: flex; justify-content: center; gap: 2rem;">
+            <a href="https://linkedin.com" class="skill-node">LinkedIn</a>
+            <a href="https://github.com/mohamedOmar11111" class="skill-node">GitHub</a>
+            <a href="mailto:contact@menaverse.online" class="skill-node">Email</a>
         </div>
-        <div class="font-mono text-[0.5rem] text-white/10 tracking-[0.8em] uppercase">© 2026 // MOHAMED OMAR // SOVEREIGN ENGINE</div>
-    </footer>
+    </section>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        // --- Background Particle Animation ---
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
 
-        function toggleLanguage() {
-            const isAr = document.body.lang === 'ar';
-            const lang = isAr ? 'en' : 'ar';
-            document.body.lang = lang;
-            document.documentElement.lang = lang;
-            document.body.dir = isAr ? 'ltr' : 'rtl';
-
-            document.querySelectorAll('.en-node').forEach(el => el.classList.toggle('hidden', !isAr));
-            document.querySelectorAll('.ar-node').forEach(el => el.classList.toggle('hidden', isAr));
-            
-            // Re-trigger animations for the new language nodes
-            gsap.from(".stagger-in:not(.hidden)", { opacity: 0, y: 20, duration: 0.8, stagger: 0.1 });
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
-        window.onload = () => {
-            // Hero Entry
-            gsap.from("h1", { opacity: 0, y: 50, duration: 1.5, ease: "power4.out" });
-            
-            // Staggered Reveals
-            gsap.utils.toArray(".stagger-in").forEach(el => {
-                gsap.to(el, {
-                    scrollTrigger: { trigger: el, start: "top 90%" },
-                    opacity: 1, y: 0, duration: 1, ease: "power3.out"
-                });
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(0, 243, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
+            requestAnimationFrame(animate);
+        }
+
+        // --- Terminal Logging Simulation ---
+        const terminal = document.getElementById('terminal-log');
+        const logs = [
+            "> checking_env: production",
+            "> indexing_projects: onyx_series",
+            "> geo_strategy: optimized",
+            "> user_linked: true",
+            "> status: mission_ready"
+        ];
+        let logIndex = 0;
+
+        function updateTerminal() {
+            if (logIndex < logs.length) {
+                terminal.innerHTML += `<br>${logs[logIndex]}`;
+                logIndex++;
+                setTimeout(updateTerminal, 2000);
+            }
+        }
+
+        // --- Scroll Handling ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // --- Init ---
+        window.onload = () => {
+            initCanvas();
+            createParticles();
+            animate();
+            setTimeout(updateTerminal, 1000);
         };
+
+        window.onresize = initCanvas;
     </script>
 </body>
 </html>
