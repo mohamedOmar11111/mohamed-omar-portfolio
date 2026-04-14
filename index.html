@@ -37,9 +37,8 @@
             transition: opacity 0.3s ease;
         }
 
-        [lang="ar"] {
+        body[dir="rtl"] {
             font-family: var(--font-arabic);
-            direction: rtl;
         }
 
         /* --- Background Matrix/Grid --- */
@@ -60,7 +59,7 @@
 
         /* --- Typography & Accents --- */
         h1, h2, h3 { font-family: var(--font-header); text-transform: uppercase; letter-spacing: 2px; }
-        [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3 { font-family: var(--font-arabic); letter-spacing: 0; }
+        body[dir="rtl"] h1, body[dir="rtl"] h2, body[dir="rtl"] h3 { font-family: var(--font-arabic); letter-spacing: 0; }
         
         .neon-text { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
         .gradient-text {
@@ -165,7 +164,7 @@
 
         /* --- Experience/Timeline --- */
         .timeline { position: relative; border-left: 2px solid var(--glass-border); padding-left: 2rem; margin-top: 2rem; }
-        [lang="ar"] .timeline { border-left: none; border-right: 2px solid var(--glass-border); padding-left: 0; padding-right: 2rem; }
+        body[dir="rtl"] .timeline { border-left: none; border-right: 2px solid var(--glass-border); padding-left: 0; padding-right: 2rem; }
         
         .timeline-item { margin-bottom: 4rem; position: relative; }
         .timeline-item::before {
@@ -180,7 +179,7 @@
             border-radius: 50%;
             box-shadow: 0 0 10px var(--neon-cyan);
         }
-        [lang="ar"] .timeline-item::before {
+        body[dir="rtl"] .timeline-item::before {
             left: auto;
             right: -calc(2rem + 10px);
         }
@@ -249,7 +248,7 @@
             pointer-events: none;
             z-index: 1000;
         }
-        [lang="ar"] .terminal {
+        body[dir="rtl"] .terminal {
             right: auto;
             left: 20px;
             direction: ltr;
@@ -285,9 +284,7 @@
     </nav>
 
     <div class="terminal glass-panel" id="terminal-log">
-        > system_init: complete<br>
-        > location: MENA_REGION<br>
-        > status: growth_active
+        > system_init: complete
     </div>
 
     <section id="home">
@@ -447,6 +444,8 @@
         };
 
         let currentLang = 'en';
+        let logIndex = 0;
+        let terminalTimeout;
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ar' : 'en';
@@ -456,7 +455,7 @@
         function renderLanguage() {
             const t = translations[currentLang];
             document.documentElement.lang = currentLang;
-            document.body.setAttribute('lang', currentLang);
+            document.body.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
             
             // UI Element Updates
             document.querySelector('.t-initiate').textContent = t.initiate;
@@ -509,9 +508,22 @@
                 </div>
             `).join('');
 
-            // Terminal Re-render
+            // Restart Terminal Animation
+            clearTimeout(terminalTimeout);
             const terminal = document.getElementById('terminal-log');
-            terminal.innerHTML = t.terminal.join('<br>');
+            terminal.innerHTML = "> system_init: complete";
+            logIndex = 0;
+            updateTerminal();
+        }
+
+        function updateTerminal() {
+            const t = translations[currentLang];
+            const terminal = document.getElementById('terminal-log');
+            if (logIndex < t.terminal.length) {
+                terminal.innerHTML += `<br>${t.terminal[logIndex]}`;
+                logIndex++;
+                terminalTimeout = setTimeout(updateTerminal, 2000);
+            }
         }
 
         // --- Background Particle Animation ---
