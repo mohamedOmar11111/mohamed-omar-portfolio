@@ -6,7 +6,7 @@
     <title>Mohamed Omar | Growth Architect & AI Strategist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@300;400;600&family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #0a0a0f;
@@ -18,6 +18,7 @@
             --text-dim: #94a3b8;
             --font-header: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', sans-serif;
+            --font-arabic: 'Cairo', sans-serif;
         }
 
         * {
@@ -33,6 +34,12 @@
             font-family: var(--font-body);
             overflow-x: hidden;
             line-height: 1.6;
+            transition: opacity 0.3s ease;
+        }
+
+        [lang="ar"] {
+            font-family: var(--font-arabic);
+            direction: rtl;
         }
 
         /* --- Background Matrix/Grid --- */
@@ -53,6 +60,8 @@
 
         /* --- Typography & Accents --- */
         h1, h2, h3 { font-family: var(--font-header); text-transform: uppercase; letter-spacing: 2px; }
+        [lang="ar"] h1, [lang="ar"] h2, [lang="ar"] h3 { font-family: var(--font-arabic); letter-spacing: 0; }
+        
         .neon-text { color: var(--neon-cyan); text-shadow: 0 0 10px rgba(0, 243, 255, 0.5); }
         .gradient-text {
             background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
@@ -87,7 +96,7 @@
             border-bottom: 1px solid var(--glass-border);
             padding: 1rem 5%;
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a {
             text-decoration: none;
             color: var(--text-dim);
@@ -97,6 +106,23 @@
             transition: 0.3s;
         }
         .nav-links a:hover { color: var(--neon-cyan); }
+
+        .lang-switch {
+            background: transparent;
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 4px 12px;
+            font-family: var(--font-header);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .lang-switch:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-deep);
+        }
 
         /* --- Sections Layout --- */
         section {
@@ -139,6 +165,8 @@
 
         /* --- Experience/Timeline --- */
         .timeline { position: relative; border-left: 2px solid var(--glass-border); padding-left: 2rem; margin-top: 2rem; }
+        [lang="ar"] .timeline { border-left: none; border-right: 2px solid var(--glass-border); padding-left: 0; padding-right: 2rem; }
+        
         .timeline-item { margin-bottom: 4rem; position: relative; }
         .timeline-item::before {
             content: '';
@@ -152,6 +180,11 @@
             border-radius: 50%;
             box-shadow: 0 0 10px var(--neon-cyan);
         }
+        [lang="ar"] .timeline-item::before {
+            left: auto;
+            right: -calc(2rem + 10px);
+        }
+        
         .timeline-item h3 { color: var(--neon-cyan); margin-bottom: 0.5rem; }
         .timeline-date { font-size: 0.8rem; color: var(--neon-magenta); font-weight: bold; margin-bottom: 1rem; display: block; }
 
@@ -194,6 +227,8 @@
             font-family: var(--font-header);
             font-size: 0.9rem;
             transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
         }
         .skill-node:hover {
             border-color: var(--neon-cyan);
@@ -213,6 +248,11 @@
             color: var(--neon-cyan);
             pointer-events: none;
             z-index: 1000;
+        }
+        [lang="ar"] .terminal {
+            right: auto;
+            left: 20px;
+            direction: ltr;
         }
 
         @keyframes neonPulse {
@@ -235,11 +275,12 @@
     <nav id="navbar">
         <div class="logo neon-text" style="font-family: var(--font-header); font-weight: bold;">MO//PORTFOLIO</div>
         <ul class="nav-links">
-            <li><a href="#home">Initiate</a></li>
-            <li><a href="#about">Identity</a></li>
-            <li><a href="#experience">History</a></li>
-            <li><a href="#projects">Protocols</a></li>
-            <li><a href="#contact">Link</a></li>
+            <li><a href="#home" class="t-initiate">Initiate</a></li>
+            <li><a href="#about" class="t-identity">Identity</a></li>
+            <li><a href="#experience" class="t-history">History</a></li>
+            <li><a href="#projects" class="t-protocols">Protocols</a></li>
+            <li><a href="#contact" class="t-link">Link</a></li>
+            <li><button class="lang-switch" onclick="toggleLanguage()">AR</button></li>
         </ul>
     </nav>
 
@@ -251,110 +292,228 @@
 
     <section id="home">
         <div class="hero-content">
-            <h1 class="hero-title">MOHAMED <br><span class="gradient-text">OMAR.</span></h1>
-            <p class="hero-sub">
+            <h1 class="hero-title"><span class="t-fname">MOHAMED</span> <br><span class="gradient-text t-lname">OMAR.</span></h1>
+            <p class="hero-sub t-hero-sub">
                 Growth Architect & AI Strategist. 7+ Years Engineering Digital Ecosystems. 
                 Specializing in G.E.O, Semantic Authority, and Agentic Growth Workflows.
             </p>
-            <a href="#about" class="cta-button">Access Identity Data</a>
+            <a href="#about" class="cta-button t-cta">Access Identity Data</a>
         </div>
     </section>
 
     <section id="about">
-        <h2 class="neon-text">Identity Architecture</h2>
+        <h2 class="neon-text t-about-title">Identity Architecture</h2>
         <div class="about-grid">
             <div class="about-text">
-                <p style="margin-bottom: 1.5rem;">
+                <p style="margin-bottom: 1.5rem;" class="t-about-p1">
                     Beyond the algorithms and growth loops, I architect systems that bridge the gap between human intent and machine execution. My journey started on the front lines of high-stakes regional marketing, but it evolved into a pursuit of <span class="neon-text">"Agentic Growth"</span>—a paradigm where AI doesn't just assist, it accelerates.
                 </p>
-                <p>
+                <p class="t-about-p2">
                     With 7 years of deep-field experience and a Master’s from UNSW, I focus on the <span class="gradient-text">"Search Everywhere"</span> era. I ensure brands are found not just by people, but by the generative engines and multi-agent systems that now guide consumer decision-making.
                 </p>
             </div>
             <div class="glass-panel" style="padding: 2rem;">
-                <h3 style="font-size: 1rem; margin-bottom: 1rem;" class="neon-text">Core Philosophies</h3>
+                <h3 style="font-size: 1rem; margin-bottom: 1rem;" class="neon-text t-philosophy-title">Core Philosophies</h3>
                 <ul style="list-style: none; color: var(--text-dim); font-size: 0.9rem;">
-                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;">G.E.O Primacy:</strong> Optimizing for the LLM response is the new SEO.</li>
-                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;">Semantic Sovereignty:</strong> Owning the meaning of a category, not just the keywords.</li>
-                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;">Agentic Efficiency:</strong> Replacing rigid funnels with adaptive AI workflows.</li>
+                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;" class="t-philo1-h">G.E.O Primacy:</strong> <span class="t-philo1-d">Optimizing for the LLM response is the new SEO.</span></li>
+                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;" class="t-philo2-h">Semantic Sovereignty:</strong> <span class="t-philo2-d">Owning the meaning of a category, not just the keywords.</span></li>
+                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;" class="t-philo3-h">Agentic Efficiency:</strong> <span class="t-philo3-d">Replacing rigid funnels with adaptive AI workflows.</span></li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="experience">
-        <h2 class="neon-text">History Log</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="timeline-date">2025 — PRESENT</span>
-                <h3>Head of Marketing @ Etlaala</h3>
-                <p>Architecting regional revenue systems. Recovered SAR 1M+ profit in 12 months by replacing legacy marketing with agentic orchestration.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">2024 — 2025</span>
-                <h3>Head of Digital @ Penta Studio</h3>
-                <p>Directed digital strategy for high-growth regional accounts, focusing on omnichannel alignment and media spend efficiency.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">2023 — 2024</span>
-                <h3>Head of Digital @ Mophex Digital</h3>
-                <p>Engineered multi-channel tracking and performance funnels. Analyzed campaign efficiency to unlock new market opportunities.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">2022 — 2024</span>
-                <h3>Head of Digital Dept. @ ICS Calibration</h3>
-                <p>Led institutional digital transformation. Scaled technical operations and lead qualification systems for high-ticket B2B services.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">2021 — 2021</span>
-                <h3>Digital Marketing Director @ Daark Real Estate</h3>
-                <p>Orchestrated real estate lead dominance. Designed high-ticket property acquisition strategies and monthly growth protocols.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">2018 — 2020</span>
-                <h3>Content Director @ MSPIRED</h3>
-                <p>Foundational content architecture. Directed multi-year content strategies and brand development for regional scale.</p>
-            </div>
-            <div class="timeline-item">
-                <span class="timeline-date">ACADEMIC</span>
-                <h3>Masters in Digital Marketing</h3>
-                <p>University of New South Wales (UNSW). Focused on the intersection of consumer psychology and algorithmic growth.</p>
-            </div>
+        <h2 class="neon-text t-history-title">History Log</h2>
+        <div class="timeline" id="experience-timeline">
+            <!-- Items injected by JS -->
         </div>
     </section>
 
     <section id="projects">
-        <h2 class="neon-text">Active Protocols</h2>
-        <div class="projects-grid">
-            <div class="project-card glass-panel">
-                <span class="tag">AI AGENTS</span>
-                <h4>Onyx Axis</h4>
-                <p>A multi-agent system designed for automated content orchestration and semantic gap analysis. Turning raw data into growth fuel.</p>
-            </div>
-            <div class="project-card glass-panel">
-                <span class="tag">GROWTH STACK</span>
-                <h4>Onyx Hive</h4>
-                <p>Collective intelligence framework for Generative Engine Optimization (G.E.O). Ensuring brand dominance in the LLM-search era.</p>
-            </div>
-            <div class="project-card glass-panel">
-                <span class="tag">AUTOMATION</span>
-                <h4>Nexus Pipeline</h4>
-                <p>Python-based automation suite for real-time market sentiment mapping and automated G-Business optimization.</p>
-            </div>
+        <h2 class="neon-text t-projects-title">Active Protocols</h2>
+        <div class="projects-grid" id="projects-grid">
+            <!-- Items injected by JS -->
         </div>
     </section>
 
     <section id="contact" style="text-align: center;">
-        <h2 class="gradient-text" style="font-size: 3rem;">Let's Build the Future.</h2>
-        <p style="margin-bottom: 2rem; color: var(--text-dim);">Ready to deploy high-value growth strategies?</p>
+        <h2 class="gradient-text t-contact-title" style="font-size: 3rem;">Let's Build the Future.</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-dim);" class="t-contact-sub">Ready to deploy high-value growth strategies?</p>
         <div style="display: flex; justify-content: center; gap: 2rem;">
             <a href="https://www.linkedin.com/in/mo-omar-mraketing-expert/" class="skill-node">LinkedIn</a>
             <a href="https://github.com/mohamedOmar11111" class="skill-node">GitHub</a>
-            <a href="mailto:mo.omar477@gmail.com" class="skill-node">Email</a>
+            <a href="mailto:mo.omar477@gmail.com" class="skill-node t-email">Email</a>
         </div>
     </section>
 
     <script>
+        // --- Translations Data ---
+        const translations = {
+            en: {
+                initiate: "Initiate",
+                identity: "Identity",
+                history: "History",
+                protocols: "Protocols",
+                link: "Link",
+                fname: "MOHAMED",
+                lname: "OMAR.",
+                hero_sub: "Growth Architect & AI Strategist. 7+ Years Engineering Digital Ecosystems. Specializing in G.E.O, Semantic Authority, and Agentic Growth Workflows.",
+                cta: "Access Identity Data",
+                about_title: "Identity Architecture",
+                about_p1: "Beyond the algorithms and growth loops, I architect systems that bridge the gap between human intent and machine execution. My journey started on the front lines of high-stakes regional marketing, but it evolved into a pursuit of \"Agentic Growth\"—a paradigm where AI doesn't just assist, it accelerates.",
+                about_p2: "With 7 years of deep-field experience and a Master’s from UNSW, I focus on the \"Search Everywhere\" era. I ensure brands are found not just by people, but by the generative engines and multi-agent systems that now guide consumer decision-making.",
+                philosophy_title: "Core Philosophies",
+                philo1_h: "G.E.O Primacy:",
+                philo1_d: "Optimizing for the LLM response is the new SEO.",
+                philo2_h: "Semantic Sovereignty:",
+                philo2_d: "Owning the meaning of a category, not just the keywords.",
+                philo3_h: "Agentic Efficiency:",
+                philo3_d: "Replacing rigid funnels with adaptive AI workflows.",
+                history_title: "History Log",
+                projects_title: "Active Protocols",
+                contact_title: "Let's Build the Future.",
+                contact_sub: "Ready to deploy high-value growth strategies?",
+                email: "Email",
+                timeline: [
+                    { date: "2025 — PRESENT", title: "Head of Marketing @ Etlaala", desc: "Architecting regional revenue systems. Recovered SAR 1M+ profit in 12 months by replacing legacy marketing with agentic orchestration." },
+                    { date: "2024 — 2025", title: "Head of Digital @ Penta Studio", desc: "Directed digital strategy for high-growth regional accounts, focusing on omnichannel alignment and media spend efficiency." },
+                    { date: "2023 — 2024", title: "Head of Digital @ Mophex Digital", desc: "Engineered multi-channel tracking and performance funnels. Analyzed campaign efficiency to unlock new market opportunities." },
+                    { date: "2022 — 2024", title: "Head of Digital Dept. @ ICS Calibration", desc: "Led institutional digital transformation. Scaled technical operations and lead qualification systems for high-ticket B2B services." },
+                    { date: "2021 — 2021", title: "Digital Marketing Director @ Daark Real Estate", desc: "Orchestrated real estate lead dominance. Designed high-ticket property acquisition strategies and monthly growth protocols." },
+                    { date: "2018 — 2020", title: "Content Director @ MSPIRED", desc: "Foundational content architecture. Directed multi-year content strategies and brand development for regional scale." },
+                    { date: "ACADEMIC", title: "Masters in Digital Marketing", desc: "University of New South Wales (UNSW). Focused on the intersection of consumer psychology and algorithmic growth." }
+                ],
+                projects: [
+                    { tag: "AI AGENTS", title: "Onyx Axis", desc: "A multi-agent system designed for automated content orchestration and semantic gap analysis. Turning raw data into growth fuel." },
+                    { tag: "GROWTH STACK", title: "Onyx Hive", desc: "Collective intelligence framework for Generative Engine Optimization (G.E.O). Ensuring brand dominance in the LLM-search era." },
+                    { tag: "AUTOMATION", title: "Nexus Pipeline", desc: "Python-based automation suite for real-time market sentiment mapping and automated G-Business optimization." }
+                ],
+                terminal: [
+                    "> checking_env: production",
+                    "> indexing_projects: onyx_series",
+                    "> geo_strategy: optimized",
+                    "> user_linked: true",
+                    "> status: mission_ready"
+                ]
+            },
+            ar: {
+                initiate: "البداية",
+                identity: "الهوية",
+                history: "السجل",
+                protocols: "البروتوكولات",
+                link: "اتصال",
+                fname: "محمد",
+                lname: "عمر.",
+                hero_sub: "مهندس نمو وخبير استراتيجيات الذكاء الاصطناعي. أكثر من 7 سنوات في هندسة الأنظمة الرقمية. متخصص في GEO، السيادة الدلالية، وسير عمل النمو المعتمد على الوكلاء.",
+                cta: "الوصول إلى بيانات الهوية",
+                about_title: "معمارية الهوية الرقمية",
+                about_p1: "خلف الكواليس الرقمية وحلقات النمو اللانهائية، أقوم ببناء جسور ذكية تربط بين النية البشرية والتنفيذ الآلي الصارم. بدأت رحلتي في الخطوط الأمامية للتسويق الإقليمي عالي المخاطر، لكنها تطورت إلى صياغة مفهوم \"النمو المعتمد على الوكلاء\"—وهو نموذج لا يكتفي فيه الذكاء الاصطناعي بالمساعدة، بل يقود النتائج بشكل استباقي.",
+                about_p2: "مع خبرة ميدانية تمتد لـ 7 سنوات وماجستير من جامعة نيو ساوث ويلز (UNSW)، أركز على عصر \"البحث في كل مكان\". مهمتي هي ضمان حضور العلامات التجارية ليس فقط في نتائج البحث التقليدية، بل في ردود المحركات التوليدية وأنظمة الوكلاء التي تشكل الآن جوهر القرار الاستهلاكي.",
+                philosophy_title: "الفلسفات الاستراتيجية",
+                philo1_h: "سيادة الـ G.E.O:",
+                philo1_d: "التحسين لاستجابة نماذج اللغة (LLM) هو المعيار الجديد للظهور الرقمي.",
+                philo2_h: "الاستحقاق الدلالي:",
+                philo2_d: "امتلاك المعنى الجوهري للفئة السوقية، وليس مجرد المنافسة على الكلمات.",
+                philo3_h: "كفاءة الوكلاء:",
+                philo3_d: "تحويل مسارات البيع الجامدة إلى منظومات ذكاء اصطناعي مرنة ومتكيفة.",
+                history_title: "سجل التأثير",
+                projects_title: "البروتوكولات النشطة",
+                contact_title: "لنصمم المستقبل معاً.",
+                contact_sub: "هل أنت مستعد لتفعيل استراتيجيات نمو فائقة القيمة؟",
+                email: "البريد",
+                timeline: [
+                    { date: "2025 — الحاضر", title: "رئيس التسويق @ Etlaala", desc: "هندسة أنظمة الإيرادات الإقليمية. استعادة أرباح بقيمة مليون ريال في عام واحد عبر استبدال العمليات التقليدية بمحركات التنفيذ الذكية." },
+                    { date: "2024 — 2025", title: "رئيس القسم الرقمي @ Penta Studio", desc: "قيادة الاستراتيجيات الرقمية للحسابات الكبرى، مع التركيز على المواءمة الشاملة وكفاءة الإنفاق الإعلامي." },
+                    { date: "2023 — 2024", title: "رئيس القسم الرقمي @ Mophex Digital", desc: "هندسة قنوات التتبع المتقدمة ومسارات الأداء. تحليل الكفاءة لفتح ثغرات نمو جديدة في السوق." },
+                    { date: "2022 — 2024", title: "رئيس القسم الرقمي @ ICS Calibration", desc: "قيادة التحول الرقمي المؤسسي. تطوير العمليات التقنية ونظم توليد العملاء للخدمات B2B عالية القيمة." },
+                    { date: "2021 — 2021", title: "مدير التسويق الرقمي @ Daark Real Estate", desc: "تحقيق السيادة في سوق العقارات عبر تصميم بروتوكولات استحواذ ذكية واستراتيجيات نمو شهرية." },
+                    { date: "2018 — 2020", title: "مدير المحتوى @ MSPIRED", desc: "بناء معمارية المحتوى التأسيسية. إدارة الاستراتيجيات بعيدة المدى وتطوير الهوية الإقليمية." },
+                    { date: "أكاديمي", title: "ماجستير في التسويق الرقمي", desc: "جامعة نيو ساوث ويلز (UNSW). التخصص في تقاطع علم النفس السلوكي والنمو الخوارزمي." }
+                ],
+                projects: [
+                    { tag: "وكلاء ذكاء اصطناعي", title: "Onyx Axis", desc: "نظام وكلاء متعدد لتنسيق المحتوى آلياً وتحليل الفجوات الدلالية، لتحويل البيانات إلى وقود للنمو." },
+                    { tag: "حزمة النمو", title: "Onyx Hive", desc: "إطار ذكاء جماعي لتحسين المحركات التوليدية (G.E.O) لضمان السيادة في عصر البحث الذكي." },
+                    { tag: "أتمتة", title: "Nexus Pipeline", desc: "منظومة أتمتة برمجية لرصد مشاعر السوق اللحظية وتحسين التواجد الرقمي بشكل آلي ومستمر." }
+                ],
+                terminal: [
+                    "> checking_env: production",
+                    "> indexing_projects: onyx_series",
+                    "> geo_strategy: optimized",
+                    "> user_linked: true",
+                    "> status: mission_ready"
+                ]
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            renderLanguage();
+        }
+
+        function renderLanguage() {
+            const t = translations[currentLang];
+            document.documentElement.lang = currentLang;
+            document.body.setAttribute('lang', currentLang);
+            
+            // UI Element Updates
+            document.querySelector('.t-initiate').textContent = t.initiate;
+            document.querySelector('.t-identity').textContent = t.identity;
+            document.querySelector('.t-history').textContent = t.history;
+            document.querySelector('.t-protocols').textContent = t.protocols;
+            document.querySelector('.t-link').textContent = t.link;
+            document.querySelector('.lang-switch').textContent = currentLang === 'en' ? 'AR' : 'EN';
+            
+            document.querySelector('.t-fname').textContent = t.fname;
+            document.querySelector('.t-lname').textContent = t.lname;
+            document.querySelector('.t-hero-sub').textContent = t.hero_sub;
+            document.querySelector('.t-cta').textContent = t.cta;
+            
+            document.querySelector('.t-about-title').textContent = t.about_title;
+            document.querySelector('.t-about-p1').innerHTML = t.about_p1.replace(/\"(.*?)\"/g, `<span class="neon-text">"$1"</span>`);
+            document.querySelector('.t-about-p2').innerHTML = t.about_p2.replace(/\"(.*?)\"/g, `<span class="gradient-text">"$1"</span>`);
+            
+            document.querySelector('.t-philosophy-title').textContent = t.philosophy_title;
+            document.querySelector('.t-philo1-h').textContent = t.philo1_h;
+            document.querySelector('.t-philo1-d').textContent = t.philo1_d;
+            document.querySelector('.t-philo2-h').textContent = t.philo2_h;
+            document.querySelector('.t-philo2-d').textContent = t.philo2_d;
+            document.querySelector('.t-philo3-h').textContent = t.philo3_h;
+            document.querySelector('.t-philo3-d').textContent = t.philo3_d;
+            
+            document.querySelector('.t-history-title').textContent = t.history_title;
+            document.querySelector('.t-projects-title').textContent = t.projects_title;
+            document.querySelector('.t-contact-title').textContent = t.contact_title;
+            document.querySelector('.t-contact-sub').textContent = t.contact_sub;
+            document.querySelector('.t-email').textContent = t.email;
+
+            // Timeline Re-render
+            const timeline = document.getElementById('experience-timeline');
+            timeline.innerHTML = t.timeline.map(item => `
+                <div class="timeline-item">
+                    <span class="timeline-date">${item.date}</span>
+                    <h3>${item.title}</h3>
+                    <p>${item.desc}</p>
+                </div>
+            `).join('');
+
+            // Projects Re-render
+            const projects = document.getElementById('projects-grid');
+            projects.innerHTML = t.projects.map(item => `
+                <div class="project-card glass-panel">
+                    <span class="tag">${item.tag}</span>
+                    <h4>${item.title}</h4>
+                    <p>${item.desc}</p>
+                </div>
+            `).join('');
+
+            // Terminal Re-render
+            const terminal = document.getElementById('terminal-log');
+            terminal.innerHTML = t.terminal.join('<br>');
+        }
+
         // --- Background Particle Animation ---
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
@@ -390,6 +549,7 @@
         }
 
         function createParticles() {
+            particles = [];
             for (let i = 0; i < 100; i++) {
                 particles.push(new Particle());
             }
@@ -402,25 +562,6 @@
                 p.draw();
             });
             requestAnimationFrame(animate);
-        }
-
-        // --- Terminal Logging Simulation ---
-        const terminal = document.getElementById('terminal-log');
-        const logs = [
-            "> checking_env: production",
-            "> indexing_projects: onyx_series",
-            "> geo_strategy: optimized",
-            "> user_linked: true",
-            "> status: mission_ready"
-        ];
-        let logIndex = 0;
-
-        function updateTerminal() {
-            if (logIndex < logs.length) {
-                terminal.innerHTML += `<br>${logs[logIndex]}`;
-                logIndex++;
-                setTimeout(updateTerminal, 2000);
-            }
         }
 
         // --- Scroll Handling ---
@@ -438,7 +579,7 @@
             initCanvas();
             createParticles();
             animate();
-            setTimeout(updateTerminal, 1000);
+            renderLanguage();
         };
 
         window.onresize = initCanvas;
