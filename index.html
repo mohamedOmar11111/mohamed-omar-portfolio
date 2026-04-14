@@ -132,6 +132,11 @@
             box-shadow: 0 0 30px var(--neon-cyan);
         }
 
+        /* --- About Section --- */
+        .about-text { font-size: 1.1rem; max-width: 900px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
+        @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+
         /* --- Experience/Timeline --- */
         .timeline { position: relative; border-left: 2px solid var(--glass-border); padding-left: 2rem; margin-top: 2rem; }
         .timeline-item { margin-bottom: 4rem; position: relative; }
@@ -231,6 +236,7 @@
         <div class="logo neon-text" style="font-family: var(--font-header); font-weight: bold;">MO//PORTFOLIO</div>
         <ul class="nav-links">
             <li><a href="#home">Initiate</a></li>
+            <li><a href="#about">Identity</a></li>
             <li><a href="#experience">History</a></li>
             <li><a href="#projects">Protocols</a></li>
             <li><a href="#contact">Link</a></li>
@@ -250,7 +256,29 @@
                 Growth Architect & AI Strategist. 7+ Years Engineering Digital Ecosystems. 
                 Specializing in G.E.O, Semantic Authority, and Agentic Growth Workflows.
             </p>
-            <a href="#contact" class="cta-button">Initiate Connection</a>
+            <a href="#about" class="cta-button">Access Identity Data</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="neon-text">Identity Architecture</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p style="margin-bottom: 1.5rem;">
+                    Beyond the algorithms and growth loops, I architect systems that bridge the gap between human intent and machine execution. My journey started on the front lines of high-stakes regional marketing, but it evolved into a pursuit of <span class="neon-text">"Agentic Growth"</span>—a paradigm where AI doesn't just assist, it accelerates.
+                </p>
+                <p>
+                    With 7 years of deep-field experience and a Master’s from UNSW, I focus on the <span class="gradient-text">"Search Everywhere"</span> era. I ensure brands are found not just by people, but by the generative engines and multi-agent systems that now guide consumer decision-making.
+                </p>
+            </div>
+            <div class="glass-panel" style="padding: 2rem;">
+                <h3 style="font-size: 1rem; margin-bottom: 1rem;" class="neon-text">Core Philosophies</h3>
+                <ul style="list-style: none; color: var(--text-dim); font-size: 0.9rem;">
+                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;">G.E.O Primacy:</strong> Optimizing for the LLM response is the new SEO.</li>
+                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;">Semantic Sovereignty:</strong> Owning the meaning of a category, not just the keywords.</li>
+                    <li style="margin-bottom: 0.8rem;">• <strong style="color: white;">Agentic Efficiency:</strong> Replacing rigid funnels with adaptive AI workflows.</li>
+                </ul>
+            </div>
         </div>
     </section>
 
