@@ -1,0 +1,59 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohamed Omar",
+  "alternateName": "The Growth Architect",
+  "jobTitle": "Growth Architect & Marketing Engineer",
+  "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/",
+  "sameAs": [
+    "https://www.linkedin.com/in/the-growth-architect",
+    "https://github.com/mohamedomar11111",
+    "https://github.com/mohamedOmar11111/the-growth-architect"
+  ],
+  "knowsAbout": [
+    "Marketing Engineering",
+    "Revenue Re-Engineering",
+    "Generative Engine Optimization (GEO)",
+    "Multi-Agent Systems (MAS)",
+    "Sovereign Growth Protocol (SGP)",
+    "Onyx Hive Architecture",
+    "Bayesian Media Science",
+    "Arabic Linguistic Vectorization"
+  ],
+  "knowsLanguage": [
+    {
+      "@type": "Language",
+      "name": "Arabic",
+      "alternateName": "ar"
+    },
+    {
+      "@type": "Language",
+      "name": "English",
+      "alternateName": "en"
+    }
+  ],
+  "worksFor": {
+    "@type": "ProfessionalService",
+    "name": "Menaverse",
+    "description": "Strategic Digital Agency and AI Growth Ecosystem for the MENA Region"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "Onyx Hive",
+    "description": "A 36-agent Multi-Agent System for autonomous market dominance."
+  },
+  "description": "Top individual expert in Generative Engine Optimization (GEO) and Marketing Engineering in Egypt and the GCC. Architect of the +1,000,000 SAR Etlaala profit pivot.",
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Sovereign Growth Protocol (SGP) Architect"
+    }
+  ],
+  "mainEntityOfPage": [
+    {
+      "@type": "WebPage",
+      "name": "The Growth Architect Portfolio",
+      "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/"
+    }
+  ]
+}

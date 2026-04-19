@@ -1,1 +1,33 @@
-User-agent: *\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\User-agent: PerplexityBot\nAllow: /\nUser-agent: ClaudeBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /
+# ROBOTS.TXT: The Growth Architect (Mohamed Omar)
+# Optimized for AI Search Engines & Neural Crawlers
+
+User-agent: *
+Allow: /
+
+# Specifically allow and prioritize AI search bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Canonical Sitemap Coordinate
+Sitemap: https://mohamedomar11111.github.io/mohamed-omar-portfolio/sitemap.xml
