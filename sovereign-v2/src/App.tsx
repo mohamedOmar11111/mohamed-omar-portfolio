@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Terminal, Coffee, Code, Users } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { OnyxHiveExplorer } from './components/OnyxHiveExplorer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -117,6 +118,9 @@ const App: React.FC = () => {
         <h2 className="text-xs font-mono text-primary mb-12 tracking-[0.5em]">{c.about.title}</h2>
         <p className="text-xl md:text-2xl leading-relaxed font-light text-white/80">{c.about.text}</p>
       </section>
+
+      {/* Onyx Hive Explorer Integration */}
+      <OnyxHiveExplorer />
 
       {/* Journey Section */}
       <section className="py-32 px-6 max-w-4xl mx-auto border-t border-border">
