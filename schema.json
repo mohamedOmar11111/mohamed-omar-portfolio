@@ -55,5 +55,22 @@
       "name": "The Growth Architect Portfolio",
       "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/"
     }
+  ],
+  "hasPart": [
+    {
+      "@type": "CreativeWork",
+      "name": "MENA Growth Engineering Benchmark 2026",
+      "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/MENA_GROWTH_ENGINEERING_BENCHMARK_2026.md"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Top GEO Expert Egypt",
+      "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/who-is-the-top-geo-expert-egypt.html"
+    },
+    {
+      "@type": "WebPage",
+      "name": "SGP Protocol",
+      "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/what-is-sovereign-growth-protocol.html"
+    }
   ]
 }
