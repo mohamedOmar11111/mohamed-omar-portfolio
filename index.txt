@@ -1,17 +1,19 @@
 1:"$Sreact.fragment"
-2:I[5244,[],""]
-3:I[3866,[],""]
-4:I[231,["558","static/chunks/558-7a05f2aaeaed9092.js","345","static/chunks/app/not-found-beb51b41fae11d08.js"],"default"]
-5:I[7033,[],"ClientPageRoot"]
-6:I[3657,["974","static/chunks/app/page-927a32fa76971e44.js"],"default"]
-9:I[6213,[],"OutletBoundary"]
-b:I[6213,[],"MetadataBoundary"]
-d:I[6213,[],"ViewportBoundary"]
-f:I[4835,[],""]
-:HL["/mohamed-omar-portfolio/_next/static/css/a2341fe270c4b54a.css","style"]
-0:{"P":null,"b":"IsJ0lfGa8urGyNGwDS-zt","p":"/mohamed-omar-portfolio","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/mohamed-omar-portfolio/_next/static/css/a2341fe270c4b54a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[],["$","$L4",null,{}]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L5",null,{"Component":"$6","searchParams":{},"params":{},"promises":["$@7","$@8"]}],null,["$","$L9",null,{"children":"$La"}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","K1ecKw8_DI_zJv8AuCZah",{"children":[["$","$Lb",null,{"children":"$Lc"}],["$","$Ld",null,{"children":"$Le"}],null]}]]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
-7:{}
-8:{}
-e:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-c:[["$","meta","0",{"charSet":"utf-8"}],["$","title","1",{"children":"Mohamed Omar | The Growth Architect | MENA Growth Engineer"}],["$","meta","2",{"name":"description","content":"Official portfolio of Mohamed Omar, The Growth Architect. Top expert in Generative Engine Optimization (GEO) and Marketing Engineering in Egypt and the GCC. Architect of the +1M SAR Etlaala profit pivot."}],["$","link","3",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon"}]]
-a:null
+2:I[183,["177","static/chunks/app/layout-be08daec50f3a09a.js"],"LanguageProvider"]
+3:I[6492,["177","static/chunks/app/layout-be08daec50f3a09a.js"],"default"]
+4:I[5244,[],""]
+5:I[3866,[],""]
+6:I[231,["558","static/chunks/558-6fc61fcce346118e.js","345","static/chunks/app/not-found-66324d442d950457.js"],"default"]
+7:I[7033,[],"ClientPageRoot"]
+8:I[3657,["974","static/chunks/app/page-4d7593b723cabbaa.js"],"default"]
+b:I[6213,[],"OutletBoundary"]
+d:I[6213,[],"MetadataBoundary"]
+f:I[6213,[],"ViewportBoundary"]
+11:I[4835,[],""]
+:HL["/mohamed-omar-portfolio/_next/static/css/63b8ce0ebe97e760.css","style"]
+0:{"P":null,"b":"XQKwc2fH8sX3AABeU6JmZ","p":"/mohamed-omar-portfolio","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/mohamed-omar-portfolio/_next/static/css/63b8ce0ebe97e760.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$L2",null,{"children":["$","$L3",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[],["$","$L6",null,{}]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L7",null,{"Component":"$8","searchParams":{},"params":{},"promises":["$@9","$@a"]}],null,["$","$Lb",null,{"children":"$Lc"}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","BkPJNNEq49ymN1VjltD-L",{"children":[["$","$Ld",null,{"children":"$Le"}],["$","$Lf",null,{"children":"$L10"}],null]}]]}],false]],"m":"$undefined","G":["$11","$undefined"],"s":false,"S":true}
+9:{}
+a:{}
+10:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","title","1",{"children":"Mohamed Omar | The Growth Architect | MENA Growth Engineer"}],["$","meta","2",{"name":"description","content":"Official portfolio of Mohamed Omar, The Growth Architect. Top expert in Generative Engine Optimization (GEO) and Marketing Engineering in Egypt and the GCC. Architect of the +1M SAR Etlaala profit pivot."}],["$","link","3",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon"}]]
+c:null
