@@ -24,14 +24,14 @@
             --bg-black: #020205;
             --zinc-900: #09090b;
             --zinc-800: #18181b;
-            --growth-blue: #00D4FF; 
+            --growth-blue: #3b82f6; 
             --growth-green: #10b981; 
             --onyx-gold: #C9A84C;
         }
 
         body {
             background-color: var(--bg-black);
-            color: #E8EAED;
+            color: #fff;
             font-family: 'Cairo', sans-serif;
             overflow-x: hidden;
             cursor: none;
@@ -60,7 +60,7 @@
         }
         .cursor-outline {
             width: 35px; height: 35px;
-            border: 1px solid rgba(0, 212, 255, 0.4);
+            border: 1px solid rgba(59, 130, 246, 0.4);
             border-radius: 50%;
             position: fixed;
             top: 0; left: 0;
@@ -71,7 +71,7 @@
         }
         .cursor-outline.hover {
             width: 55px; height: 55px;
-            background-color: rgba(0, 212, 255, 0.05);
+            background-color: rgba(59, 130, 246, 0.05);
             border-color: var(--growth-green);
         }
 
@@ -131,7 +131,7 @@
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
         }
 
-        /* PORTRAIT MASK */
+        /* PORTRAIT CALIBRATION */
         .hero-portrait {
             mask-image: linear-gradient(to bottom, black 60%, transparent 95%);
             -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 95%);
@@ -193,7 +193,7 @@
             <div class="h-full flex flex-col justify-center px-8 md:px-24 max-w-7xl relative z-30">
                 <!-- IDENTITY NODES -->
                 <div class="mb-12">
-                    <div class="mono text-growth-blue text-xs tracking-[0.6em] uppercase mb-6 opacity-0" id="hero-tag">The Growth Architect // MENA Growth Engineer</div>
+                    <div class="mono text-growth-blue text-xs tracking-[0.6em] uppercase mb-6 opacity-0" id="hero-tag">Sovereign Growth Architect // Kernel Engineer</div>
                     <h1 class="text-hero-title leading-[0.85] font-black tracking-tighter uppercase italic text-white" id="hero-title">
                         MOHAMED<br><span class="text-zinc-900" style="-webkit-text-stroke: 1px #fff;">OMAR</span>
                     </h1>
@@ -208,30 +208,17 @@
                     </p>
                 </div>
 
-                <!-- QUICK STATS GRID -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 opacity-0" id="hero-stats">
-                    <div class="glass-panel p-4 border-l border-growth-blue hover-target">
-                        <span class="text-xl font-black italic block">7+</span>
-                        <span class="mono text-[8px] text-zinc-600 uppercase tracking-widest">Years Experience</span>
-                    </div>
-                    <div class="glass-panel p-4 border-l border-growth-green hover-target">
-                        <span class="text-xl font-black italic block">12×</span>
-                        <span class="mono text-[8px] text-zinc-600 uppercase tracking-widest">Peak ROAS</span>
-                    </div>
-                    <div class="glass-panel p-4 border-l border-growth-blue hover-target">
-                        <span class="text-xl font-black italic block">$2M+</span>
-                        <span class="mono text-[8px] text-zinc-600 uppercase tracking-widest">Spend Managed</span>
-                    </div>
-                    <div class="glass-panel p-4 border-l border-growth-green hover-target">
-                        <span class="text-xl font-black italic block">40+</span>
-                        <span class="mono text-[8px] text-zinc-600 uppercase tracking-widest">Brands Scaled</span>
-                    </div>
+                <!-- NAV STRIKE -->
+                <div class="flex gap-10 mono text-[10px] uppercase tracking-[0.3em] opacity-0" id="hero-nav">
+                    <a href="#kernel" class="hover-target hover:text-growth-blue transition-colors">01 // The Kernel</a>
+                    <a href="#hive" class="hover-target hover:text-growth-green transition-colors">02 // Onyx Hive</a>
+                    <a href="#strike" class="hover-target hover:text-white transition-colors">03 // Strike Log</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 2. THE KERNEL SCENE -->
+    <!-- 2. THE KERNEL SCENE: MATHEMATICAL PRECISION -->
     <section class="scene min-h-screen py-40 bg-zinc-950 relative z-20 border-y border-zinc-900" id="kernel">
         <div class="max-w-6xl mx-auto px-8">
             <div class="text-growth-blue text-[10px] uppercase tracking-[0.5em] mb-12 flex items-center gap-6">
@@ -244,7 +231,7 @@
                         f(Growth) = ∫(Plan + Apply + Unify) dt
                     </h2>
                     <p class="text-xl text-zinc-500 font-light leading-relaxed mb-12" id="kernel-text">
-                        7 years architecting data-driven growth across MENA. From performance media to AI-powered agentic workflows — I engineer systems that compound. The Bayesian Revenue Kernel is a deterministic framework used to predict and scale growth in high-stakes markets.
+                        The Bayesian Revenue Kernel is a deterministic framework used to predict and scale growth in high-stakes markets. Growth is not a random outcome of "creativity," but the result of continuous, unified cycles of strategic planning and agentic application.
                     </p>
                     <div class="flex gap-4">
                         <div class="glass-panel p-6 border-l-2 border-growth-blue flex-1">
@@ -271,181 +258,110 @@
         </div>
     </section>
 
-    <!-- 3. DEPLOYMENT CHRONICLE (EXPERIENCE) -->
-    <section class="py-40 bg-black relative z-20 overflow-visible" id="experience">
+    <!-- 3. THE ONYX HIVE: MULTI-AGENT ARCHITECTURE -->
+    <section class="scene py-40 bg-black relative z-20" id="hive">
         <div class="max-w-7xl mx-auto px-8">
-            <div class="text-growth-green text-[10px] uppercase tracking-[0.5em] mb-24 flex items-center gap-6">
-                <div class="w-12 h-[1px] bg-growth-green"></div> 02 // DEPLOYMENT CHRONICLE
+            <div class="text-growth-green text-[10px] uppercase tracking-[0.5em] mb-20 flex items-center gap-6 justify-center">
+                <div class="w-12 h-[1px] bg-growth-green"></div> 02 // ONYX HIVE ARCHITECTURE <div class="w-12 h-[1px] bg-growth-green"></div>
             </div>
 
-            <div class="space-y-40">
-                <!-- Etlaala -->
-                <div class="flex flex-col md:flex-row gap-16 job-row">
-                    <div class="md:w-1/3">
-                        <div class="sticky top-40">
-                            <span class="mono text-[10px] text-zinc-600 mb-2 block tracking-widest">2023 – PRESENT</span>
-                            <h3 class="text-5xl font-black text-white italic uppercase leading-none mb-4">ETLAALA</h3>
-                            <p class="text-growth-blue font-bold tracking-widest text-xs mb-8 uppercase">Head of Marketing</p>
-                            <div class="w-16 h-[2px] bg-growth-blue"></div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3">
-                        <div class="glass-panel p-10 border-l-2 border-growth-blue hover-target">
-                            <ul class="space-y-6 text-zinc-400 text-lg font-light leading-relaxed">
-                                <li class="flex gap-4"><span class="text-growth-blue font-black">STRIKE_01</span> <p>Architected full-funnel B2B demand generation engine, reducing CAC by 38%.</p></li>
-                                <li class="flex gap-4"><span class="text-growth-blue font-black">STRIKE_02</span> <p>Deployed omnichannel campaigns across Google, Meta, TikTok & Snapchat with 12× peak ROAS.</p></li>
-                                <li class="flex gap-4"><span class="text-growth-blue font-black">STRIKE_03</span> <p>Integrated LLM-powered content workflows cutting production time by 60%.</p></li>
-                                <li class="flex gap-4"><span class="text-growth-blue font-black">STRIKE_04</span> <p>Led cross-functional team of 8 across paid media, SEO, and creative.</p></li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Squad 1 -->
+                <div class="glass-panel p-12 rounded-sm hover-target group border-t-2 border-growth-blue">
+                    <span class="mono text-[11px] text-growth-blue mb-8 block font-black">01 // RECON SQUAD</span>
+                    <h3 class="text-3xl font-black text-white mb-6 uppercase italic">Sensory Intelligence</h3>
+                    <p class="text-zinc-500 text-sm leading-loose mb-10">
+                        Forensic competitor auditing and market signal capture. We map the invisible architecture of your competition's growth engine.
+                    </p>
+                    <ul class="mono text-[9px] text-zinc-600 space-y-2 uppercase tracking-widest">
+                        <li>- Signal Capture</li>
+                        <li>- Gap Discovery</li>
+                        <li>- Trend Forecasting</li>
+                    </ul>
                 </div>
-
-                <!-- Menaverse -->
-                <div class="flex flex-col md:flex-row gap-16 job-row">
-                    <div class="md:w-1/3 text-right order-1 md:order-2">
-                        <div class="sticky top-40">
-                            <span class="mono text-[10px] text-zinc-600 mb-2 block tracking-widest">2021 – 2023</span>
-                            <h3 class="text-5xl font-black text-white italic uppercase leading-none mb-4">MENAVERSE</h3>
-                            <p class="text-growth-green font-bold tracking-widest text-xs mb-8 uppercase">Founder & Strategist</p>
-                            <div class="w-16 h-[2px] bg-growth-green ml-auto"></div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3 order-2 md:order-1">
-                        <div class="glass-panel p-10 border-r-2 border-growth-green hover-target text-right">
-                            <ul class="space-y-6 text-zinc-400 text-lg font-light leading-relaxed">
-                                <li class="flex flex-row-reverse gap-4"><span class="text-growth-green font-black">CORE_01</span> <p>Founded and scaled a MENA-focused digital growth consultancy from 0 to $500K ARR.</p></li>
-                                <li class="flex flex-row-reverse gap-4"><span class="text-growth-green font-black">CORE_02</span> <p>Built proprietary Onyx Hive agentic workflow system for automated campaign management.</p></li>
-                                <li class="flex flex-row-reverse gap-4"><span class="text-growth-green font-black">CORE_03</span> <p>Delivered 200%+ revenue growth for 15+ regional clients in 18 months.</p></li>
-                                <li class="flex flex-row-reverse gap-4"><span class="text-growth-green font-black">CORE_04</span> <p>Pioneered AI-driven audience segmentation models for MENA market nuances.</p></li>
-                            </ul>
-                        </div>
-                    </div>
+                <!-- Squad 2 -->
+                <div class="glass-panel p-12 rounded-sm hover-target group border-t-2 border-white">
+                    <span class="mono text-[11px] text-white mb-8 block font-black">02 // STRATEGY SQUAD</span>
+                    <h3 class="text-3xl font-black text-white mb-6 uppercase italic">Cognitive Strike</h3>
+                    <p class="text-zinc-500 text-sm leading-loose mb-10">
+                        High-status roadmap design and risk modeling. We translate raw data into deterministic pathways for market dominance.
+                    </p>
+                    <ul class="mono text-[9px] text-zinc-600 space-y-2 uppercase tracking-widest">
+                        <li>- Roadmap Design</li>
+                        <li>- Risk Modeling</li>
+                        <li>- S-Score Audit</li>
+                    </ul>
                 </div>
-
-                <!-- Penta -->
-                <div class="flex flex-col md:flex-row gap-16 job-row">
-                    <div class="md:w-1/3">
-                        <div class="sticky top-40">
-                            <span class="mono text-[10px] text-zinc-600 mb-2 block tracking-widest">2020 – 2021</span>
-                            <h3 class="text-5xl font-black text-white italic uppercase leading-none mb-4">PENTA</h3>
-                            <p class="text-growth-blue font-bold tracking-widest text-xs mb-8 uppercase">Digital Marketing Lead</p>
-                            <div class="w-16 h-[2px] bg-growth-blue"></div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3">
-                        <div class="glass-panel p-10 border-l-2 border-growth-blue hover-target">
-                            <ul class="space-y-6 text-zinc-400 text-lg font-light leading-relaxed">
-                                <li class="flex gap-4"><span class="text-growth-blue font-black">OPS_01</span> <p>Managed $800K+ annual media budget across performance channels.</p></li>
-                                <li class="flex gap-4"><span class="text-growth-blue font-black">OPS_02</span> <p>Implemented technical SEO overhaul resulting in 3× organic traffic growth.</p></li>
-                                <li class="flex gap-4"><span class="text-growth-blue font-black">OPS_03</span> <p>Developed data attribution models improving campaign decision accuracy by 45%.</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mophex -->
-                <div class="flex flex-col md:flex-row gap-16 job-row">
-                    <div class="md:w-1/3 text-right order-1 md:order-2">
-                        <div class="sticky top-40">
-                            <span class="mono text-[10px] text-zinc-600 mb-2 block tracking-widest">2018 – 2020</span>
-                            <h3 class="text-5xl font-black text-white italic uppercase leading-none mb-4">MOPHEX</h3>
-                            <p class="text-growth-green font-bold tracking-widest text-xs mb-8 uppercase">Growth Manager</p>
-                            <div class="w-16 h-[2px] bg-growth-green ml-auto"></div>
-                        </div>
-                    </div>
-                    <div class="md:w-2/3 order-2 md:order-1">
-                        <div class="glass-panel p-10 border-r-2 border-growth-green hover-target text-right">
-                            <ul class="space-y-6 text-zinc-400 text-lg font-light leading-relaxed">
-                                <li class="flex flex-row-reverse gap-4"><span class="text-growth-green font-black">BASE_01</span> <p>Launched and optimized 50+ paid campaigns across Google Ads and Meta ecosystem.</p></li>
-                                <li class="flex flex-row-reverse gap-4"><span class="text-growth-green font-black">BASE_02</span> <p>Built automated reporting dashboards reducing analysis time by 70%.</p></li>
-                                <li class="flex flex-row-reverse gap-4"><span class="text-growth-green font-black">BASE_03</span> <p>Grew client portfolio from 8 to 22 accounts within 12 months.</p></li>
-                            </ul>
-                        </div>
-                    </div>
+                <!-- Squad 3 -->
+                <div class="glass-panel p-12 rounded-sm hover-target group border-t-2 border-growth-green">
+                    <span class="mono text-[11px] text-growth-green mb-8 block font-black">03 // CONTENT FACTORY</span>
+                    <h3 class="text-3xl font-black text-white mb-6 uppercase italic">Execution Strike</h3>
+                    <p class="text-zinc-500 text-sm leading-loose mb-10">
+                        High-status cinematic storytelling and visual strikes. Every piece of content is a tactical node in the revenue kernel.
+                    </p>
+                    <ul class="mono text-[9px] text-zinc-600 space-y-2 uppercase tracking-widest">
+                        <li>- Cinematic Narrative</li>
+                        <li>- Visual Engineering</li>
+                        <li>- Performance Assets</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. TECH STACK & IMPACT -->
-    <section class="scene py-40 bg-zinc-950 relative z-20 border-y border-zinc-900" id="skills">
+    <!-- 4. CASE STUDY: ETLAALA RECOVERY -->
+    <section class="scene py-40 bg-zinc-950 relative z-20 border-t border-zinc-900" id="strike">
         <div class="max-w-6xl mx-auto px-8">
-            <div class="text-growth-blue text-[10px] uppercase tracking-[0.5em] mb-20 flex items-center gap-6 justify-center">
-                <div class="w-12 h-[1px] bg-growth-blue"></div> PRECISION TECH STACK <div class="w-12 h-[1px] bg-growth-blue"></div>
+            <div class="text-growth-blue text-[10px] uppercase tracking-[0.5em] mb-12 flex items-center gap-6">
+                <div class="w-12 h-[1px] bg-growth-blue"></div> 03 // DEPLOYMENT LOG: ETLAALA
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-panel p-8 hover-target border-t-2 border-growth-blue">
-                    <h4 class="text-xs font-black uppercase mb-4 tracking-widest text-white italic">Performance</h4>
-                    <p class="text-[11px] text-zinc-500 mono leading-relaxed uppercase">Google Ads · Meta Ads · TikTok · Snapchat</p>
-                </div>
-                <div class="glass-panel p-8 hover-target border-t-2 border-white">
-                    <h4 class="text-xs font-black uppercase mb-4 tracking-widest text-white italic">Agentic</h4>
-                    <p class="text-[11px] text-zinc-500 mono leading-relaxed uppercase">LangChain · Python · OpenAI · Make.com</p>
-                </div>
-                <div class="glass-panel p-8 hover-target border-t-2 border-growth-green">
-                    <h4 class="text-xs font-black uppercase mb-4 tracking-widest text-white italic">Strategic</h4>
-                    <p class="text-[11px] text-zinc-500 mono leading-relaxed uppercase">Ahrefs · Semrush · Technical SEO · Content Ops</p>
-                </div>
-                <div class="glass-panel p-8 hover-target border-t-2 border-zinc-800">
-                    <h4 class="text-xs font-black uppercase mb-4 tracking-widest text-white italic">Analytics</h4>
-                    <p class="text-[11px] text-zinc-500 mono leading-relaxed uppercase">GA4 · Looker Studio · BigQuery · Data Models</p>
-                </div>
-            </div>
-
-            <!-- RESULTS GRID -->
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-px mt-32 bg-zinc-900/50 border border-zinc-900" id="results">
-                <div class="bg-black p-12 text-center group hover-target">
-                    <div class="text-6xl font-black text-growth-blue mb-4 italic font-mono"><span class="counter" data-target="12">0</span>×</div>
-                    <div class="text-white font-bold mb-2">Peak ROAS</div>
-                    <div class="text-[10px] text-zinc-600 uppercase tracking-widest">E-commerce MENA</div>
-                </div>
-                <div class="bg-black p-12 text-center group hover-target">
-                    <div class="text-6xl font-black text-growth-green mb-4 italic font-mono"><span class="counter" data-target="200">0</span>%</div>
-                    <div class="text-white font-bold mb-2">Revenue Growth</div>
-                    <div class="text-[10px] text-zinc-600 uppercase tracking-widest">Client Portfolio</div>
-                </div>
-                <div class="bg-black p-12 text-center group hover-target">
-                    <div class="text-6xl font-black text-white mb-4 italic font-mono">$<span class="counter" data-target="2">0</span>M+</div>
-                    <div class="text-white font-bold mb-2">Spend Managed</div>
-                    <div class="text-[10px] text-zinc-600 uppercase tracking-widest">Paid Media Cumulative</div>
-                </div>
-            </div>
-
-            <!-- BIG CASE -->
-            <div class="mt-32 glass-panel p-12 md:p-24 relative overflow-hidden border-l-4 border-growth-green">
-                <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-600/10 filter blur-[120px]"></div>
+            <div class="glass-panel p-12 md:p-24 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-600/10 filter blur-[100px]"></div>
                 <div class="relative z-10">
                     <h3 class="text-5xl md:text-7xl font-black text-white mb-8 italic uppercase leading-none">
                         +1,000,000<br><span class="text-growth-green">SAR PROFIT RECOVERY</span>
                     </h3>
-                    <p class="text-2xl text-zinc-400 font-light max-w-3xl leading-relaxed">
+                    <p class="text-2xl text-zinc-400 font-light max-w-3xl leading-relaxed mb-16">
                         Re-engineering the Etlaala Packages ad kernel by identifying structural ROI leaks and applying a Sovereign Deep Strike.
                     </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-zinc-800 pt-16">
+                        <div>
+                            <span class="text-4xl font-black text-white block mb-2 italic">880%</span>
+                            <p class="mono text-[10px] text-zinc-600 uppercase tracking-widest">Growth Factor</p>
+                        </div>
+                        <div>
+                            <span class="text-4xl font-black text-white block mb-2 italic">63%</span>
+                            <p class="mono text-[10px] text-zinc-600 uppercase tracking-widest">Cost Reduction</p>
+                        </div>
+                        <div>
+                            <span class="text-4xl font-black text-white block mb-2 italic">98%</span>
+                            <p class="mono text-[10px] text-zinc-600 uppercase tracking-widest">Forecasting Accuracy</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-black py-40 px-8 relative z-20 overflow-hidden" id="contact">
+    <!-- FOOTER: THE COMMAND CENTER -->
+    <footer class="bg-black py-40 px-8 border-t border-zinc-900 relative z-20 overflow-hidden">
         <div class="glow-node bg-blue-900/10 bottom-[-40%] left-[10%]"></div>
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-20 relative z-10">
             <div>
                 <h2 class="text-7xl md:text-9xl font-black italic text-white mb-6 uppercase tracking-tighter">OMAR</h2>
-                <p class="mono text-xs text-zinc-600 uppercase tracking-[0.6em] mb-12">The Growth Architect // Digital Strategist</p>
-                <div class="flex flex-wrap gap-10 mono text-[11px] uppercase tracking-widest">
-                    <a href="mailto:mo.omar477@gmail.com" class="text-white hover:text-growth-blue transition-all hover-target underline decoration-zinc-800 underline-offset-8">mo.omar477@gmail.com</a>
-                    <a href="https://linkedin.com/in/the-growth-architect/" class="text-white hover:text-growth-green transition-all hover-target underline decoration-zinc-800 underline-offset-8">LINKEDIN</a>
+                <p class="mono text-xs text-zinc-600 uppercase tracking-[0.6em] mb-12">Architecting Scale // Executing with Precision</p>
+                <div class="flex gap-10">
+                    <a href="mailto:melkhazragy@outlook.com" class="text-white hover:text-growth-blue transition-all hover-target underline decoration-zinc-800 underline-offset-8">E-MAIL</a>
+                    <a href="https://linkedin.com/in/mahmoud-el-khazragy" class="text-white hover:text-growth-green transition-all hover-target underline decoration-zinc-800 underline-offset-8">LINKEDIN</a>
                     <a href="https://github.com/mohamedomar11111" class="text-white hover:text-white transition-all hover-target underline decoration-zinc-800 underline-offset-8">GITHUB</a>
                 </div>
             </div>
             <div class="text-right">
                 <p class="mono text-[9px] text-zinc-700 uppercase tracking-widest leading-loose">
                     © 2026 Sovereign Growth Protocol<br>
-                    Kernel Build // 1.2.8 // Oracle<br>
-                    Engineered by Northern Wolf
+                    Kernel Build // 1.0.4<br>
+                    Authored by Mohamed Omar
                 </p>
             </div>
         </div>
@@ -454,8 +370,10 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
+        // --- CORE ENGINE ---
         const isMobile = window.matchMedia('(pointer: coarse)').matches;
         
+        // VH Fix
         const updateVH = () => {
             let vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -463,6 +381,7 @@
         window.addEventListener('resize', updateVH);
         updateVH();
 
+        // --- CURSOR ---
         if (!isMobile) {
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
@@ -477,13 +396,13 @@
             });
         }
 
-        // --- ENTRANCE ---
+        // --- HERO ENTRANCE ---
         const heroTl = gsap.timeline();
         heroTl.to("#hero-tag", { opacity: 1, x: 20, duration: 1, delay: 0.5 })
               .from("#hero-title", { opacity: 0, x: -50, duration: 1.2, ease: "power4.out" }, "-=0.8")
               .to("#hero-strike", { scaleX: 1, duration: 1.5, ease: "expo.inOut" }, "-=0.8")
               .to("#hero-statement", { opacity: 1, y: -20, duration: 1.2, ease: "power3.out" }, "-=1")
-              .to("#hero-stats", { opacity: 1, y: -10, duration: 1 }, "-=0.8")
+              .to("#hero-nav", { opacity: 1, duration: 1 }, "-=0.5")
               .from("#hero-img", { opacity: 0, x: 50, duration: 2, ease: "power2.out" }, 0.2);
 
         if (!isMobile) {
@@ -515,7 +434,7 @@
             scrollTrigger: { trigger: "#kernel-text", start: "top 80%", end: "bottom 40%", scrub: true }
         });
 
-        // --- COUNTERS ---
+        // --- DATA COUNTERS ---
         gsap.utils.toArray(".counter").forEach(counter => {
             const target = parseFloat(counter.getAttribute("data-target"));
             gsap.to(counter, {
@@ -523,14 +442,6 @@
                 duration: 2.5,
                 scrollTrigger: { trigger: counter, start: "top 95%" },
                 snap: { innerText: 1 }
-            });
-        });
-
-        // --- STAGGER ROWS ---
-        gsap.utils.toArray(".job-row").forEach(row => {
-            gsap.from(row, {
-                opacity: 0, y: 50, duration: 1,
-                scrollTrigger: { trigger: row, start: "top 85%" }
             });
         });
 
