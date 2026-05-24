@@ -4,10 +4,18 @@
     <meta charSet="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Mohamed Omar | The Growth Architect</title>
-    <meta name="description" content="Portfolio of Mohamed Omar, The Growth Architect. Specialist in building autonomous revenue ecosystems and re-engineering growth via agentic AI."/>
     
+    <!-- EPIC DESIGN STRIKE: SOVEREIGN NODE v14.0 -->
+    <meta name="description" content="Portfolio of Mohamed Omar, The Growth Architect. Specialist in building autonomous revenue ecosystems via agentic AI."/>
+    <meta property="og:title" content="Mohamed Omar | The Growth Architect">
+    <meta property="og:description" content="Architecting autonomous revenue engines where brand logic is weaponized by AI.">
+    <meta property="og:image" content="https://mohamedomar11111.github.io/mohamed-omar-portfolio/assets/mohamed-omar-portrait.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
@@ -26,19 +34,25 @@
             background-color: var(--bg);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
             -webkit-font-smoothing: antialiased;
         }
 
-        [lang="ar"] body {
-            font-family: 'Cairo', sans-serif;
-            direction: rtl;
-        }
+        [lang="ar"] body { font-family: 'Cairo', sans-serif; direction: rtl; }
+        h1, h2, h3, h4 { font-family: 'Cairo', sans-serif; letter-spacing: -0.03em; }
 
-        h1, h2, h3, h4 {
-            font-family: 'Cairo', sans-serif;
-            letter-spacing: -0.03em;
-        }
+        /* --- EPIC CORE SYSTEM --- */
+        .scene { position: relative; width: 100%; overflow: hidden; }
+        .scene-fixed { height: 100vh; height: calc(var(--vh, 1vh) * 100); }
+        .layer { position: absolute; inset: 0; pointer-events: none; will-change: transform, opacity; }
+        
+        /* DEPTH FORMULAS */
+        .depth-0 { filter: blur(25px); opacity: 0.1; z-index: 0; }
+        .depth-1 { filter: blur(10px); opacity: 0.2; z-index: 1; }
+        .depth-2 { filter: blur(0px); opacity: 0.3; z-index: 2; }
+        .depth-3 { filter: blur(0px); opacity: 1; z-index: 10; }
+        .depth-4 { filter: blur(0px); opacity: 1; z-index: 20; position: relative; }
 
         .glass {
             background: rgba(255, 255, 255, 0.01);
@@ -52,10 +66,29 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-gradient {
-            background: radial-gradient(circle at 20% 30%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+        .hero-portrait {
+            mask-image: linear-gradient(to bottom, black 65%, transparent 98%);
+            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 98%);
+            filter: grayscale(1) contrast(1.1) brightness(0.85);
+            max-height: 90vh;
+            width: auto;
+            object-fit: contain;
         }
+
+        /* CURSOR */
+        .cursor-dot { width: 6px; height: 6px; background: var(--accent-cyan); border-radius: 50%; position: fixed; z-index: 9999; pointer-events: none; transform: translate(-50%, -50%); }
+        .cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(0, 212, 255, 0.4); border-radius: 50%; position: fixed; z-index: 9998; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
+        .cursor-outline.hover { width: 60px; height: 60px; background: rgba(0, 212, 255, 0.05); border-color: var(--accent-purple); }
+
+        /* WORD LIGHTING */
+        .word { color: #27272a; transition: color 0.4s; }
+
+        /* LANG LOGIC */
+        .lang-ar { display: none; }
+        [data-current-lang="ar"] .lang-en { display: none; }
+        [data-current-lang="ar"] .lang-ar { display: block; }
+        [data-current-lang="ar"] .lang-ar-flex { display: flex; }
+        [data-current-lang="ar"] .text-right-ar { text-align: right; }
 
         .strike-tag {
             font-family: monospace;
@@ -68,19 +101,24 @@
             border-radius: 2px;
         }
 
-        /* Lang Logic */
-        .lang-ar { display: none; }
-        [data-current-lang="ar"] .lang-en { display: none; }
-        [data-current-lang="ar"] .lang-ar { display: block; }
-        [data-current-lang="ar"] .lang-ar-flex { display: flex; }
-        [data-current-lang="ar"] .text-right-ar { text-align: right; }
-        
-        .opacity-50 { opacity: 0.5; }
         .experience-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .experience-card:hover { border-color: var(--accent-purple); background: rgba(255, 255, 255, 0.03); }
+
+        @media (max-width: 768px) {
+            .hero-portrait { max-height: 55vh; opacity: 0.35 !important; }
+            .scene-fixed { height: auto; min-height: 100vh; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
     </style>
 </head>
-<body class="bg-black text-zinc-100 hero-gradient" data-current-lang="en">
+<body data-current-lang="en">
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="noise-overlay" style="position: fixed; inset: 0; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; pointer-events: none; z-index: 100;"></div>
 
     <!-- NAV -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
@@ -89,101 +127,107 @@
                 <div class="w-10 h-10 rounded-sm bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center font-black text-lg text-black">GA</div>
                 <div class="flex flex-col leading-none">
                     <span class="text-sm font-black uppercase tracking-tighter">
-                        <span class="lang-en">MOHAMED OMAR</span>
-                        <span class="lang-ar">محمد عمر</span>
+                        <span class="lang-en">MOHAMED OMAR</span><span class="lang-ar">محمد عمر</span>
                     </span>
                     <span class="text-[9px] text-zinc-500 font-bold uppercase tracking-widest mt-1">
-                        <span class="lang-en">Growth Architect</span>
-                        <span class="lang-ar">مهندس النمو</span>
+                        <span class="lang-en">Growth Architect</span><span class="lang-ar">مهندس النمو</span>
                     </span>
                 </div>
             </div>
             
             <div class="flex items-center gap-10">
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">
+                    <a href="#about" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 hover:text-cyan-400 transition-all">
                         <span class="lang-en">Identity</span><span class="lang-ar">الهوية</span>
                     </a>
-                    <a href="#experience" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">
-                        <span class="lang-en">Log</span><span class="lang-ar">السجل المهني</span>
+                    <a href="#experience" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 hover:text-cyan-400 transition-all">
+                        <span class="lang-en">Strikes</span><span class="lang-ar">العمليات</span>
                     </a>
-                    <a href="#contact" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">
+                    <a href="#contact" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 hover:text-cyan-400 transition-all">
                         <span class="lang-en">Gateway</span><span class="lang-ar">تواصل</span>
                     </a>
                 </div>
                 <button onclick="toggleLanguage()" class="px-5 py-2 rounded-sm border border-white/10 text-[10px] font-black uppercase hover:border-cyan-500 transition-all">
-                    <span class="lang-en">العربية</span>
-                    <span class="lang-ar">English</span>
+                    <span class="lang-en">العربية</span><span class="lang-ar">English</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="min-h-screen flex flex-col justify-center px-8 pt-32">
-        <div class="max-w-7xl mx-auto w-full">
-            <div class="inline-flex items-center gap-3 mb-10 px-5 py-2 glass border-purple-500/20 text-[10px] font-black uppercase tracking-[0.3em] text-purple-400">
-                <div class="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_10px_#A855F7]"></div>
-                <span class="lang-en">SOVEREIGN NODE // MENA HUB</span>
-                <span class="lang-ar">نود النمو السيادي // منطقة المينا</span>
-            </div>
-            
-            <div class="mb-12 text-left-ar">
-                <h1 class="text-5xl md:text-8xl font-black leading-[0.8] tracking-tighter uppercase italic">
-                    <span class="lang-en">The Growth<br><span class="gradient-text">Architect.</span></span>
-                    <span class="lang-ar">مهندس<br><span class="gradient-text">النمو.</span></span>
-                </h1>
-            </div>
+    <!-- 1. HERO SCENE -->
+    <section class="scene scene-fixed" data-scene="hero">
+        <div class="layer depth-0">
+            <div class="glow-node bg-purple-900/20 top-[-20%] left-[-10%]"></div>
+            <div class="glow-node bg-blue-900/20 bottom-[-20%] right-[-10%]"></div>
+        </div>
+        
+        <div class="layer depth-1 flex items-center justify-center">
+            <div class="w-[80vw] h-[80vw] border border-white/5 rounded-full rotate-45"></div>
+        </div>
 
-            <p class="max-w-4xl text-2xl md:text-5xl font-light text-zinc-500 leading-tight mb-16 text-left-ar">
-                <span class="lang-en">I don't just run campaigns; I architect <strong class="text-white italic">autonomous revenue engines</strong> where brand logic is weaponized by AI.</span>
-                <span class="lang-ar">أنا مش مجرد بدير حملات؛ أنا بصمم <strong class="text-white italic">محركات أرباح مستقلة</strong>، بسلح فيها منطق البراند بقوة الـ AI.</span>
-            </p>
+        <!-- The Portrait (Depth 3) -->
+        <div class="layer depth-3 flex justify-center md:justify-end items-end">
+            <div class="md:pr-[10%]">
+                <img src="assets/mohamed-omar-portrait.jpg" alt="Mohamed Omar" class="hero-portrait" id="hero-img">
+            </div>
+        </div>
 
-            <div class="flex flex-wrap gap-8">
-                <a href="#contact" class="px-12 py-6 bg-white text-black font-black text-sm uppercase tracking-widest rounded-sm hover:bg-purple-500 transition-all shadow-2xl">
-                    <span class="lang-en">Initialize System Strike</span>
-                    <span class="lang-ar">ابدأ العملية الاستراتيجية</span>
-                </a>
-                <div class="flex items-center gap-4 px-8 border-l border-white/10">
-                    <div class="text-left-ar">
-                        <div class="text-2xl font-black italic text-white leading-none">SAR 1M+</div>
-                        <div class="text-[9px] text-zinc-600 uppercase tracking-widest font-bold mt-1">
-                            <span class="lang-en">Profit Recovery</span>
-                            <span class="lang-ar">استعادة أرباح</span>
-                        </div>
-                    </div>
+        <div class="layer depth-4">
+            <div class="h-full flex flex-col justify-center px-8 md:px-24 max-w-7xl relative z-30">
+                <div class="inline-flex items-center gap-3 mb-10 px-5 py-2 glass border-purple-500/20 text-[10px] font-black uppercase tracking-[0.3em] text-purple-400 w-fit opacity-0" id="hero-node-label">
+                    <div class="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_10px_#A855F7]"></div>
+                    <span class="lang-en">SOVEREIGN NODE // MENA HUB</span>
+                    <span class="lang-ar">نود النمو السيادي // منطقة المينا</span>
+                </div>
+                
+                <div class="mb-12 text-left-ar">
+                    <h1 class="text-5xl md:text-8xl font-black leading-[0.8] tracking-tighter uppercase italic text-white" id="hero-title">
+                        <span class="lang-en">The Growth<br><span class="gradient-text">Architect.</span></span>
+                        <span class="lang-ar">مهندس<br><span class="gradient-text">النمو.</span></span>
+                    </h1>
+                </div>
+
+                <p class="max-w-3xl text-2xl md:text-4xl font-light text-zinc-500 leading-tight mb-16 text-left-ar opacity-0" id="hero-statement">
+                    <span class="lang-en italic">"I don't just run campaigns; I architect <strong class="text-white">autonomous revenue engines</strong> where strategy is weaponized by AI."</span>
+                    <span class="lang-ar italic">"أنا مش مجرد بدير حملات؛ أنا بصمم <strong class="text-white">محركات أرباح مستقلة</strong>، بسلح فيها الاستراتيجية بقوة الـ AI."</span>
+                </p>
+
+                <div class="flex flex-wrap gap-8 opacity-0" id="hero-cta">
+                    <a href="#contact" class="px-12 py-6 bg-white text-black font-black text-sm uppercase tracking-widest rounded-sm hover:bg-purple-500 transition-all shadow-2xl">
+                        <span class="lang-en">Initialize System Strike</span>
+                        <span class="lang-ar">ابدأ العملية الاستراتيجية</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- THE ARCHITECT'S PROPOSITION -->
-    <section id="about" class="py-40 bg-zinc-950 border-y border-white/5 relative overflow-hidden">
+    <!-- 2. IDENTITY ARCHITECTURE -->
+    <section id="about" class="scene py-40 bg-zinc-950 border-y border-white/5 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-96 h-96 bg-purple-500/5 filter blur-[120px]"></div>
         <div class="max-w-6xl mx-auto px-8">
-            <h2 class="text-[10px] font-black text-purple-400 uppercase tracking-[0.8em] mb-20 flex items-center gap-6">
-                <div class="w-12 h-px bg-purple-400"></div> 
+            <h2 class="text-[10px] font-black text-cyan-400 uppercase tracking-[0.8em] mb-20 flex items-center gap-6">
+                <div class="w-12 h-px bg-cyan-400"></div> 
                 <span class="lang-en">01 // The Proposition</span>
                 <span class="lang-ar">٠١ // عرض القيمة</span>
             </h2>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 text-left-ar">
                 <div class="space-y-12">
-                    <p class="text-3xl md:text-5xl font-black italic uppercase leading-[0.9] text-white">
+                    <p class="text-3xl md:text-5xl font-black italic uppercase leading-[0.9] text-white" id="about-headline">
                         <span class="lang-en">Marketing is a <span class="text-zinc-800" style="-webkit-text-stroke: 1px #fff;">Function.</span><br>Growth is a System.</span>
                         <span class="lang-ar">التسويق <span class="text-zinc-800" style="-webkit-text-stroke: 1px #fff;">وظيفة.</span><br>النمو نظام.</span>
                     </p>
-                    <div class="space-y-8 text-zinc-500 text-lg md:text-2xl font-light leading-relaxed">
-                        <p class="lang-en">Most companies settle for "Hope-Based Marketing." They launch campaigns and pray for ROI. I replace that fragility with <strong class="text-white italic">Deterministic Revenue Engineering</strong>.</p>
-                        <p class="lang-ar">أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white italic">هندسة إيرادات حتمية</strong>.</p>
+                    <div class="space-y-8 text-zinc-500 text-lg md:text-2xl font-light leading-relaxed" id="lighting-text">
+                        <p class="lang-en">Most companies settle for "Hope-Based Marketing." They launch campaigns and pray for ROI. I replace that fragility with <strong class="text-white">Deterministic Revenue Engineering</strong>.</p>
+                        <p class="lang-ar">أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white">هندسة إيرادات حتمية</strong>.</p>
                         <p class="lang-en">With 7 years in the MENA trenches and a Master's from UNSW Sydney, my mission is simple: To architect <strong class="text-white">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
                         <p class="lang-ar">بخبرة ٧ سنين في سوق المينا وماجستير من UNSW Sydney، مهمتي بسيطة: أبني <strong class="text-white">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    <div class="glass p-10 border-l-2 border-purple-400">
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="glass p-10 border-l-2 border-purple-500">
                         <h4 class="text-white font-black uppercase text-xs tracking-widest mb-4">Systemic Synthesis</h4>
                         <p class="text-zinc-500 text-sm leading-relaxed">
                             <span class="lang-en">I strip processes to their atomic components and rebuild them using an elite AI stack. If it doesn't scale, it's a bug.</span>
@@ -202,124 +246,124 @@
         </div>
     </section>
 
-    <!-- THE STRIKE LOG: 10 EXPERIENCES -->
-    <section id="experience" class="py-40">
+    <!-- 3. STRIKE LOG: 10 EXPERIENCES -->
+    <section id="experience" class="py-40 bg-black relative">
         <div class="max-w-7xl mx-auto px-8">
-            <h2 class="text-[10px] font-black text-purple-400 uppercase tracking-[0.8em] mb-24 flex items-center gap-6 justify-center">
-                <span class="lang-en">Strategic Strike Log</span>
+            <h2 class="text-[10px] font-black text-orange-400 uppercase tracking-[0.8em] mb-24 flex items-center gap-6 justify-center">
+                <span class="lang-en">Architectural Strike Log</span>
                 <span class="lang-ar">سجل العمليات الاستراتيجية</span>
-                <div class="w-12 h-px bg-purple-400"></div> 
+                <div class="w-12 h-px bg-orange-400"></div> 
             </h2>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/5 border border-white/5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5">
                 
-                <!-- STRIKE 01: ETLAALA -->
-                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                <!-- 01: ETLAALA -->
+                <div class="p-16 experience-card border-b md:border-r border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_01 // 2025 // ACTIVE</span>
-                    <h3 class="text-3xl font-black text-white italic uppercase mb-4">Etlaala Travel & Tourism</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Marketing Department</p>
-                    <div class="space-y-4 text-zinc-500 text-base">
-                        <p class="lang-en">Orchestrated the <strong class="text-white">SAR 1,000,000 net profit recovery</strong>. Built a Python-driven intent swarm to neutralize noise and capture premium travel demand at 63% lower cost.</p>
-                        <p class="lang-ar">قدت عملية استعادة أرباح صافية <strong class="text-white">بمليون ريال سعودي</strong>. صممت سرب وكلاء ذكي بيحلل نية العميل ويصطاد الطلبات العالية بقيمة تكلفة أقل بـ ٦٣٪.</p>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-4">Etlaala Travel</h3>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Marketing Department</p>
+                    <div class="space-y-4 text-zinc-500 text-base leading-relaxed">
+                        <p class="lang-en">Leading the marketing engine for one of the region's top travel firms. Achieved <strong class="text-white">SAR 1,000,000 net profit recovery</strong> via revenue kernel re-engineering and agentic intent swarms.</p>
+                        <p class="lang-ar">بقوم بقيادة منظومة التسويق لواحدة من أكبر شركات السياحة. حققت <strong class="text-white">استعادة أرباح بمليون ريال</strong> عن طريق إعادة هندسة "نواة الإيرادات" وسرب وكلاء ذكي.</p>
                     </div>
                 </div>
 
-                <!-- STRIKE 02: PENTA -->
+                <!-- 02: PENTA -->
                 <div class="p-16 experience-card border-b border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_02 // 2024</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-4">Penta Studio</h3>
                     <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
-                    <div class="space-y-4 text-zinc-500 text-base">
-                        <p class="lang-en">Led total digital transformation for high-stakes regional clients. Managed <strong class="text-white">$800K+ in annual spend</strong>, improving decision accuracy by 45% via data modeling.</p>
-                        <p class="lang-ar">حولت التواجد الرقمي لعملاء كبار بشكل كامل. أدرت ميزانية <strong class="text-white">٨٠٠ ألف دولار سنوياً</strong>، ورفعت دقة القرارات بنسبة ٤٥٪ عن طريق موديلينج الداتا.</p>
+                    <div class="space-y-4 text-zinc-500 text-base leading-relaxed">
+                        <p class="lang-en">Led digital transformation for high-stakes regional clients. Managed <strong class="text-white">$800K+ in annual spend</strong>, improving decision accuracy by 45% via data modeling.</p>
+                        <p class="lang-ar">قدت التحول الرقمي الشامل لعملاء إقليميين كبار. أدرت ميزانية إعلانية <strong class="text-white">أكتر من ٨٠٠ ألف دولار سنويًا</strong> مع تحسين دقة القرارات بنسبة ٤٥٪.</p>
                     </div>
                 </div>
 
-                <!-- STRIKE 03: MOPHEX -->
-                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                <!-- 03: MOPHEX -->
+                <div class="p-16 experience-card border-b md:border-r border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_03 // 2023</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-4">Mophex Digital</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
-                    <div class="space-y-4 text-zinc-500 text-base">
-                        <p class="lang-en">Developed aggressive GTM strategies and automated reporting systems. <strong class="text-white">Slashed analysis time by 70%</strong> for enterprise-level marketing collateral.</p>
-                        <p class="lang-ar">بنيت استراتيجيات دخول سوق هجومية وأنظمة تقارير آلية. <strong class="text-white">وفرت ٧٠٪ من وقت التحليل</strong> لكل العمليات التسويقية الكبيرة.</p>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
+                    <div class="space-y-4 text-zinc-500 text-base leading-relaxed">
+                        <p class="lang-en">Deployed aggressive GTM strategies and automated reporting systems. <strong class="text-white">Slashed analysis time by 70%</strong> for enterprise accounts.</p>
+                        <p class="lang-ar">نفذت استراتيجيات دخول سوق هجومية وأنظمة تقارير آلية. <strong class="text-white">وفرت ٧٠٪ من وقت التحليل</strong> لكل العمليات التسويقية الكبيرة.</p>
                     </div>
                 </div>
 
-                <!-- STRIKE 04: MENAVERSE -->
+                <!-- 04: MENAVERSE -->
                 <div class="p-16 experience-card border-b border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_04 // 2021-2023</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-4">Menaverse</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Founder & Strategist</p>
-                    <div class="space-y-4 text-zinc-500 text-base">
-                        <p class="lang-en">Scaled consultancy to <strong class="text-white">$500K ARR</strong>. Pioneered Onyx Hive agentic architecture to provide autonomous market dominance for 15+ premium clients.</p>
-                        <p class="lang-ar">كبرت الوكالة لغاية ما وصلت لـ <strong class="text-white">نص مليون دولار سنوياً</strong>. كنت أول من استخدم بنية Onyx Hive للوكلاء الأذكياء عشان نسيطر على السوق لـ ١٥ عميل VIP.</p>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Founder & Strategist</p>
+                    <div class="space-y-4 text-zinc-500 text-base leading-relaxed">
+                        <p class="lang-en">Scaled a regional consultancy to <strong class="text-white">$500K ARR</strong>. Built the Onyx Hive OS to automate campaign monitoring and strategic pivots for 15+ premium clients.</p>
+                        <p class="lang-ar">كبرت الوكالة لغاية ما وصلت لـ <strong class="text-white">نص مليون دولار سنوياً</strong>. بنيت نظام Onyx Hive عشان نأتمت مراقبة الحملات والتحولات الاستراتيجية.</p>
                     </div>
                 </div>
 
-                <!-- STRIKE 05: SHFRTNJAH -->
-                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                <!-- 05: SHFRTNJAH -->
+                <div class="p-16 experience-card border-b md:border-r border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_05 // 2023</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-2">ShfrtNjah</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
                     <p class="text-sm text-zinc-500 leading-relaxed">
-                        <span class="lang-en">Engineered monthly promotional cycles that consistently beat retention benchmarks by 35%. Architected high-fidelity content structures.</span>
-                        <span class="lang-ar">صممت دورات ترويجية شهرية كسرت معدلات الثبات العادية بنسبة ٣٥٪. وهيكلت المحتوى بدقة معمارية عالية.</span>
+                        <span class="lang-en">Engineered monthly promotional cycles that consistently beat retention benchmarks by 35%.</span>
+                        <span class="lang-ar">صممت دورات ترويجية شهرية قدرت تتخطى معدلات الثبات العادية بنسبة ٣٥٪.</span>
                     </p>
                 </div>
 
-                <!-- STRIKE 06: ICS CALIBRATION -->
+                <!-- 06: ICS CALIBRATION -->
                 <div class="p-16 experience-card border-b border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_06 // 2022</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-2">ICS Calibration</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital Dept.</p>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital Dept.</p>
                     <p class="text-sm text-zinc-500 leading-relaxed">
-                        <span class="lang-en">Established the data pipeline for regional expansion into UAE and Qatar. Mastered multi-platform high-fidelity GA audits.</span>
-                        <span class="lang-ar">أسست بنية الداتا التحتية للتوسع في الإمارات وقطر. وعملت تدقيق لبيانات GA بأعلى دقة تقنية ممكنة.</span>
+                        <span class="lang-en">Established the data pipeline for regional expansion into UAE and Qatar. Managed high-fidelity GA audits.</span>
+                        <span class="lang-ar">أسست بنية الداتا التحتية للتوسع في الإمارات وقطر. وعملت تدقيق لبيانات GA بأعلى دقة.</span>
                     </p>
                 </div>
 
-                <!-- STRIKE 07: AQARVERSE -->
-                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                <!-- 07: AQARVERSE -->
+                <div class="p-16 experience-card border-b md:border-r border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_07 // PropTech</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-2">Aqarverse</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Strategic Advisor</p>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Strategic Advisor</p>
                     <p class="text-sm text-zinc-500 leading-relaxed">
-                        <span class="lang-en">Architected the AI semantic authority node for a UAE-based PropTech giant. Implemented GEO methods to own the search citation graph.</span>
-                        <span class="lang-ar">صممت نود "السلطة الدلالية" لبراند عقارات ضخم في الإمارات. استخدمت أساليب GEO عشان الـ AI هو اللي يرشحنا للعملاء.</span>
+                        <span class="lang-en">Architected the AI semantic authority node for a UAE-based PropTech giant. Implemented GEO methods to own citation graphs.</span>
+                        <span class="lang-ar">صممت نود "السلطة الدلالية" لشركة عقارات كبرى في الإمارات. استخدمت أساليب GEO عشان نسيطر على الـ AI.</span>
                     </p>
                 </div>
 
-                <!-- STRIKE 08: UNSW SYDNEY -->
+                <!-- 08: UNSW SYDNEY -->
                 <div class="p-16 experience-card border-b border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_08 // Logic Foundation</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-2">UNSW Sydney</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Master of Digital Marketing</p>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Master of Digital Marketing</p>
                     <p class="text-sm text-zinc-500 leading-relaxed">
-                        <span class="lang-en">Mastered global digital logic in Sydney. Fused high-level management theory with the technical core of international growth.</span>
-                        <span class="lang-ar">أتقنت منطق التسويق الرقمي العالمي في سيدني. ودمجت بين نظريات الإدارة العليا والأسس التقنية للنمو الدولي.</span>
+                        <span class="lang-en">Mastered global digital logic in Sydney. Fused high-level management theory with international growth systems.</span>
+                        <span class="lang-ar">أتقنت منطق التسويق الرقمي العالمي في سيدني. ودمجت بين نظريات الإدارة العليا وأنظمة النمو الدولية.</span>
                     </p>
                 </div>
 
-                <!-- STRIKE 09: CDO EXECUTIVE -->
+                <!-- 09: CDO EXECUTIVE -->
                 <div class="p-16 experience-card lg:border-r border-white/5 text-left-ar">
                     <span class="strike-tag mb-6 inline-block">STRIKE_09 // Leadership</span>
                     <h3 class="text-3xl font-black text-white italic uppercase mb-2">Chief Digital Officer</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Executive Diploma // IMTF</p>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Executive Diploma // IMTF</p>
                     <p class="text-sm text-zinc-500 leading-relaxed">
-                        <span class="lang-en">Focused on omnichannel dominance and the architecture of sustainable digital profit engines.</span>
-                        <span class="lang-ar">تركيزي كان على السيطرة في كل القنوات الرقمية وتصميم محركات أرباح مستدامة مش بتموت.</span>
+                        <span class="lang-en">Certified as a CDO. Focused on omnichannel dominance and the architecture of sustainable profit engines.</span>
+                        <span class="lang-ar">حاصل على دبلوم تنفيذي كـ CDO. تركيزي كان على الهيمنة في كل القنوات وتصميم محركات أرباح مستدامة.</span>
                     </p>
                 </div>
 
-                <!-- STRIKE 10: CAIRO UNIVERSITY -->
+                <!-- 10: GROW DIGITAL -->
                 <div class="p-16 experience-card text-left-ar">
-                    <span class="strike-tag mb-6 inline-block">STRIKE_10 // Origin</span>
-                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">Law Degree</h3>
-                    <p class="text-purple-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Cairo University // English Section</p>
+                    <span class="strike-tag mb-6 inline-block">STRIKE_10 // Strategic Advisor</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">Grow Digital</h3>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Senior Strategic Advisor</p>
                     <p class="text-sm text-zinc-500 leading-relaxed">
-                        <span class="lang-en">Foundational training in logic, structuring arguments, and systematic rulesets. The root of architectural thinking.</span>
-                        <span class="lang-ar">دراسة القانون هي اللي علمتني المنطق، وترتيب الحجج، وبناء القواعد المنظمة. ودي كانت بداية تفكيري المعماري.</span>
+                        <span class="lang-en">Neutralizing operational noise by building custom agentic flows and dashboard infrastructures.</span>
+                        <span class="lang-ar">بقوم بإلغاء الضوضاء في العمليات عن طريق بناء سير عمل وكلاء ذكي وبنية لوحات بيانات متقدمة.</span>
                     </p>
                 </div>
 
@@ -328,26 +372,94 @@
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact" class="py-40 px-8 relative overflow-hidden">
+    <footer id="contact" class="py-40 px-8 relative overflow-hidden bg-zinc-950 border-t border-white/5">
+        <div class="glow-node bg-purple-900/10 bottom-[-40%] left-[10%]"></div>
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-24 relative z-10">
             <div class="text-left-ar">
-                <h2 class="text-8xl md:text-[16rem] font-black italic tracking-tighter uppercase mb-16 leading-none text-white">OMAR.</h2>
+                <h2 class="text-8xl md:text-[14rem] font-black italic tracking-tighter uppercase mb-12 leading-none text-white">OMAR.</h2>
                 <div class="flex flex-wrap gap-12 text-[11px] font-black uppercase tracking-[0.4em]">
-                    <a href="mailto:mo.omar477@gmail.com" class="hover:text-purple-400 transition-colors underline decoration-zinc-800 underline-offset-8">mo.omar477@gmail.com</a>
-                    <a href="https://linkedin.com/in/the-growth-architect/" class="hover:text-cyan-400 transition-colors underline decoration-zinc-800 underline-offset-8">LinkedIn</a>
-                    <a href="https://github.com/mohamedomar11111" class="hover:text-white transition-colors underline decoration-zinc-800 underline-offset-8">GitHub</a>
+                    <a href="mailto:mo.omar477@gmail.com" class="hover:text-purple-400 transition-all underline decoration-zinc-800 underline-offset-8 transition-all hover-target">mo.omar477@gmail.com</a>
+                    <a href="https://linkedin.com/in/the-growth-architect/" class="hover:text-cyan-400 transition-all underline decoration-zinc-800 underline-offset-8 transition-all hover-target">LinkedIn</a>
+                    <a href="https://github.com/mohamedomar11111" class="hover:text-white transition-all underline decoration-zinc-800 underline-offset-8 transition-all hover-target">GitHub</a>
                 </div>
             </div>
             <div class="text-right-ar">
                 <p class="mono text-[10px] text-zinc-800 uppercase tracking-[0.5em] leading-loose">
-                    <span class="lang-en">Sovereign Protocol // v13.0 // 2026<br>Designed for Absolute Authority</span>
-                    <span class="lang-ar">بروتوكول سيادي // إصدار ١٣.٠ // ٢٠٢٦<br>مصمم للسلطة المطلقة</span>
+                    <span class="lang-en">Sovereign Protocol // v14.0 // 2026<br>Designed for Absolute Authority</span>
+                    <span class="lang-ar">بروتوكول سيادي // إصدار ١٤.٠ // ٢٠٢٦<br>مصمم للسلطة المطلقة</span>
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        const isMobile = window.matchMedia('(pointer: coarse)').matches;
+        
+        const updateVH = () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+        window.addEventListener('resize', updateVH);
+        updateVH();
+
+        // --- ENTRANCE ---
+        const tl = gsap.timeline();
+        tl.to("#hero-node-label", { opacity: 1, y: -10, duration: 1, delay: 0.5 })
+          .from("#hero-title", { opacity: 0, x: -50, duration: 1.2, ease: "power4.out" }, "-=0.8")
+          .to("#hero-statement", { opacity: 1, y: -20, duration: 1.2, ease: "power3.out" }, "-=1")
+          .to("#hero-cta", { opacity: 1, y: -10, duration: 1 }, "-=0.8")
+          .from("#hero-img", { opacity: 0, x: 50, duration: 2, ease: "power2.out" }, 0.2);
+
+        if (!isMobile) {
+            gsap.to("#hero-img", { y: "-=20", duration: 8, ease: "sine.inOut", repeat: -1, yoyo: true });
+        }
+
+        // --- PARALLAX ENGINE ---
+        gsap.utils.toArray(".scene").forEach(scene => {
+            const layers = scene.querySelectorAll(".layer[data-depth]");
+            layers.forEach(layer => {
+                const depth = parseFloat(layer.getAttribute("data-depth"));
+                if(depth < 4) {
+                    gsap.to(layer, {
+                        y: -depth * (isMobile ? 30 : 120),
+                        ease: "none",
+                        scrollTrigger: { trigger: scene, start: "top top", end: "bottom top", scrub: true }
+                    });
+                }
+            });
+        });
+
+        // --- WORD LIGHTING ---
+        const lightingBlock = document.querySelector("#lighting-text");
+        const words = lightingBlock.innerText.split(" ");
+        lightingBlock.innerHTML = words.map(word => `<span class='word'>${word}</span>`).join(" ");
+        gsap.to("#lighting-text .word", {
+            color: "#fff",
+            duration: 0.5, stagger: 0.1,
+            scrollTrigger: { trigger: "#lighting-text", start: "top 80%", end: "bottom 40%", scrub: true }
+        });
+
+        // --- CURSOR ---
+        if (!isMobile) {
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            window.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = `${e.clientX}px`;
+                cursorDot.style.top = `${e.clientY}px`;
+                gsap.to(cursorOutline, { x: e.clientX, y: e.clientY, duration: 0.15 });
+            });
+            document.querySelectorAll('a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
+            });
+        } else {
+            document.querySelector('.cursor-dot').style.display = 'none';
+            document.querySelector('.cursor-outline').style.display = 'none';
+        }
+
+        // --- LANGUAGE SWITCHER ---
         function toggleLanguage() {
             const html = document.documentElement;
             const currentLang = document.body.getAttribute('data-current-lang');
@@ -358,8 +470,7 @@
             html.setAttribute('lang', newLang);
             html.setAttribute('dir', newDir);
             
-            const alignBlocks = document.querySelectorAll('.text-left-ar');
-            alignBlocks.forEach(block => {
+            document.querySelectorAll('.text-left-ar').forEach(block => {
                 block.style.textAlign = (newLang === 'ar') ? 'right' : 'left';
             });
         }
