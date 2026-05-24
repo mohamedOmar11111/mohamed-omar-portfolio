@@ -223,11 +223,15 @@
                         <span class="lang-en">Marketing is a <span class="text-zinc-800" style="-webkit-text-stroke: 1px #fff;">Function.</span><br>Growth is a System.</span>
                         <span class="lang-ar">التسويق <span class="text-zinc-800" style="-webkit-text-stroke: 1px #fff;">وظيفة.</span><br>النمو نظام.</span>
                     </p>
-                    <div class="space-y-8 text-zinc-500 text-lg md:text-2xl font-light leading-relaxed" id="lighting-text">
-                        <p class="lang-en">Most companies settle for "Hope-Based Marketing." They launch campaigns and pray for ROI. I replace that fragility with <strong class="text-white">Deterministic Revenue Engineering</strong>.</p>
-                        <p class="lang-ar">أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white">هندسة إيرادات حتمية</strong>.</p>
-                        <p class="lang-en">With 7 years in the MENA trenches and a Master's from UNSW Sydney, my mission is simple: To architect <strong class="text-white">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
-                        <p class="lang-ar">بخبرة ٧ سنين في سوق المينا وماجستير من UNSW Sydney، مهمتي بسيطة: أبني <strong class="text-white">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
+                    <div class="space-y-8 text-zinc-500 text-lg md:text-2xl font-light leading-relaxed">
+                        <div id="lighting-text-en" class="lang-en space-y-8">
+                            <p>Most companies settle for "Hope-Based Marketing." They launch campaigns and pray for ROI. I replace that fragility with <strong class="text-white">Deterministic Revenue Engineering</strong>.</p>
+                            <p>With 7 years in the MENA trenches and a Master's from UNSW Sydney, my mission is simple: To architect <strong class="text-white">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
+                        </div>
+                        <div id="lighting-text-ar" class="lang-ar space-y-8">
+                            <p>أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white">هندسة إيرادات حتمية</strong>.</p>
+                            <p>بخبرة ٧ سنين في سوق المينا وماجستير من UNSW Sydney، مهمتي بسيطة: أبني <strong class="text-white">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -491,14 +495,19 @@
         });
 
         // --- WORD LIGHTING ---
-        const lightingBlock = document.querySelector("#lighting-text");
-        const words = lightingBlock.innerText.split(" ");
-        lightingBlock.innerHTML = words.map(word => `<span class='word'>${word}</span>`).join(" ");
-        gsap.to("#lighting-text .word", {
-            color: "#fff",
-            duration: 0.5, stagger: 0.1,
-            scrollTrigger: { trigger: "#lighting-text", start: "top 80%", end: "bottom 40%", scrub: true }
-        });
+        function applyLighting(selector) {
+            const block = document.querySelector(selector);
+            if (!block) return;
+            const words = block.innerText.split(" ");
+            block.innerHTML = words.map(word => `<span class='word'>${word}</span>`).join(" ");
+            gsap.to(`${selector} .word`, {
+                color: "#fff",
+                duration: 0.5, stagger: 0.1,
+                scrollTrigger: { trigger: selector, start: "top 80%", end: "bottom 40%", scrub: true }
+            });
+        }
+        applyLighting("#lighting-text-en");
+        applyLighting("#lighting-text-ar");
 
         // --- CURSOR ---
         if (!isMobile) {
