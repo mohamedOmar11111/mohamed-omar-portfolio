@@ -3,8 +3,8 @@
 <head>
     <meta charSet="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Mohamed Omar | Chief Digital Officer & Growth Strategist</title>
-    <meta name="description" content="Professional portfolio of Mohamed Omar. Chief Digital Officer (CDO) and Growth Marketing Expert specializing in scaling high-stakes enterprises across MENA."/>
+    <title>Mohamed Omar | The Growth Architect</title>
+    <meta name="description" content="Portfolio of Mohamed Omar, The Growth Architect. Specialist in building autonomous revenue ecosystems and re-engineering growth via agentic AI."/>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,11 +13,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --bg: #050510;
+            --bg: #020205;
+            --surface: #080812;
             --accent-cyan: #00D4FF;
             --accent-orange: #FFA500;
-            --text-main: #E8EAED;
-            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-main: #F4F4F5;
+            --border-glass: rgba(255, 255, 255, 0.06);
         }
 
         body {
@@ -35,12 +36,12 @@
 
         h1, h2, h3, h4 {
             font-family: 'Cairo', sans-serif;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
         }
 
         .glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--border-glass);
         }
 
@@ -50,47 +51,61 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-gradient {
-            background: radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(255, 165, 0, 0.06) 0%, transparent 50%);
+        .strike-tag {
+            font-family: monospace;
+            font-size: 0.6rem;
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            padding: 2px 10px;
+            text-transform: uppercase;
+            border-radius: 2px;
         }
 
-        /* Language Toggle Logic */
+        /* Lang Logic */
         .lang-ar { display: none; }
         [data-current-lang="ar"] .lang-en { display: none; }
         [data-current-lang="ar"] .lang-ar { display: block; }
+        [data-current-lang="ar"] .lang-ar-flex { display: flex; }
         [data-current-lang="ar"] .text-right-ar { text-align: right; }
+        
+        .opacity-50 { opacity: 0.5; }
+        .experience-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .experience-card:hover { border-color: var(--accent-cyan); background: rgba(255, 255, 255, 0.03); }
     </style>
 </head>
-<body class="hero-gradient" data-current-lang="en">
+<body class="bg-black text-zinc-100" data-current-lang="en">
 
-    <!-- NAVIGATION -->
+    <!-- NAV -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-sm bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center font-black text-sm text-black">GA</div>
-                <span class="text-sm font-black tracking-widest uppercase hidden md:block">
-                    <span class="lang-en">Mohamed Omar</span>
-                    <span class="lang-ar">محمد عمر</span>
-                </span>
+        <div class="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-sm bg-gradient-to-br from-cyan-500 to-orange-500 flex items-center justify-center font-black text-lg text-black">GA</div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-sm font-black uppercase tracking-tighter">
+                        <span class="lang-en">MOHAMED OMAR</span>
+                        <span class="lang-ar">محمد عمر</span>
+                    </span>
+                    <span class="text-[9px] text-zinc-500 font-bold uppercase tracking-widest mt-1">
+                        <span class="lang-en">Growth Architect</span>
+                        <span class="lang-ar">مهندس النمو</span>
+                    </span>
+                </div>
             </div>
             
-            <div class="flex items-center gap-8">
-                <div class="hidden lg:flex items-center gap-6">
-                    <a href="#about" class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60 hover:text-cyan-400 transition-all">
-                        <span class="lang-en">Profile</span>
-                        <span class="lang-ar">الملخص</span>
+            <div class="flex items-center gap-10">
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">
+                        <span class="lang-en">Identity</span><span class="lang-ar">الهوية</span>
                     </a>
-                    <a href="#experience" class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60 hover:text-cyan-400 transition-all">
-                        <span class="lang-en">Track Record</span>
-                        <span class="lang-ar">الخبرة</span>
+                    <a href="#experience" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">
+                        <span class="lang-en">Log</span><span class="lang-ar">السجل المهني</span>
                     </a>
-                    <a href="#contact" class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60 hover:text-cyan-400 transition-all">
-                        <span class="lang-en">Contact</span>
-                        <span class="lang-ar">تواصل</span>
+                    <a href="#contact" class="text-[10px] font-black uppercase tracking-widest opacity-40 hover:opacity-100 transition-all">
+                        <span class="lang-en">Gateway</span><span class="lang-ar">تواصل</span>
                     </a>
                 </div>
-                <button onclick="toggleLanguage()" class="px-4 py-1.5 rounded-sm border border-cyan-500/30 text-[10px] text-cyan-400 font-bold uppercase hover:bg-cyan-500/10 transition-all">
+                <button onclick="toggleLanguage()" class="px-5 py-2 rounded-sm border border-white/10 text-[10px] font-black uppercase hover:border-cyan-500 transition-all">
                     <span class="lang-en">العربية</span>
                     <span class="lang-ar">English</span>
                 </button>
@@ -98,218 +113,264 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen flex flex-col justify-center px-6 pt-20">
+    <!-- HERO -->
+    <section class="min-h-screen flex flex-col justify-center px-8 pt-32">
         <div class="max-w-7xl mx-auto w-full">
-            <div class="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full glass border-white/10 text-[10px] md:text-xs font-bold uppercase tracking-widest text-zinc-400">
-                <span class="lang-en">Chief Digital Officer // Growth Marketing Expert</span>
-                <span class="lang-ar">كبير المسؤولين الرقميين // خبير تسويق النمو</span>
+            <div class="inline-flex items-center gap-3 mb-10 px-5 py-2 glass border-cyan-500/20 text-[10px] font-black uppercase tracking-[0.3em] text-cyan-400">
+                <div class="w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_10px_#00D4FF]"></div>
+                <span class="lang-en">SOVEREIGN NODE // MENA HUB</span>
+                <span class="lang-ar">نود النمو السيادي // منطقة المينا</span>
             </div>
             
-            <div class="mb-10 text-left-ar">
-                <h1 class="text-6xl md:text-9xl font-black leading-[0.9] tracking-tighter uppercase italic">
-                    <span class="lang-en">Scaling <span class="gradient-text">Enterprises</span><br>Across MENA.</span>
-                    <span class="lang-ar">توسيع نطاق <span class="gradient-text">الشركات</span><br>في منطقة المينا.</span>
+            <div class="mb-12 text-left-ar">
+                <h1 class="text-6xl md:text-[11rem] font-black leading-[0.8] tracking-tighter uppercase italic">
+                    <span class="lang-en">The Growth<br><span class="gradient-text">Architect.</span></span>
+                    <span class="lang-ar">مهندس<br><span class="gradient-text">النمو.</span></span>
                 </h1>
             </div>
 
-            <p class="max-w-4xl text-lg md:text-3xl font-light text-zinc-400 leading-tight mb-12 text-left-ar">
-                <span class="lang-en">Strategic leader specializing in transforming digital presence into <strong class="text-white">high-ROI customer acquisition engines</strong>. Proven track record in B2B, Tech Startups, and Tourism.</span>
-                <span class="lang-ar">قائد استراتيجي متخصص في تحويل التواجد الرقمي لـ <strong class="text-white">محركات استحواذ عالية الربحية</strong>. خبرة مثبتة في الـ B2B، الشركات الناشئة، وقطاع السياحة.</span>
+            <p class="max-w-4xl text-2xl md:text-5xl font-light text-zinc-500 leading-tight mb-16 text-left-ar">
+                <span class="lang-en">I don't "do marketing." I <strong class="text-white italic">design systems</strong> that bridge brand logic and AI leverage.</span>
+                <span class="lang-ar">أنا مش "مسوق". أنا <strong class="text-white italic">مصمم أنظمة</strong> بيربط بين منطق البراند وقوة الـ AI.</span>
             </p>
 
-            <div class="flex flex-wrap gap-6">
-                <a href="#contact" class="px-10 py-5 bg-white text-black font-black text-sm uppercase tracking-widest rounded-sm hover:bg-cyan-400 transition-all">
-                    <span class="lang-en">Contact for Partnerships</span>
-                    <span class="lang-ar">تواصل للشراكات الاستراتيجية</span>
+            <div class="flex flex-wrap gap-8">
+                <a href="#contact" class="px-12 py-6 bg-white text-black font-black text-sm uppercase tracking-widest rounded-sm hover:bg-cyan-500 transition-all shadow-2xl">
+                    <span class="lang-en">Initialize System Strike</span>
+                    <span class="lang-ar">ابدأ العملية الاستراتيجية</span>
                 </a>
-                <a href="#experience" class="px-10 py-5 border border-white/10 text-white font-bold text-sm uppercase tracking-widest rounded-sm hover:bg-white/5 transition-all">
-                    <span class="lang-en">View Professional Log</span>
-                    <span class="lang-ar">عرض السجل المهني</span>
-                </a>
+                <div class="flex items-center gap-4 px-8 border-l border-white/10">
+                    <div class="text-left-ar">
+                        <div class="text-2xl font-black italic text-white leading-none">SAR 1M+</div>
+                        <div class="text-[9px] text-zinc-600 uppercase tracking-widest font-bold mt-1">
+                            <span class="lang-en">Profit Recovery</span>
+                            <span class="lang-ar">استعادة أرباح</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- PROFESSIONAL SUMMARY -->
-    <section id="about" class="py-40 bg-zinc-950 border-y border-white/5">
-        <div class="max-w-5xl mx-auto px-6 text-left-ar">
-            <h2 class="text-[10px] font-black text-cyan-400 uppercase tracking-[0.8em] mb-12 flex items-center gap-4">
-                <div class="w-10 h-px bg-cyan-400"></div> 
-                <span class="lang-en">Profile Summary</span>
-                <span class="lang-ar">الملخص المهني</span>
+    <!-- THE ARCHITECT'S PROPOSITION -->
+    <section id="about" class="py-40 bg-zinc-950 border-y border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 filter blur-[120px]"></div>
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-[10px] font-black text-cyan-400 uppercase tracking-[0.8em] mb-20 flex items-center gap-6">
+                <div class="w-12 h-px bg-cyan-400"></div> 
+                <span class="lang-en">01 // The Proposition</span>
+                <span class="lang-ar">٠١ // عرض القيمة</span>
             </h2>
             
-            <p class="text-2xl md:text-4xl font-light text-zinc-300 leading-tight mb-16">
-                <span class="lang-en">Expert in <strong class="text-white">data-backed decision making</strong> for sustainable digital growth. Specialized in scaling startups and established enterprises across regional hubs.</span>
-                <span class="lang-ar">خبير في <strong class="text-white">اتخاذ القرارات المبنية على البيانات</strong> لتحقيق نمو رقمي مستدام. متخصص في توسيع نطاق الشركات الناشئة والكبرى في الأسواق الإقليمية.</span>
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <h4 class="text-white font-bold uppercase tracking-widest text-xs italic">
-                        <span class="lang-en">Core Competencies</span>
-                        <span class="lang-ar">الكفاءات الأساسية</span>
-                    </h4>
-                    <ul class="text-zinc-500 space-y-3 text-sm md:text-base">
-                        <li class="flex gap-3"><span class="text-cyan-400">◈</span> <span class="lang-en">Growth Marketing & Performance ROI</span><span class="lang-ar">تسويق النمو وعائد الاستثمار الأدائي</span></li>
-                        <li class="flex gap-3"><span class="text-cyan-400">◈</span> <span class="lang-en">SEO & Answer Engine Optimization (AEO)</span><span class="lang-ar">تحسين محركات البحث ومحركات الإجابة (AEO)</span></li>
-                        <li class="flex gap-3"><span class="text-cyan-400">◈</span> <span class="lang-en">Digital Transformation & MarTech Alignment</span><span class="lang-ar">التحول الرقمي ومواءمة التكنولوجيا التسويقية</span></li>
-                    </ul>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 text-left-ar">
+                <div class="space-y-12">
+                    <p class="text-3xl md:text-5xl font-black italic uppercase leading-[0.9] text-white">
+                        <span class="lang-en">Marketing is a <span class="text-zinc-800" style="-webkit-text-stroke: 1px #fff;">Function.</span><br>Growth is a System.</span>
+                        <span class="lang-ar">التسويق <span class="text-zinc-800" style="-webkit-text-stroke: 1px #fff;">وظيفة.</span><br>النمو نظام.</span>
+                    </p>
+                    <div class="space-y-8 text-zinc-500 text-lg md:text-2xl font-light leading-relaxed">
+                        <p class="lang-en">Most companies settle for "Hope-Based Marketing." They launch campaigns and pray for ROI. I replace that fragility with <strong class="text-white italic">Deterministic Revenue Engineering</strong>.</p>
+                        <p class="lang-ar">أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white italic">هندسة إيرادات حتمية</strong>.</p>
+                        <p class="lang-en">With 7 years in the MENA trenches and a Master's from UNSW Sydney, my mission is simple: To architect <strong class="text-white">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
+                        <p class="lang-ar">بخبرة ٧ سنين في سوق المينا وماجستير من UNSW Sydney، مهمتي بسيطة: أبني <strong class="text-white">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
+                    </div>
                 </div>
-                <div class="space-y-6">
-                    <h4 class="text-white font-bold uppercase tracking-widest text-xs italic">
-                        <span class="lang-en">Strategic Focus</span>
-                        <span class="lang-ar">التركيز الاستراتيجي</span>
-                    </h4>
-                    <ul class="text-zinc-500 space-y-3 text-sm md:text-base">
-                        <li class="flex gap-3"><span class="text-orange-400">◈</span> <span class="lang-en">Funnel Optimization (CAC & CLV)</span><span class="lang-ar">تحسين مسارات البيع (تكلفة الاستحواذ والقيمة الدائمة)</span></li>
-                        <li class="flex gap-3"><span class="text-orange-400">◈</span> <span class="lang-en">GCC & MENA Market Penetration</span><span class="lang-ar">التوسع في أسواق الخليج والشرق الأوسط</span></li>
-                        <li class="flex gap-3"><span class="text-orange-400">◈</span> <span class="lang-en">Sales & Marketing Architecture</span><span class="lang-ar">هيكلة عمليات المبيعات والتسويق</span></li>
-                    </ul>
+
+                <div class="space-y-4">
+                    <div class="glass p-10 border-l-2 border-cyan-400">
+                        <h4 class="text-white font-black uppercase text-xs tracking-widest mb-4">Systemic Synthesis</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">
+                            <span class="lang-en">I strip processes to their atomic components and rebuild them using an elite AI stack. If it doesn't scale, it's a bug.</span>
+                            <span class="lang-ar">بفكك العمليات لمكوناتها الذرية وببنيها تاني بالـ AI. لو العملية مش هتكبر وتتوسع لوحدها، بيبقى ده "Bug" لازم يتصلح.</span>
+                        </p>
+                    </div>
+                    <div class="glass p-10 border-l-2 border-orange-400">
+                        <h4 class="text-white font-black uppercase text-xs tracking-widest mb-4">Agentic Workforce</h4>
+                        <p class="text-zinc-500 text-sm leading-relaxed">
+                            <span class="lang-en">Managing the Onyx Hive OS—a proprietary multi-agent system designed for autonomous market auditing and strategic pivots.</span>
+                            <span class="lang-ar">بدير نظام Onyx Hive، وده سيستم وكلاء ذكي مصمم عشان يعمل تدقيق للسوق وتحولات استراتيجية بشكل آلي تماماً.</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROFESSIONAL TRACK RECORD (10 STRIKES) -->
+    <!-- THE STRIKE LOG: 10 EXPERIENCES -->
     <section id="experience" class="py-40">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-[10px] font-black text-orange-400 uppercase tracking-[0.8em] mb-20 flex items-center gap-6">
+        <div class="max-w-7xl mx-auto px-8">
+            <h2 class="text-[10px] font-black text-orange-400 uppercase tracking-[0.8em] mb-24 flex items-center gap-6 justify-center">
+                <span class="lang-en">Strategic Strike Log</span>
+                <span class="lang-ar">سجل العمليات الاستراتيجية</span>
                 <div class="w-12 h-px bg-orange-400"></div> 
-                <span class="lang-en">Professional Track Record</span>
-                <span class="lang-ar">السجل المهني الحافل</span>
             </h2>
 
-            <div class="space-y-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/5 border border-white/5">
                 
-                <!-- 01: Etlaala -->
-                <div class="glass p-10 border-l-2 border-cyan-400 text-left-ar">
-                    <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
-                        <div>
-                            <h3 class="text-2xl font-black text-white uppercase italic">Etlaala Travel & Tourism</h3>
-                            <p class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Head of Marketing Department</p>
-                        </div>
-                        <span class="mono text-[10px] text-zinc-600 tracking-widest">JAN 2025 – PRESENT</span>
+                <!-- STRIKE 01: ETLAALA -->
+                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_01 // 2025 // ACTIVE</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-4">Etlaala Travel & Tourism</h3>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Marketing Department</p>
+                    <div class="space-y-4 text-zinc-500 text-base">
+                        <p class="lang-en">Orchestrated the <strong class="text-white">SAR 1,000,000 net profit recovery</strong>. Built a Python-driven intent swarm to neutralize noise and capture premium travel demand at 63% lower cost.</p>
+                        <p class="lang-ar">قدت عملية استعادة أرباح صافية <strong class="text-white">بمليون ريال سعودي</strong>. صممت سرب وكلاء ذكي بيحلل نية العميل ويصطاد الطلبات العالية بقيمة تكلفة أقل بـ ٦٣٪.</p>
                     </div>
-                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
-                        <span class="lang-en">Leading the marketing engine for one of the region's top travel firms. Focused on high-ROI customer acquisition and data-backed digital growth strategies.</span>
-                        <span class="lang-ar">بقوم بقيادة منظومة التسويق لواحدة من أكبر شركات السياحة في المنطقة. تركيزي كله على جذب العملاء بعائد استثمار عالي جداً، واستراتيجيات نمو مبنية بالكامل على الداتا.</span>
+                </div>
+
+                <!-- STRIKE 02: PENTA -->
+                <div class="p-16 experience-card border-b border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_02 // 2024</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-4">Penta Studio</h3>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
+                    <div class="space-y-4 text-zinc-500 text-base">
+                        <p class="lang-en">Led total digital transformation for high-stakes regional clients. Managed <strong class="text-white">$800K+ in annual spend</strong>, improving decision accuracy by 45% via data modeling.</p>
+                        <p class="lang-ar">حولت التواجد الرقمي لعملاء كبار بشكل كامل. أدرت ميزانية <strong class="text-white">٨٠٠ ألف دولار سنوياً</strong>، ورفعت دقة القرارات بنسبة ٤٥٪ عن طريق موديلينج الداتا.</p>
+                    </div>
+                </div>
+
+                <!-- STRIKE 03: MOPHEX -->
+                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_03 // 2023</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-4">Mophex Digital</h3>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
+                    <div class="space-y-4 text-zinc-500 text-base">
+                        <p class="lang-en">Developed aggressive GTM strategies and automated reporting systems. <strong class="text-white">Slashed analysis time by 70%</strong> for enterprise-level marketing collateral.</p>
+                        <p class="lang-ar">بنيت استراتيجيات دخول سوق هجومية وأنظمة تقارير آلية. <strong class="text-white">وفرت ٧٠٪ من وقت التحليل</strong> لكل العمليات التسويقية الكبيرة.</p>
+                    </div>
+                </div>
+
+                <!-- STRIKE 04: MENAVERSE -->
+                <div class="p-16 experience-card border-b border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_04 // 2021-2023</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-4">Menaverse</h3>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Founder & Strategist</p>
+                    <div class="space-y-4 text-zinc-500 text-base">
+                        <p class="lang-en">Scaled consultancy to <strong class="text-white">$500K ARR</strong>. Pioneered Onyx Hive agentic architecture to provide autonomous market dominance for 15+ premium clients.</p>
+                        <p class="lang-ar">كبرت الوكالة لغاية ما وصلت لـ <strong class="text-white">نص مليون دولار سنوياً</strong>. كنت أول من استخدم بنية Onyx Hive للوكلاء الأذكياء عشان نسيطر على السوق لـ ١٥ عميل VIP.</p>
+                    </div>
+                </div>
+
+                <!-- STRIKE 05: SHFRTNJAH -->
+                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_05 // 2023</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">ShfrtNjah</h3>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">
+                        <span class="lang-en">Engineered monthly promotional cycles that consistently beat retention benchmarks by 35%. Architected high-fidelity content structures.</span>
+                        <span class="lang-ar">صممت دورات ترويجية شهرية كسرت معدلات الثبات العادية بنسبة ٣٥٪. وهيكلت المحتوى بدقة معمارية عالية.</span>
                     </p>
                 </div>
 
-                <!-- 02: Penta -->
-                <div class="glass p-10 border-l-2 border-orange-400 text-left-ar">
-                    <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
-                        <div>
-                            <h3 class="text-2xl font-black text-white uppercase italic">Penta Studio</h3>
-                            <p class="text-orange-400 font-bold text-xs uppercase tracking-widest">Head of Digital</p>
-                        </div>
-                        <span class="mono text-[10px] text-zinc-600 tracking-widest">JUL 2024 – JAN 2025</span>
-                    </div>
-                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
-                        <span class="lang-en">Orchestrated digital transformation projects and cross-team strategy execution. Managed complex budgets ensuring maximum performance across all digital channels.</span>
-                        <span class="lang-ar">أدرت مشاريع التحول الرقمي وتنفيذ استراتيجيات مع فرق متعددة. كنت مسؤول عن إدارة الميزانيات المعقدة عشان نضمن أعلى أداء في كل القنوات الرقمية.</span>
+                <!-- STRIKE 06: ICS CALIBRATION -->
+                <div class="p-16 experience-card border-b border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_06 // 2022</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">ICS Calibration</h3>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Head of Digital Dept.</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">
+                        <span class="lang-en">Established the data pipeline for regional expansion into UAE and Qatar. Mastered multi-platform high-fidelity GA audits.</span>
+                        <span class="lang-ar">أسست بنية الداتا التحتية للتوسع في الإمارات وقطر. وعملت تدقيق لبيانات GA بأعلى دقة تقنية ممكنة.</span>
                     </p>
                 </div>
 
-                <!-- 03: Mophex -->
-                <div class="glass p-10 border-l-2 border-white/20 text-left-ar">
-                    <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
-                        <div>
-                            <h3 class="text-2xl font-black text-white uppercase italic">Mophex Digital</h3>
-                            <p class="text-white font-bold text-xs uppercase tracking-widest">Head of Digital</p>
-                        </div>
-                        <span class="mono text-[10px] text-zinc-600 tracking-widest">NOV 2023 – JUL 2024</span>
-                    </div>
-                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
-                        <span class="lang-en">Developed high-impact digital campaigns and lead generation strategies. Managed brand collateral and established streamlined marketing operations.</span>
-                        <span class="lang-ar">صممت حملات رقمية قوية واستراتيجيات لجذب العملاء (Lead Gen). أدرت كل ما يخص الهوية البصرية للبراند (Brand Collateral) وأسست نظام تشغيل تسويقي فعال.</span>
+                <!-- STRIKE 07: AQARVERSE -->
+                <div class="p-16 experience-card border-b lg:border-r border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_07 // PropTech</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">Aqarverse</h3>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Strategic Advisor</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">
+                        <span class="lang-en">Architected the AI semantic authority node for a UAE-based PropTech giant. Implemented GEO methods to own the search citation graph.</span>
+                        <span class="lang-ar">صممت نود "السلطة الدلالية" لبراند عقارات ضخم في الإمارات. استخدمت أساليب GEO عشان الـ AI هو اللي يرشحنا للعملاء.</span>
                     </p>
                 </div>
 
-                <!-- 04: ShfrtNjah -->
-                <div class="glass p-10 border-l-2 border-cyan-400 text-left-ar">
-                    <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
-                        <div>
-                            <h3 class="text-2xl font-black text-white uppercase italic">ShfrtNjah</h3>
-                            <p class="text-cyan-400 font-bold text-xs uppercase tracking-widest">Head of Digital</p>
-                        </div>
-                        <span class="mono text-[10px] text-zinc-600 tracking-widest">AUG 2023 – JUL 2024</span>
-                    </div>
-                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
-                        <span class="lang-en">Oversaw digital marketing operations, content architecture, and client relations. Engineered monthly promotional cycles for consistent growth.</span>
-                        <span class="lang-ar">أشرفت على عمليات التسويق الرقمي، هيكلة المحتوى، وعلاقات العملاء. صممت دورات ترويجية شهرية حققت نمو مستمر ومستدام.</span>
+                <!-- STRIKE 08: UNSW SYDNEY -->
+                <div class="p-16 experience-card border-b border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_08 // Logic Foundation</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">UNSW Sydney</h3>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Master of Digital Marketing</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">
+                        <span class="lang-en">Mastered global digital logic in Sydney. Fused high-level management theory with the technical core of international growth.</span>
+                        <span class="lang-ar">أتقنت منطق التسويق الرقمي العالمي في سيدني. ودمجت بين نظريات الإدارة العليا والأسس التقنية للنمو الدولي.</span>
                     </p>
                 </div>
 
-                <!-- 05: ICS -->
-                <div class="glass p-10 border-l-2 border-orange-400 text-left-ar">
-                    <div class="flex flex-col md:flex-row justify-between mb-6 gap-4">
-                        <div>
-                            <h3 class="text-2xl font-black text-white uppercase italic">ICS Calibration</h3>
-                            <p class="text-orange-400 font-bold text-xs uppercase tracking-widest">Head of Digital Department</p>
-                        </div>
-                        <span class="mono text-[10px] text-zinc-600 tracking-widest">JUN 2022 – JUL 2024</span>
-                    </div>
-                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
-                        <span class="lang-en">Mastered Google Analytics and multi-platform digital strategy. Provided technical leadership for long-term digital asset management.</span>
-                        <span class="lang-ar">تخصصت في Google Analytics واستراتيجيات المنصات المتعددة. قدمت قيادة تقنية لإدارة الأصول الرقمية على المدى الطويل.</span>
+                <!-- STRIKE 09: CDO EXECUTIVE -->
+                <div class="p-16 experience-card lg:border-r border-white/5 text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_09 // Leadership</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">Chief Digital Officer</h3>
+                    <p class="text-cyan-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Executive Diploma // IMTF</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">
+                        <span class="lang-en">Focused on omnichannel dominance and the architecture of sustainable digital profit engines.</span>
+                        <span class="lang-ar">تركيزي كان على السيطرة في كل القنوات الرقمية وتصميم محركات أرباح مستدامة مش بتموت.</span>
                     </p>
                 </div>
 
-                <!-- 06: Academic Foundation -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="glass p-10 border-t-2 border-cyan-400 text-left-ar">
-                        <h3 class="text-xl font-black text-white uppercase italic mb-2">UNSW Sydney</h3>
-                        <p class="text-cyan-400 font-bold text-[10px] uppercase tracking-widest mb-6">Master's Degree</p>
-                        <p class="text-sm text-zinc-500">Digital Marketing Management (2019 – 2020)</p>
-                    </div>
-                    <div class="glass p-10 border-t-2 border-orange-400 text-left-ar">
-                        <h3 class="text-xl font-black text-white uppercase italic mb-2">Cairo University</h3>
-                        <p class="text-orange-400 font-bold text-[10px] uppercase tracking-widest mb-6">Bachelor's Degree</p>
-                        <p class="text-sm text-zinc-500">Law, English Section (Marketing Activities)</p>
-                    </div>
+                <!-- STRIKE 10: CAIRO UNIVERSITY -->
+                <div class="p-16 experience-card text-left-ar">
+                    <span class="strike-tag mb-6 inline-block">STRIKE_10 // Origin</span>
+                    <h3 class="text-3xl font-black text-white italic uppercase mb-2">Law Degree</h3>
+                    <p class="text-orange-400 font-black text-[10px] uppercase tracking-[0.3em] mb-8">Cairo University // English Section</p>
+                    <p class="text-sm text-zinc-500 leading-relaxed">
+                        <span class="lang-en">Foundational training in logic, structuring arguments, and systematic rulesets. The root of architectural thinking.</span>
+                        <span class="lang-ar">دراسة القانون هي اللي علمتني المنطق، وترتيب الحجج، وبناء القواعد المنظمة. ودي كانت بداية تفكيري المعماري.</span>
+                    </p>
                 </div>
 
-                <!-- 07: Professional Interest Strike -->
-                <div class="glass p-10 border-white/5 text-left-ar bg-white/5">
-                    <h4 class="text-white font-bold uppercase text-xs mb-8 tracking-widest italic">Strategic Specializations</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <span class="text-cyan-400 font-bold text-sm">AI in Marketing</span>
-                            <p class="text-xs text-zinc-500">Engineering agentic workflows for automated growth loops.</p>
-                        </div>
-                        <div class="space-y-2 text-right-ar">
-                            <span class="text-orange-400 font-bold text-sm">Consumer Loyalty</span>
-                            <p class="text-xs text-zinc-500">Designing customer engagement programs that drive LTV.</p>
-                        </div>
-                    </div>
-                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- THE ARCHITECT'S ARSENAL -->
+    <section id="skills" class="py-40 bg-zinc-950 border-y border-white/5">
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-[10px] font-black text-cyan-400 uppercase tracking-[0.8em] mb-20 flex items-center gap-6 justify-center">
+                <div class="w-12 h-px bg-cyan-400"></div> 
+                <span class="lang-en">The Architect's Arsenal</span>
+                <span class="lang-ar">أدوات المعماري</span>
+                <div class="w-12 h-px bg-cyan-400"></div> 
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5">
+                <div class="p-12 glass group hover:bg-white/5 transition-all text-left-ar">
+                    <div class="text-3xl mb-6">⚡</div>
+                    <h4 class="text-white font-black uppercase text-xs mb-4">Performance</h4>
+                    <p class="text-[10px] text-zinc-600 mono uppercase tracking-widest leading-loose">Google Ads · Meta Ads · TikTok Ads · Snapchat · Programmatic</p>
+                </div>
+                <div class="p-12 glass group hover:bg-white/5 transition-all text-left-ar">
+                    <div class="text-3xl mb-6">🤖</div>
+                    <h4 class="text-white font-black uppercase text-xs mb-4">Agentic AI</h4>
+                    <p class="text-[10px] text-zinc-600 mono uppercase tracking-widest leading-loose">LangChain · Python · GPT-4 · Claude 3.5 · Agent Swarms</p>
+                </div>
+                <div class="p-12 glass group hover:bg-white/5 transition-all text-left-ar">
+                    <div class="text-3xl mb-6">▣</div>
+                    <h4 class="text-white font-black uppercase text-xs mb-4">Organic</h4>
+                    <p class="text-[10px] text-zinc-600 mono uppercase tracking-widest leading-loose">GEO · Technical SEO · Entity Mapping · Content Architecture</p>
+                </div>
+                <div class="p-12 glass group hover:bg-white/5 transition-all text-left-ar">
+                    <div class="text-3xl mb-6">📊</div>
+                    <h4 class="text-white font-black uppercase text-xs mb-4">Analytics</h4>
+                    <p class="text-[10px] text-zinc-600 mono uppercase tracking-widest leading-loose">GA4 Auditing · Looker Studio · BigQuery · Funnel CRO</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact" class="py-40 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-20">
+    <footer id="contact" class="py-40 px-8 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-24 relative z-10">
             <div class="text-left-ar">
-                <h2 class="text-8xl md:text-[14rem] font-black italic tracking-tighter uppercase mb-12 leading-none">OMAR.</h2>
-                <p class="text-zinc-600 font-bold uppercase tracking-[0.4em] mb-16">
-                    <span class="lang-en">Chief Digital Officer // Strategic Growth Architect</span>
-                    <span class="lang-ar">كبير المسؤولين الرقميين // مهندس النمو الاستراتيجي</span>
-                </p>
-                <div class="flex flex-wrap gap-12 text-[10px] font-black uppercase tracking-[0.3em]">
+                <h2 class="text-8xl md:text-[16rem] font-black italic tracking-tighter uppercase mb-16 leading-none">OMAR.</h2>
+                <div class="flex flex-wrap gap-12 text-[11px] font-black uppercase tracking-[0.4em]">
                     <a href="mailto:mo.omar477@gmail.com" class="hover:text-cyan-400 transition-colors underline decoration-zinc-800 underline-offset-8">mo.omar477@gmail.com</a>
                     <a href="https://linkedin.com/in/the-growth-architect/" class="hover:text-orange-400 transition-colors underline decoration-zinc-800 underline-offset-8">LinkedIn</a>
+                    <a href="https://github.com/mohamedomar11111" class="hover:text-white transition-colors underline decoration-zinc-800 underline-offset-8">GitHub</a>
                 </div>
             </div>
             <div class="text-right-ar">
-                <p class="mono text-[9px] text-zinc-800 uppercase tracking-widest leading-loose">
-                    © 2026 Mohamed Omar<br>
-                    Global Professional Node // v13.0<br>
-                    Engineered for Authority
+                <p class="mono text-[10px] text-zinc-800 uppercase tracking-[0.5em] leading-loose">
+                    <span class="lang-en">Sovereign Protocol // v13.0 // 2026<br>Designed for Absolute Authority</span>
+                    <span class="lang-ar">بروتوكول سيادي // إصدار ١٣.٠ // ٢٠٢٦<br>مصمم للسلطة المطلقة</span>
                 </p>
             </div>
         </div>
@@ -318,35 +379,19 @@
     <script>
         function toggleLanguage() {
             const html = document.documentElement;
-            const currentLang = html.getAttribute('data-current-lang');
+            const currentLang = document.body.getAttribute('data-current-lang');
             const newLang = currentLang === 'en' ? 'ar' : 'en';
             const newDir = newLang === 'ar' ? 'rtl' : 'ltr';
             
+            document.body.setAttribute('data-current-lang', newLang);
             html.setAttribute('lang', newLang);
             html.setAttribute('dir', newDir);
-            html.setAttribute('data-current-lang', newLang);
             
             const alignBlocks = document.querySelectorAll('.text-left-ar');
             alignBlocks.forEach(block => {
-                if (newLang === 'ar') {
-                    block.style.textAlign = 'right';
-                } else {
-                    block.style.textAlign = 'left';
-                }
+                block.style.textAlign = (newLang === 'ar') ? 'right' : 'left';
             });
         }
-        
-        document.documentElement.setAttribute('data-current-lang', 'en');
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
     </script>
 </body>
 </html>
