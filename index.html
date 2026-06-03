@@ -60,10 +60,10 @@
         .container-premium { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 5vw; }
         
         .display-huge {
-            font-size: clamp(3.5rem, 15vw, 15rem);
+            font-size: clamp(3rem, 12vw, 12rem);
             font-weight: 900;
-            line-height: 0.8;
-            letter-spacing: -0.06em;
+            line-height: 0.85;
+            letter-spacing: -0.05em;
             text-transform: uppercase;
             font-style: italic;
         }
@@ -73,6 +73,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.2));
+            display: inline-block; /* Prevent gradient clipping */
         }
 
         .glass-premium {
@@ -99,11 +100,12 @@
             position: absolute;
             right: 0; bottom: 0;
             height: 100%;
-            width: auto;
+            width: 45vw; /* Explicit right-side anchor width */
             object-fit: contain;
+            object-position: right bottom;
             filter: grayscale(1) contrast(1.15) brightness(0.9);
-            mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 40%, transparent 95%);
-            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 40%, transparent 95%);
+            mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 50%, transparent 100%);
             mask-composite: intersect;
             -webkit-mask-composite: source-in;
             z-index: 1;
@@ -112,12 +114,13 @@
 
         /* MOBILE FIXES */
         @media (max-width: 768px) {
-            .display-huge { font-size: clamp(3rem, 18vw, 6rem); line-height: 0.9; position: relative; z-index: 10; }
+            .display-huge { font-size: clamp(2.5rem, 15vw, 5rem); line-height: 0.95; position: relative; z-index: 10; }
             .container-premium { padding: 0 1.5rem; }
             .scene { min-height: auto; padding: 4rem 0; }
             .hero-portrait-bg { 
-                opacity: 0.2; 
-                height: 60%; 
+                opacity: 0.25; 
+                height: 50%; 
+                width: 70vw;
                 top: auto; bottom: 0; 
                 right: -5%; 
                 mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 20%, transparent 95%);
