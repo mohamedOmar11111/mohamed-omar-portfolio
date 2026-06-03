@@ -17,126 +17,111 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&family=Press+Start+2P&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
         
         :root {
-            /* VIBRANT NOIR THEME */
-            --bg: #05050a;
-            --surface: #0c0c14;
-            --accent: #a855f7; /* Vibrant Purple */
-            --accent-glow: rgba(168, 85, 247, 0.4);
+            /* VOXEL SPACE BLUE PALETTE */
+            --bg: #060b19;
+            --surface: #0b132b;
+            --block-top: #1c2541;
+            --block-side: #0b132b;
+            --accent-cyan: #00f0ff;
+            --accent-purple: #8a2be2;
             --text-main: #ffffff;
-            --text-muted: #a1a1aa;
-            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-muted: #5bc0be;
             
-            /* GRADIENTS */
-            --grad-purple: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
-            --grad-noir: linear-gradient(180deg, rgba(5,5,10,0) 0%, #05050a 100%);
-            
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+            /* GEOMETRY */
+            --block-size: 300px;
+            --ease-voxel: cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         body {
             background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
             color: var(--text-main);
-            font-family: 'Geist', 'Inter', system-ui, sans-serif;
+            font-family: 'Space Mono', 'Inter', monospace;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            line-height: 1.5;
-            cursor: none;
+            line-height: 1.6;
+            cursor: crosshair;
         }
 
-        /* LANGUAGE SEPARATION FOUNDATION */
         [lang="ar"] body { font-family: 'Cairo', sans-serif; direction: rtl; }
-        
-        .lang-content { display: none; }
-        [data-current-lang="en"] .lang-en-only { display: block; }
-        [data-current-lang="en"] .lang-en-flex { display: flex; }
-        [data-current-lang="ar"] .lang-ar-only { display: block; }
-        [data-current-lang="ar"] .lang-ar-flex { display: flex; }
+        h1, h2, h3 { font-family: 'Press Start 2P', cursive; letter-spacing: -0.05em; line-height: 1.2; }
 
-        /* RESPONSIVE SCALES */
         .container-premium { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 5vw; }
-        
-        .display-huge {
-            font-size: clamp(3rem, 12vw, 12rem);
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -0.05em;
+        .scene { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+
+        /* --- VOXEL CORE SYSTEM --- */
+        .voxel-world {
+            perspective: 2000px;
+            transform-style: preserve-3d;
+        }
+
+        .voxel-block {
+            position: relative;
+            width: var(--block-size);
+            background: var(--block-top);
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 10px 10px 0px var(--block-side), 20px 20px 0px rgba(0,0,0,0.5);
+            transition: all 0.4s var(--ease-voxel);
+            margin-bottom: 40px;
+        }
+
+        .voxel-block:hover {
+            transform: translate(-10px, -10px);
+            box-shadow: 20px 20px 0px var(--accent-purple), 30px 30px 0px rgba(0,0,0,0.5);
+            border-color: var(--accent-purple);
+        }
+
+        .pixel-tag {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.5rem;
+            background: var(--accent-cyan);
+            color: var(--bg);
+            padding: 8px 12px;
+            display: inline-block;
             text-transform: uppercase;
-            font-style: italic;
         }
 
-        .gradient-text {
-            background: var(--grad-purple);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.2));
-            display: inline-block; /* Prevent gradient clipping */
+        /* WEBDORKS-STYLE SCALES (ADAPTED) */
+        .display-huge {
+            font-size: clamp(2rem, 8vw, 8rem);
+            color: #fff;
+            text-shadow: 4px 4px 0px var(--accent-cyan), 8px 8px 0px var(--accent-purple);
+            text-transform: uppercase;
         }
 
-        .glass-premium {
-            background: rgba(12, 12, 20, 0.6);
-            backdrop-filter: blur(40px);
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        }
-
-        /* CURSOR: VIBRANT PURPLE */
+        /* CUSTOM CURSOR: PIXEL RING */
         .cursor-ring {
-            width: 24px; height: 24px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
+            width: 32px; height: 32px;
+            border: 4px solid var(--accent-cyan);
             position: fixed;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        /* HERO PORTRAIT: SOPHISTICATED NOIR */
-        .hero-portrait-bg {
-            position: absolute;
-            right: 0; bottom: 0;
-            height: 100%;
-            width: 45vw; /* Explicit right-side anchor width */
-            object-fit: contain;
-            object-position: right bottom;
-            filter: grayscale(1) contrast(1.15) brightness(0.9);
-            mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 50%, transparent 100%);
-            mask-composite: intersect;
-            -webkit-mask-composite: source-in;
-            z-index: 1;
-            transition: transform 1.2s var(--ease-fluid);
+            image-rendering: pixelated;
         }
 
         /* MOBILE FIXES */
         @media (max-width: 768px) {
-            .display-huge { font-size: clamp(2.5rem, 15vw, 5rem); line-height: 0.95; position: relative; z-index: 10; }
-            .container-premium { padding: 0 1.5rem; }
-            .scene { min-height: auto; padding: 4rem 0; }
-            .hero-portrait-bg { 
-                opacity: 0.25; 
-                height: 50%; 
-                width: 70vw;
-                top: auto; bottom: 0; 
-                right: -5%; 
-                mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 20%, transparent 95%);
-                -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 20%, transparent 95%);
-            }
+            .display-huge { font-size: 2.5rem; text-shadow: 3px 3px 0px var(--accent-cyan); }
+            .voxel-block { width: 100%; box-shadow: 5px 5px 0px var(--block-side); }
+            .hero-portrait-bg { opacity: 0.2; }
         }
 
-        /* STACK CARDS: RESPONSIVE */
-        .stack-card { 
-            position: sticky; top: 0; min-height: 100vh; 
-            background: var(--bg);
-            border-top: 1px solid rgba(168, 85, 247, 0.1);
+        /* ANIMATIONS */
+        .float-voxel { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
-        @media (max-width: 768px) {
-            .stack-card { position: relative; min-height: auto; border-bottom: 1px solid rgba(168, 85, 247, 0.1); }
-        }
+
+        .lang-content { display: none; }
+        [data-current-lang="en"] .lang-en-only { display: block; }
+        [data-current-lang="ar"] .lang-ar-only { display: block; }
     </style>
 </head>
 <body data-current-lang="en">
@@ -144,114 +129,108 @@
     <div class="cursor-ring"></div>
     <div class="noise-overlay" style="position: fixed; inset: 0; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.04; pointer-events: none; z-index: 100;"></div>
 
-    <!-- NAV: VIBRANT & SEPARATED -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass-premium border-b border-white/[0.02] py-5">
+    <!-- NAV: VOXEL MINIMAL -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#060b19]/80 backdrop-blur-md border-b-4 border-white/5 py-4">
         <div class="container-premium flex items-center justify-between">
             <div class="flex items-center gap-4 group">
-                <div class="w-10 h-10 rounded-sm bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center font-black text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] group-hover:scale-110 transition-transform duration-500">GA</div>
+                <div class="w-12 h-12 bg-white flex items-center justify-center font-black text-xl text-black shadow-[4px_4px_0px_#a855f7] hover:shadow-[8px_8px_0px_#6366f1] transition-all">GA</div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-sm font-black uppercase tracking-tighter text-white">
-                        <span class="lang-en-only">MOHAMED OMAR</span><span class="lang-ar-only text-lg">محمد عمر</span>
+                    <span class="text-xs font-black uppercase tracking-tight text-white">
+                        <span class="lang-en-only">MOHAMED OMAR</span><span class="lang-ar-only">محمد عمر</span>
                     </span>
-                    <span class="text-[8px] text-zinc-500 font-bold uppercase tracking-[0.4em] mt-1.5">
+                    <span class="text-[8px] text-[#5bc0be] font-bold uppercase tracking-[0.2em] mt-1.5">
                         <span class="lang-en-only">Growth Architect</span><span class="lang-ar-only">مهندس النمو</span>
                     </span>
                 </div>
             </div>
             
-            <div class="flex items-center gap-8 md:gap-12">
-                <div class="hidden md:flex items-center gap-10">
-                    <a href="#logic" class="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Logic</span><span class="lang-ar-only">المنطق</span>
+            <div class="flex items-center gap-8">
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#logic" class="text-[8px] font-bold uppercase tracking-widest text-[#5bc0be] hover:text-white transition-colors">
+                        <span class="lang-en-only">Logic_Voxel</span><span class="lang-ar-only">منطق_الكتل</span>
                     </a>
-                    <a href="#strikes" class="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Strikes</span><span class="lang-ar-only">العمليات</span>
-                    </a>
-                    <a href="#connect" class="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Command</span><span class="lang-ar-only">تواصل</span>
+                    <a href="#strikes" class="text-[8px] font-bold uppercase tracking-widest text-[#5bc0be] hover:text-white transition-colors">
+                        <span class="lang-en-only">Strikes_v14</span><span class="lang-ar-only">عمليات_١٤</span>
                     </a>
                 </div>
-                <button onclick="toggleLanguage()" class="px-5 py-2 rounded-sm border border-purple-500/20 text-[9px] font-black uppercase text-purple-400 hover:bg-purple-500 hover:text-white transition-all duration-500 shadow-[0_0_15px_rgba(168,85,247,0.1)]">
-                    <span class="lang-en-only">العربية</span><span class="lang-ar-only">English</span>
+                <button onclick="toggleLanguage()" class="px-4 py-2 border-2 border-[#a855f7] text-[8px] font-black uppercase text-[#a855f7] hover:bg-[#a855f7] hover:text-white transition-all">
+                    <span class="lang-en-only">AR</span><span class="lang-ar-only">EN</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- 1. HERO SCENE: VIBRANT -->
+    <!-- 1. HERO SCENE: THE VOXEL ENGINE -->
     <main>
-        <section class="scene overflow-hidden bg-[#05050a] min-h-[100svh]">
-            <img src="assets/mohamed-omar-portrait.jpg" class="hero-portrait-bg" alt="Mohamed Omar" id="hero-img">
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#05050a] via-transparent to-purple-900/10"></div>
+        <section class="scene overflow-hidden bg-[#060b19] relative">
+            <img src="assets/mohamed-omar-portrait.jpg" class="absolute right-0 bottom-0 h-full w-auto grayscale brightness-50 opacity-40 mix-blend-screen pointer-events-none z-0" style="mask-image: linear-gradient(to left, black, transparent);" alt="Mohamed Omar" id="hero-img">
             
             <div class="container-premium relative z-10 flex flex-col justify-center h-full pt-20">
-                <div class="tag-mono mb-10 opacity-0 hero-reveal flex items-center gap-3 text-purple-400" id="hero-tag">
-                    <div class="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,1)]"></div>
-                    <span class="lang-en-only">SOVEREIGN_NODE // ARCHITECT_v15.2</span>
-                    <span class="lang-ar-only">نود النمو السيادي // مهندس_نظام١٥.٢</span>
-                </div>
+                <div class="pixel-tag mb-10 opacity-0 hero-reveal" id="hero-tag">System_Node // Voxel_Core</div>
                 
-                <h1 class="display-huge text-white mb-14 opacity-0 hero-reveal" id="hero-title">
+                <h1 class="display-huge mb-12 opacity-0 hero-reveal" id="hero-title">
                     <span class="block">The Growth</span>
                     <span class="gradient-text italic">Architect.</span>
                 </h1>
 
-                <div class="max-w-4xl opacity-0 hero-reveal" id="hero-statement">
-                    <p class="text-xl md:text-5xl font-light text-zinc-400 leading-[1.2] mb-20 italic">
+                <div class="max-w-2xl opacity-0 hero-reveal" id="hero-statement">
+                    <p class="text-sm md:text-lg font-bold text-[#5bc0be] leading-relaxed mb-16 uppercase tracking-wider">
                         <span class="lang-en-only">"I don't just run campaigns; I architect <strong class="text-white font-medium">autonomous revenue engines</strong> where brand logic is weaponized by AI."</span>
                         <span class="lang-ar-only">"أنا مش مجرد بدير حملات؛ أنا بصمم <strong class="text-white font-medium">محركات أرباح مستقلة</strong>، بسلح فيها الاستراتيجية بقوة الـ AI."</span>
                     </p>
                 </div>
 
                 <div class="opacity-0 hero-reveal" id="hero-cta">
-                    <a href="#connect" class="inline-flex items-center gap-6 px-12 md:px-16 py-6 md:py-8 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-[10px] md:text-xs uppercase tracking-[0.4em] rounded-sm hover:scale-105 transition-transform duration-700 shadow-[0_20px_50px_rgba(168,85,247,0.3)]">
-                        <span class="lang-en-only">Command Your Engine</span>
-                        <span class="lang-ar-only text-sm">قُد محركك</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    <a href="#connect" class="inline-block px-10 py-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-[10px] uppercase tracking-[0.3em] shadow-[8px_8px_0px_rgba(255,255,255,0.1)] hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_#a855f7] transition-all">
+                        <span class="lang-en-only">Initialize Deployment</span>
+                        <span class="lang-ar-only">بدء التشغيل</span>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- 2. LOGIC: THE VIBRANT JOURNEY -->
-        <section id="logic" class="scene py-32 md:py-60 border-y border-white/[0.02] bg-[#05050a]">
-            <div class="container-premium grid grid-cols-12 gap-12 items-start md:items-center">
-                <div class="col-span-12 lg:col-span-8 space-y-12 md:space-y-24">
-                    <h2 class="text-5xl md:text-[10rem] font-black italic tracking-tighter uppercase leading-[0.8] text-white">
-                        <span class="lang-en-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(168, 85, 247, 0.4);">Fragility</span><br>vs Absolute.</span>
-                        <span class="lang-ar-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(168, 85, 247, 0.4);">الهشاشة</span><br>ضد الحتمية.</span>
-                    </h2>
-                    <div class="space-y-12 text-zinc-400 text-lg md:text-4xl font-light leading-[1.3] max-w-[40ch]" id="logic-text">
-                        <div class="lang-en-only space-y-10">
-                            <p>Most enterprises settle for "Hope-Based Marketing"—launching campaigns and praying for ROI. I replace fragility with <strong class="text-white font-medium">Deterministic Revenue Engineering.</strong></p>
-                            <p>Leveraging 7 years of MENA deployment, I architect <strong class="text-white font-medium italic">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
-                        </div>
-                        <div class="lang-ar-only space-y-10 text-right">
-                            <p>أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white font-medium">هندسة إيرادات حتمية.</strong></p>
-                            <p>بخبرة ٧ سنين في سوق المينا، مهمتي بسيطة: أبني <strong class="text-white font-medium">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
+        <!-- 2. LOGIC: VOXEL THESIS -->
+        <section id="logic" class="scene py-40 border-y-4 border-white/5 bg-[#0b132b]">
+            <div class="container-premium">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="space-y-12">
+                        <h2 class="text-3xl md:text-6xl text-white uppercase italic">
+                            <span class="lang-en-only">Fragility<br><span class="gradient-text">vs Absolute.</span></span>
+                            <span class="lang-ar-only">الهشاشة<br><span class="gradient-text">ضد الحتمية.</span></span>
+                        </h2>
+                        <div class="space-y-8 text-zinc-400 text-sm md:text-lg font-bold uppercase tracking-tight" id="logic-text">
+                            <div class="lang-en-only space-y-6">
+                                <p>Most enterprises settle for "Hope-Based Marketing". I replace fragility with <strong class="text-white">Deterministic Revenue Engineering.</strong></p>
+                                <p>Leveraging 7 years of MENA deployment, I architect <strong class="text-[#a855f7]">self-maintaining loops</strong> that dominate.</p>
+                            </div>
+                            <div class="lang-ar-only space-y-6 text-right">
+                                <p>أغلب الشركات بتعتمد على "التسويق القائم على الأمل". أنا ببدل الهشاشة دي بـ <strong class="text-white">هندسة إيرادات حتمية.</strong></p>
+                                <p>بخبرة ٧ سنين في سوق المينا، أبني <strong class="text-[#a855f7]">دوائر نمو ذاتية الصيانة</strong>.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-span-12 lg:col-span-4 flex flex-col gap-6 md:gap-10">
-                    <div class="glass-premium p-10 md:p-12 border-l-2 border-purple-500/30 hover:border-purple-500 transition-colors group">
-                        <div class="tag-mono mb-6 group-hover:text-purple-400 transition-colors">PROTOCOL_01</div>
-                        <h4 class="text-white font-black uppercase text-sm tracking-widest mb-6">
-                            <span class="lang-en-only">Systemic Synthesis</span><span class="lang-ar-only">التركيب النظامي</span>
-                        </h4>
-                        <p class="text-zinc-500 text-sm leading-relaxed font-light">
-                            <span class="lang-en-only">Stripping processes to their atomic components and rebuilding them via an elite AI stack.</span>
-                            <span class="lang-ar-only">تفكيك العمليات لمكوناتها الذرية وإعادة بنائها باستخدام حزمة ذكاء اصطناعي متطورة.</span>
-                        </p>
-                    </div>
-                    <div class="glass-premium p-10 md:p-12 border-l-2 border-indigo-500/30 hover:border-indigo-500 transition-colors group">
-                        <div class="tag-mono mb-6 group-hover:text-indigo-400 transition-colors">PROTOCOL_02</div>
-                        <h4 class="text-white font-black uppercase text-sm tracking-widest mb-6">
-                            <span class="lang-en-only">Agentic Workforce</span><span class="lang-ar-only">القوة العاملة الوكيلة</span>
-                        </h4>
-                        <p class="text-zinc-500 text-sm leading-relaxed font-light">
-                            <span class="lang-en-only">Orchestrating proprietary multi-agent systems designed for autonomous market auditing.</span>
-                            <span class="lang-ar-only">إدارة أنظمة وكلاء متعددة الملكية مصممة للتدقيق المستقل في السوق.</span>
-                        </p>
+                    
+                    <div class="flex flex-col gap-8">
+                        <div class="voxel-block p-10 float-voxel" style="animation-delay: 0s;">
+                            <div class="pixel-tag mb-4">P_01</div>
+                            <h4 class="text-white text-xs mb-4">
+                                <span class="lang-en-only">Systemic Synthesis</span><span class="lang-ar-only">التركيب النظامي</span>
+                            </h4>
+                            <p class="text-[10px] text-[#5bc0be] uppercase tracking-wider">
+                                <span class="lang-en-only">Rebuilding processes via an elite AI stack.</span>
+                                <span class="lang-ar-only text-[#5bc0be]">إعادة بناء العمليات عبر حزمة AI متطورة.</span>
+                            </p>
+                        </div>
+                        <div class="voxel-block p-10 float-voxel" style="animation-delay: 1.5s; border-color: #a855f7;">
+                            <div class="pixel-tag mb-4" style="background: #a855f7;">P_02</div>
+                            <h4 class="text-white text-xs mb-4">
+                                <span class="lang-en-only">Agentic Swarms</span><span class="lang-ar-only">القوة العاملة الوكيلة</span>
+                            </h4>
+                            <p class="text-[10px] text-[#5bc0be] uppercase tracking-wider">
+                                <span class="lang-en-only">Proprietary systems for autonomous auditing.</span>
+                                <span class="lang-ar-only text-[#5bc0be]">أنظمة مخصصة للتدقيق المستقل.</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
