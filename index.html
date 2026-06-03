@@ -94,12 +94,35 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
+        /* HERO PORTRAIT: SOPHISTICATED NOIR */
+        .hero-portrait-bg {
+            position: absolute;
+            right: 0; bottom: 0;
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: grayscale(1) contrast(1.15) brightness(0.9);
+            mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 40%, transparent 95%);
+            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 40%, transparent 95%);
+            mask-composite: intersect;
+            -webkit-mask-composite: source-in;
+            z-index: 1;
+            transition: transform 1.2s var(--ease-fluid);
+        }
+
         /* MOBILE FIXES */
         @media (max-width: 768px) {
-            .display-huge { font-size: clamp(3rem, 18vw, 6rem); line-height: 0.9; }
+            .display-huge { font-size: clamp(3rem, 18vw, 6rem); line-height: 0.9; position: relative; z-index: 10; }
             .container-premium { padding: 0 1.5rem; }
             .scene { min-height: auto; padding: 4rem 0; }
-            .hero-portrait-bg { opacity: 0.15; position: absolute; height: 50%; top: 0; right: 0; }
+            .hero-portrait-bg { 
+                opacity: 0.2; 
+                height: 60%; 
+                top: auto; bottom: 0; 
+                right: -5%; 
+                mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 20%, transparent 95%);
+                -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 20%, transparent 95%);
+            }
         }
 
         /* STACK CARDS: RESPONSIVE */
