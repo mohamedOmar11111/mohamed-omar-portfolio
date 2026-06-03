@@ -20,15 +20,19 @@
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&display=swap');
         
         :root {
-            /* SOPHISTICATED NOIR CORE */
-            --bg: #030305;
-            --surface: #0a0a0f;
-            --accent: #ffffff;
-            --text-main: #fcfcfc;
-            --text-muted: #71717a;
-            --border-glass: rgba(255, 255, 255, 0.04);
+            /* VIBRANT NOIR THEME */
+            --bg: #05050a;
+            --surface: #0c0c14;
+            --accent: #a855f7; /* Vibrant Purple */
+            --accent-glow: rgba(168, 85, 247, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #a1a1aa;
+            --border-glass: rgba(255, 255, 255, 0.08);
             
-            /* EMIL-STYLE PHYSICS */
+            /* GRADIENTS */
+            --grad-purple: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            --grad-noir: linear-gradient(180deg, rgba(5,5,10,0) 0%, #05050a 100%);
+            
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
             --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -43,78 +47,69 @@
             cursor: none;
         }
 
+        /* LANGUAGE SEPARATION FOUNDATION */
         [lang="ar"] body { font-family: 'Cairo', sans-serif; direction: rtl; }
-        h1, h2, h3, h4 { font-family: 'Cairo', sans-serif; letter-spacing: -0.05em; }
+        
+        .lang-content { display: none; }
+        [data-current-lang="en"] .lang-en-only { display: block; }
+        [data-current-lang="en"] .lang-en-flex { display: flex; }
+        [data-current-lang="ar"] .lang-ar-only { display: block; }
+        [data-current-lang="ar"] .lang-ar-flex { display: flex; }
 
-        /* --- TASTE-SKILL: REFINED LAYOUT --- */
-        .container-premium { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem; }
-        .scene { position: relative; width: 100%; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; }
-        .layer { position: absolute; inset: 0; pointer-events: none; will-change: transform, opacity; }
-
-        /* WEBDORKS-STYLE TYPOGRAPHY SCALE */
+        /* RESPONSIVE SCALES */
+        .container-premium { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 5vw; }
+        
         .display-huge {
-            font-size: clamp(4rem, 15vw, 18rem);
+            font-size: clamp(3.5rem, 15vw, 15rem);
             font-weight: 900;
-            line-height: 0.75;
-            letter-spacing: -0.07em;
+            line-height: 0.8;
+            letter-spacing: -0.06em;
             text-transform: uppercase;
             font-style: italic;
         }
 
-        .glass-premium {
-            background: rgba(255, 255, 255, 0.015);
-            backdrop-filter: blur(40px);
-            border: 1px solid var(--border-glass);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        .gradient-text {
+            background: var(--grad-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.2));
         }
 
-        /* CURSOR: EMIL INTERPOLATED */
+        .glass-premium {
+            background: rgba(12, 12, 20, 0.6);
+            backdrop-filter: blur(40px);
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* CURSOR: VIBRANT PURPLE */
         .cursor-ring {
             width: 24px; height: 24px;
-            border: 1.5px solid #fff;
+            border: 2px solid var(--accent);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        /* STICKY STACK LOGIC */
-        .stack-wrapper { position: relative; }
-        .stack-card { 
-            position: sticky; 
-            top: 0; 
-            min-height: 100dvh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            background: var(--bg);
-            border-top: 1px solid var(--border-glass);
-        }
-
-        .tag-mono {
-            font-family: ui-monospace, 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            letter-spacing: 0.4em;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .hero-portrait-bg {
-            position: absolute;
-            right: 0; bottom: 0;
-            height: 100%;
-            width: auto;
-            object-fit: cover;
-            filter: grayscale(1) brightness(0.4) contrast(1.1);
-            mask-image: linear-gradient(to left, black 20%, transparent 80%);
-            -webkit-mask-image: linear-gradient(to left, black 20%, transparent 80%);
-        }
-
+        /* MOBILE FIXES */
         @media (max-width: 768px) {
-            .display-huge { font-size: 5rem; }
-            .hero-portrait-bg { opacity: 0.2; }
-            .stack-card { position: relative; min-height: auto; padding: 4rem 0; }
+            .display-huge { font-size: clamp(3rem, 18vw, 6rem); line-height: 0.9; }
+            .container-premium { padding: 0 1.5rem; }
+            .scene { min-height: auto; padding: 4rem 0; }
+            .hero-portrait-bg { opacity: 0.15; position: absolute; height: 50%; top: 0; right: 0; }
+        }
+
+        /* STACK CARDS: RESPONSIVE */
+        .stack-card { 
+            position: sticky; top: 0; min-height: 100vh; 
+            background: var(--bg);
+            border-top: 1px solid rgba(168, 85, 247, 0.1);
+        }
+        @media (max-width: 768px) {
+            .stack-card { position: relative; min-height: auto; border-bottom: 1px solid rgba(168, 85, 247, 0.1); }
         }
     </style>
 </head>
@@ -123,112 +118,146 @@
     <div class="cursor-ring"></div>
     <div class="noise-overlay" style="position: fixed; inset: 0; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.04; pointer-events: none; z-index: 100;"></div>
 
-    <!-- NAV -->
-    <nav class="fixed top-0 w-full z-50 py-8 px-8 md:px-20 mix-blend-difference">
-        <div class="flex justify-between items-center">
+    <!-- NAV: VIBRANT & SEPARATED -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-premium border-b border-white/[0.02] py-5">
+        <div class="container-premium flex items-center justify-between">
             <div class="flex items-center gap-4 group">
-                <span class="font-black text-2xl tracking-tighter text-white">GA.</span>
-                <div class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
-            </div>
-            <div class="flex items-center gap-12">
-                <div class="hidden md:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">
-                    <a href="#logic" class="hover:text-white transition-colors">The_Logic</a>
-                    <a href="#strikes" class="hover:text-white transition-colors">The_Strikes</a>
-                    <a href="#connect" class="hover:text-white transition-colors">Command</a>
+                <div class="w-10 h-10 rounded-sm bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center font-black text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] group-hover:scale-110 transition-transform duration-500">GA</div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-sm font-black uppercase tracking-tighter text-white">
+                        <span class="lang-en-only">MOHAMED OMAR</span><span class="lang-ar-only text-lg">محمد عمر</span>
+                    </span>
+                    <span class="text-[8px] text-zinc-500 font-bold uppercase tracking-[0.4em] mt-1.5">
+                        <span class="lang-en-only">Growth Architect</span><span class="lang-ar-only">مهندس النمو</span>
+                    </span>
                 </div>
-                <button onclick="toggleLanguage()" class="px-6 py-2 border border-white/10 rounded-sm text-[9px] font-black uppercase tracking-widest text-zinc-400 hover:border-white hover:text-white transition-all">
-                    <span class="lang-en">AR</span><span class="lang-ar">EN</span>
+            </div>
+            
+            <div class="flex items-center gap-8 md:gap-12">
+                <div class="hidden md:flex items-center gap-10">
+                    <a href="#logic" class="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
+                        <span class="lang-en-only">Logic</span><span class="lang-ar-only">المنطق</span>
+                    </a>
+                    <a href="#strikes" class="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
+                        <span class="lang-en-only">Strikes</span><span class="lang-ar-only">العمليات</span>
+                    </a>
+                    <a href="#connect" class="text-[9px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
+                        <span class="lang-en-only">Command</span><span class="lang-ar-only">تواصل</span>
+                    </a>
+                </div>
+                <button onclick="toggleLanguage()" class="px-5 py-2 rounded-sm border border-purple-500/20 text-[9px] font-black uppercase text-purple-400 hover:bg-purple-500 hover:text-white transition-all duration-500 shadow-[0_0_15px_rgba(168,85,247,0.1)]">
+                    <span class="lang-en-only">العربية</span><span class="lang-ar-only">English</span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- 1. HERO: THE ANCHOR -->
+    <!-- 1. HERO SCENE: VIBRANT -->
     <main>
-        <section class="scene overflow-hidden bg-[#030305]">
+        <section class="scene overflow-hidden bg-[#05050a] min-h-[100svh]">
             <img src="assets/mohamed-omar-portrait.jpg" class="hero-portrait-bg" alt="Mohamed Omar" id="hero-img">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#05050a] via-transparent to-purple-900/10"></div>
             
-            <div class="container-premium relative z-10 pt-20">
-                <div class="tag-mono mb-12 opacity-0 hero-reveal" id="hero-tag">System_Node // Architect_v14.2</div>
+            <div class="container-premium relative z-10 flex flex-col justify-center h-full pt-20">
+                <div class="tag-mono mb-10 opacity-0 hero-reveal flex items-center gap-3 text-purple-400" id="hero-tag">
+                    <div class="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,1)]"></div>
+                    <span class="lang-en-only">SOVEREIGN_NODE // ARCHITECT_v15.2</span>
+                    <span class="lang-ar-only">نود النمو السيادي // مهندس_نظام١٥.٢</span>
+                </div>
                 
-                <h1 class="display-huge text-white flex flex-col mb-16 opacity-0 hero-reveal" id="hero-title">
-                    <span class="italic">The Growth</span>
-                    <span class="text-zinc-900" style="-webkit-text-stroke: 1px #fff;">Architect.</span>
+                <h1 class="display-huge text-white mb-14 opacity-0 hero-reveal" id="hero-title">
+                    <span class="block">The Growth</span>
+                    <span class="gradient-text italic">Architect.</span>
                 </h1>
 
-                <p class="max-w-4xl text-2xl md:text-5xl font-light text-zinc-500 leading-[1.1] mb-24 opacity-0 hero-reveal" id="hero-statement">
-                    <span class="lang-en italic">"I don't just run campaigns; I architect <strong class="text-white font-medium">autonomous revenue engines</strong> where brand logic is weaponized by AI."</span>
-                    <span class="lang-ar italic">"أنا مش مجرد بدير حملات؛ أنا بصمم <strong class="text-white font-medium">محركات أرباح مستقلة</strong>، بسلح فيها الاستراتيجية بقوة الـ AI."</span>
-                </p>
+                <div class="max-w-4xl opacity-0 hero-reveal" id="hero-statement">
+                    <p class="text-xl md:text-5xl font-light text-zinc-400 leading-[1.2] mb-20 italic">
+                        <span class="lang-en-only">"I don't just run campaigns; I architect <strong class="text-white font-medium">autonomous revenue engines</strong> where brand logic is weaponized by AI."</span>
+                        <span class="lang-ar-only">"أنا مش مجرد بدير حملات؛ أنا بصمم <strong class="text-white font-medium">محركات أرباح مستقلة</strong>، بسلح فيها الاستراتيجية بقوة الـ AI."</span>
+                    </p>
+                </div>
 
                 <div class="opacity-0 hero-reveal" id="hero-cta">
-                    <a href="#connect" class="inline-flex items-center gap-6 px-16 py-8 bg-white text-black font-black text-xs uppercase tracking-[0.4em] rounded-sm hover:scale-105 transition-transform duration-700 shadow-2xl">
-                        <span class="lang-en">Command Your Engine</span>
-                        <span class="lang-ar">قُد محركك</span>
+                    <a href="#connect" class="inline-flex items-center gap-6 px-12 md:px-16 py-6 md:py-8 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-black text-[10px] md:text-xs uppercase tracking-[0.4em] rounded-sm hover:scale-105 transition-transform duration-700 shadow-[0_20px_50px_rgba(168,85,247,0.3)]">
+                        <span class="lang-en-only">Command Your Engine</span>
+                        <span class="lang-ar-only text-sm">قُد محركك</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- 2. LOGIC: THE GRAPHICAL JOURNEY STARTS -->
-        <section id="logic" class="scene py-60 border-y border-white/[0.02]">
-            <div class="container-premium grid grid-cols-12 gap-12 items-center">
-                <div class="col-span-12 lg:col-span-8 space-y-24">
-                    <h2 class="text-6xl md:text-[10rem] font-black italic tracking-tighter uppercase leading-[0.75] text-white">
-                        <span class="lang-en text-zinc-900" style="-webkit-text-stroke: 1px #fff;">Fragility</span><br>
-                        <span class="lang-en">vs Absolute.</span>
-                        <span class="lang-ar text-zinc-900" style="-webkit-text-stroke: 1px #fff;">الهشاشة</span><br>
-                        <span class="lang-ar">ضد الحتمية.</span>
+        <!-- 2. LOGIC: THE VIBRANT JOURNEY -->
+        <section id="logic" class="scene py-32 md:py-60 border-y border-white/[0.02] bg-[#05050a]">
+            <div class="container-premium grid grid-cols-12 gap-12 items-start md:items-center">
+                <div class="col-span-12 lg:col-span-8 space-y-12 md:space-y-24">
+                    <h2 class="text-5xl md:text-[10rem] font-black italic tracking-tighter uppercase leading-[0.8] text-white">
+                        <span class="lang-en-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(168, 85, 247, 0.4);">Fragility</span><br>vs Absolute.</span>
+                        <span class="lang-ar-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(168, 85, 247, 0.4);">الهشاشة</span><br>ضد الحتمية.</span>
                     </h2>
-                    <div class="space-y-16 text-zinc-500 text-xl md:text-4xl font-light leading-[1.3] max-w-[40ch]" id="logic-text">
-                        <div class="lang-en space-y-12">
+                    <div class="space-y-12 text-zinc-400 text-lg md:text-4xl font-light leading-[1.3] max-w-[40ch]" id="logic-text">
+                        <div class="lang-en-only space-y-10">
                             <p>Most enterprises settle for "Hope-Based Marketing"—launching campaigns and praying for ROI. I replace fragility with <strong class="text-white font-medium">Deterministic Revenue Engineering.</strong></p>
-                            <p>Leveraging 7 years of MENA deployment and a Master's from UNSW Sydney, I architect <strong class="text-white font-medium">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
+                            <p>Leveraging 7 years of MENA deployment, I architect <strong class="text-white font-medium italic">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
                         </div>
-                        <div class="lang-ar space-y-12">
+                        <div class="lang-ar-only space-y-10 text-right">
                             <p>أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white font-medium">هندسة إيرادات حتمية.</strong></p>
-                            <p>بخبرة ٧ سنين في سوق المينا وماجستير من UNSW Sydney، مهمتي بسيطة: أبني <strong class="text-white font-medium">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
+                            <p>بخبرة ٧ سنين في سوق المينا، مهمتي بسيطة: أبني <strong class="text-white font-medium">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-span-12 lg:col-span-4 flex flex-col gap-10">
-                    <div class="glass-premium p-12 border-l-2 border-white/20 hover:border-white transition-colors group">
-                        <div class="tag-mono mb-6 group-hover:text-white transition-colors">PROTOCOL_01</div>
-                        <h4 class="text-white font-black uppercase text-sm tracking-widest mb-6">Systemic Synthesis</h4>
+                <div class="col-span-12 lg:col-span-4 flex flex-col gap-6 md:gap-10">
+                    <div class="glass-premium p-10 md:p-12 border-l-2 border-purple-500/30 hover:border-purple-500 transition-colors group">
+                        <div class="tag-mono mb-6 group-hover:text-purple-400 transition-colors">PROTOCOL_01</div>
+                        <h4 class="text-white font-black uppercase text-sm tracking-widest mb-6">
+                            <span class="lang-en-only">Systemic Synthesis</span><span class="lang-ar-only">التركيب النظامي</span>
+                        </h4>
                         <p class="text-zinc-500 text-sm leading-relaxed font-light">
-                            <span class="lang-en">Stripping processes to their atomic components and rebuilding them via an elite AI stack. If it doesn't scale, it's a bug.</span>
-                            <span class="lang-ar">بفكك العمليات لمكوناتها الذرية وببنيها تاني بالـ AI. لو العملية مش هتكبر وتتوسع لوحدها، بيبقى ده "Bug" لازم يتصلح.</span>
+                            <span class="lang-en-only">Stripping processes to their atomic components and rebuilding them via an elite AI stack.</span>
+                            <span class="lang-ar-only">تفكيك العمليات لمكوناتها الذرية وإعادة بنائها باستخدام حزمة ذكاء اصطناعي متطورة.</span>
                         </p>
                     </div>
-                    <div class="glass-premium p-12 border-l-2 border-white/20 hover:border-white transition-colors group">
-                        <div class="tag-mono mb-6 group-hover:text-white transition-colors">PROTOCOL_02</div>
-                        <h4 class="text-white font-black uppercase text-sm tracking-widest mb-6">Agentic Workforce</h4>
+                    <div class="glass-premium p-10 md:p-12 border-l-2 border-indigo-500/30 hover:border-indigo-500 transition-colors group">
+                        <div class="tag-mono mb-6 group-hover:text-indigo-400 transition-colors">PROTOCOL_02</div>
+                        <h4 class="text-white font-black uppercase text-sm tracking-widest mb-6">
+                            <span class="lang-en-only">Agentic Workforce</span><span class="lang-ar-only">القوة العاملة الوكيلة</span>
+                        </h4>
                         <p class="text-zinc-500 text-sm leading-relaxed font-light">
-                            <span class="lang-en">Orchestrating the Onyx Hive OS—a proprietary multi-agent system designed for autonomous market auditing and strategic pivots.</span>
-                            <span class="lang-ar">بدير نظام Onyx Hive، وده سيستم وكلاء ذكي مصمم عشان يعمل تدقيق للسوق وتحولات استراتيجية بشكل آلي تماماً.</span>
+                            <span class="lang-en-only">Orchestrating proprietary multi-agent systems designed for autonomous market auditing.</span>
+                            <span class="lang-ar-only">إدارة أنظمة وكلاء متعددة الملكية مصممة للتدقيق المستقل في السوق.</span>
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. STRIKE LOG: THE KINETIC STACK -->
-        <section id="strikes" class="stack-wrapper">
+        <!-- 3. STRIKE LOG: THE VIBRANT STACK -->
+        <section id="strikes" class="stack-wrapper bg-[#05050a]">
             
             <!-- STRIKE 01 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">01</span>
+                        <span class="display-huge gradient-text opacity-10">01</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_01 // 2025 // ACTIVE</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Etlaala Travel</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Head of Marketing Department</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Directing the marketing architecture for a top-tier regional travel firm. Achieved <strong class="text-white font-medium">SAR 1,000,000 net profit recovery</strong> through revenue kernel re-engineering.</p>
-                            <p class="lang-ar">بقوم بقيادة منظومة التسويق لواحدة من أكبر شركات السياحة. حققت <strong class="text-white font-medium">استعادة أرباح بمليون ريال</strong> عن طريق إعادة هندسة "نواة الإيرادات".</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono flex items-center gap-4">
+                            <span class="lang-en-only">Strike_01 // 2025 // ACTIVE</span>
+                            <span class="lang-ar-only">العملية_٠١ // ٢٠٢٥ // نشط</span>
+                            <div class="w-1.5 h-1.5 rounded-full bg-purple-500 shadow-[0_0_10px_var(--accent)]"></div>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Etlaala Travel</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-purple-500/20 pb-8">
+                            <span class="lang-en-only">Head of Marketing Department</span>
+                            <span class="lang-ar-only">رئيس قسم التسويق</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Directing marketing architecture for a top-tier firm. Achieved <strong class="text-white font-medium">SAR 1,000,000 profit recovery</strong> through revenue kernel re-engineering.
+                            </div>
+                            <div class="lang-ar-only">
+                                قيادة منظومة التسويق لشركة سياحة كبرى. تحقيق <strong class="text-white font-medium">استعادة أرباح بمليون ريال</strong> عن طريق إعادة هندسة الإيرادات.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -236,17 +265,27 @@
 
             <!-- STRIKE 02 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">02</span>
+                        <span class="display-huge gradient-text opacity-10">02</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_02 // 2024 // COMPLETED</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Penta Studio</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Head of Digital</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Orchestrated digital transformation for enterprise clients. Managed <strong class="text-white font-medium">$800K+ annual deployment</strong>, scaling accuracy by 45%.</p>
-                            <p class="lang-ar">قدت التحول الرقمي الشامل لعملاء إقليميين كبار. أدرت ميزانية إعلانية <strong class="text-white font-medium">أكتر من ٨٠٠ ألف دولار سنويًا</strong>.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_02 // 2024 // COMPLETED</span>
+                            <span class="lang-ar-only">العملية_٠٢ // ٢٠٢٤ // مكتمل</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Penta Studio</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-indigo-500/20 pb-8">
+                            <span class="lang-en-only">Head of Digital</span>
+                            <span class="lang-ar-only">رئيس القطاع الرقمي</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Orchestrated digital transformation for enterprise clients. Managed <strong class="text-white font-medium">$800K+ annual deployment</strong> with 45% accuracy gain.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                التحول الرقمي لعملاء إقليميين كبار. إدارة ميزانية <strong class="text-white font-medium">أكتر من ٨٠٠ ألف دولار سنوياً</strong> مع تحسين دقة القرارات بنسبة ٤٥٪.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -254,17 +293,27 @@
 
             <!-- STRIKE 03 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">03</span>
+                        <span class="display-huge gradient-text opacity-10">03</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_03 // 2023 // SUCCESS</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">MOPHEX</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Product Marketing Manager</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Launched a next-gen PropTech platform. Scaled <strong class="text-white font-medium">lead generation by 300%</strong> and <strong class="text-white font-medium">slashed analysis time by 70%</strong>.</p>
-                            <p class="lang-ar">أطلقت منصة PropTech من الجيل الجديد. زودت <strong class="text-white font-medium">الـ Leads بنسبة ٣٠٠٪</strong> ووفرت ٧٠٪ من وقت التحليل.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_03 // 2023 // SUCCESS</span>
+                            <span class="lang-ar-only">العملية_٠٣ // ٢٠٢٣ // نجاح</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">MOPHEX</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-purple-500/20 pb-8">
+                            <span class="lang-en-only">Product Marketing Manager</span>
+                            <span class="lang-ar-only">مدير تسويق المنتج</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Launched next-gen PropTech platform. Scaled <strong class="text-white font-medium">leads by 300%</strong> and slashed analysis time by 70%.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                إطلاق منصة PropTech. زيادة <strong class="text-white font-medium">الـ Leads بنسبة ٣٠٠٪</strong> وتوفير ٧٠٪ من وقت التحليل.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -272,17 +321,27 @@
 
             <!-- STRIKE 04 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">04</span>
+                        <span class="display-huge gradient-text opacity-10">04</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_04 // 2021-2023 // FOUNDER</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Menaverse</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Founder & Strategist</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Scaled regional consultancy to <strong class="text-white font-medium">$500K ARR</strong>. Built the Onyx Hive OS to automate campaign monitoring.</p>
-                            <p class="lang-ar">كبرت الوكالة لغاية ما وصلت لـ <strong class="text-white font-medium">نص مليون دولار سنوياً</strong>. بنيت نظام Onyx Hive للأتمتة.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_04 // 2021-2023 // FOUNDER</span>
+                            <span class="lang-ar-only">العملية_٠٤ // ٢٠٢١-٢٠٢٣ // مؤسس</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Menaverse</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-indigo-500/20 pb-8">
+                            <span class="lang-en-only">Founder & Strategist</span>
+                            <span class="lang-ar-only">المؤسس والاستراتيجي</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Scaled regional consultancy to <strong class="text-white font-medium">$500K ARR</strong>. Built Onyx Hive OS for autonomous monitoring.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                الوصول بالوكالة لـ <strong class="text-white font-medium">نص مليون دولار سنوياً</strong>. بناء نظام Onyx Hive للأتمتة الاستراتيجية.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,17 +349,27 @@
 
             <!-- STRIKE 05 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">05</span>
+                        <span class="display-huge gradient-text opacity-10">05</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_05 // PROPTECH // SCALE</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Aqarverse</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Strategic Advisor</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Architected AI semantic authority nodes. Leveraged <strong class="text-white font-medium">GEO (Generative Engine Optimization)</strong> to secure dominant citation graphs.</p>
-                            <p class="lang-ar">صممت نود "السلطة الدلالية" لشركة عقارات كبرى. استخدمت أساليب GEO للسيطرة على الـ AI.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_05 // PROPTECH // ADVISOR</span>
+                            <span class="lang-ar-only">العملية_٠٥ // عقارات // مستشار</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Aqarverse</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-purple-500/20 pb-8">
+                            <span class="lang-en-only">Strategic Advisor</span>
+                            <span class="lang-ar-only">مستشار استراتيجي</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Architected AI semantic authority nodes. Secured dominant citation graphs via <strong class="text-white font-medium">GEO (Generative Engine Optimization)</strong>.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                تصميم نود "السلطة الدلالية". السيطرة على نتائج الـ AI باستخدام تقنيات GEO المتقدمة.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -308,17 +377,27 @@
 
             <!-- STRIKE 06 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">06</span>
+                        <span class="display-huge gradient-text opacity-10">06</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_06 // EDUCATION // SYDNEY</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">UNSW Sydney</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Master of Digital Marketing</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Mastered global digital logic in Sydney. Fused <strong class="text-white font-medium">high-level management theory</strong> with international growth systems.</p>
-                            <p class="lang-ar">أتقنت منطق التسويق الرقمي العالمي في سيدني. ودمجت بين نظريات الإدارة العليا وأنظمة النمو الدولية.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_06 // EDUCATION // GLOBAL</span>
+                            <span class="lang-ar-only">العملية_٠٦ // تعليم // عالمي</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">UNSW Sydney</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-indigo-500/20 pb-8">
+                            <span class="lang-en-only">Master of Digital Marketing</span>
+                            <span class="lang-ar-only">ماجستير التسويق الرقمي</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Mastered global digital logic in Sydney. Fused <strong class="text-white font-medium">high-level theory</strong> with international growth systems.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                إتقان منطق التسويق العالمي في سيدني. الدمج بين نظريات الإدارة العليا وأنظمة النمو الدولية.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -326,17 +405,27 @@
 
             <!-- STRIKE 07 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">07</span>
+                        <span class="display-huge gradient-text opacity-10">07</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_07 // DATA // EXPANSION</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">ICS Calibration</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Head of Digital Dept.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Established the data pipeline for regional expansion into UAE and Qatar. Managed <strong class="text-white font-medium">high-fidelity GA audits</strong>.</p>
-                            <p class="lang-ar">أسست بنية الداتا التحتية للتوسع في الإمارات وقطر. وعملت تدقيق لبيانات GA بأعلى دقة.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_07 // DATA // EXPANSION</span>
+                            <span class="lang-ar-only">العملية_٠٧ // بيانات // توسع</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">ICS Calibration</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-purple-500/20 pb-8">
+                            <span class="lang-en-only">Head of Digital Dept.</span>
+                            <span class="lang-ar-only">رئيس القسم الرقمي</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Established data pipelines for UAE and Qatar expansion. Managed <strong class="text-white font-medium">high-fidelity analytics auditing</strong>.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                تأسيس بنية البيانات للتوسع في الإمارات وقطر. إدارة عمليات التدقيق التحليلي بدقة عالية.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -344,17 +433,27 @@
 
             <!-- STRIKE 08 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">08</span>
+                        <span class="display-huge gradient-text opacity-10">08</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_08 // RETENTION // 2023</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">ShfrtNjah</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Head of Digital</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Engineered monthly promotional cycles that consistently beat retention benchmarks by <strong class="text-white font-medium">35%</strong>.</p>
-                            <p class="lang-ar">صممت دورات ترويجية شهرية قدرت تتخطى معدلات الثبات العادية بنسبة ٣٥٪.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_08 // RETENTION // 2023</span>
+                            <span class="lang-ar-only">العملية_٠٨ // الاستبقاء // ٢٠٢٣</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">ShfrtNjah</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-indigo-500/20 pb-8">
+                            <span class="lang-en-only">Head of Digital</span>
+                            <span class="lang-ar-only">رئيس القطاع الرقمي</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Engineered promotional cycles beating retention benchmarks by <strong class="text-white font-medium">35%</strong>.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                تصميم دورات ترويجية تفوقت على معدلات الاستبقاء القياسية بنسبة ٣٥٪.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -362,17 +461,27 @@
 
             <!-- STRIKE 09 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">09</span>
+                        <span class="display-huge gradient-text opacity-10">09</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_09 // LEADERSHIP // IMTF</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">CDO Executive</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Executive Diploma // IMTF</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Certified as a CDO. Focused on omnichannel dominance and the architecture of <strong class="text-white font-medium">sustainable profit engines</strong>.</p>
-                            <p class="lang-ar">حاصل على دبلوم تنفيذي كـ CDO. تركيزي كان على الهيمنة وتصميم محركات أرباح مستدامة.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_09 // LEADERSHIP // CDO</span>
+                            <span class="lang-ar-only">العملية_٠٩ // قيادة // CDO</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none text-balance">Chief Digital Officer</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-purple-500/20 pb-8">
+                            <span class="lang-en-only">Executive Diploma // IMTF</span>
+                            <span class="lang-ar-only">دبلوم تنفيذي // IMTF</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Certified CDO. Focused on omnichannel dominance and the architecture of <strong class="text-white font-medium">sustainable profit engines</strong>.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                حاصل على دبلوم CDO. التركيز على الهيمنة الشاملة وتصميم محركات أرباح مستدامة.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -380,17 +489,27 @@
 
             <!-- STRIKE 10 -->
             <div class="stack-card">
-                <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="container-premium grid grid-cols-12 gap-8 md:gap-12 items-center">
                     <div class="col-span-12 md:col-span-2">
-                        <span class="display-huge outline-text opacity-20">10</span>
+                        <span class="display-huge gradient-text opacity-10">10</span>
                     </div>
-                    <div class="col-span-12 md:col-span-10 space-y-12">
-                        <div class="tag-mono">Strike_10 // ADVISORY // AI FLOWS</div>
-                        <h3 class="text-6xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Grow Digital</h3>
-                        <p class="text-zinc-400 font-mono text-xs uppercase tracking-[0.5em] border-b border-white/10 pb-8">Senior Strategic Advisor</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 text-zinc-500 text-xl md:text-3xl font-light leading-tight">
-                            <p class="lang-en">Neutralizing operational noise by building custom <strong class="text-white font-medium">agentic flows</strong> and dashboard infrastructures.</p>
-                            <p class="lang-ar">بقوم بإلغاء الضوضاء في العمليات عن طريق بناء سير عمل وكلاء ذكي وبنية بيانات متقدمة.</p>
+                    <div class="col-span-12 md:col-span-10 space-y-8 md:space-y-12">
+                        <div class="tag-mono">
+                            <span class="lang-en-only">Strike_10 // ADVISORY // AI FLOWS</span>
+                            <span class="lang-ar-only">العملية_١٠ // استشارات // تدفقات AI</span>
+                        </div>
+                        <h3 class="text-5xl md:text-[8rem] font-black text-white italic uppercase tracking-tighter leading-none">Grow Digital</h3>
+                        <p class="text-zinc-500 font-mono text-[10px] md:text-xs uppercase tracking-[0.5em] border-b border-indigo-500/20 pb-8">
+                            <span class="lang-en-only">Senior Strategic Advisor</span>
+                            <span class="lang-ar-only">مستشار استراتيجي أول</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
+                            <div class="lang-en-only">
+                                Neutralizing operational noise via custom <strong class="text-white font-medium">agentic flows</strong> and dashboard infrastructures.
+                            </div>
+                            <div class="lang-ar-only text-right">
+                                تصفية الضوضاء التشغيلية عبر بناء تدفقات وكلاء ذكية وبنية تحتية للبيانات.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -398,27 +517,31 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer id="connect" class="py-60 px-8 relative overflow-hidden bg-[#030305] border-t border-white/[0.02]">
-        <div class="container-premium flex flex-col gap-40 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-32 items-start">
+    <!-- FOOTER: VIBRANT SEPARATED -->
+    <footer id="connect" class="py-32 md:py-60 px-8 relative overflow-hidden bg-[#05050a] border-t border-purple-500/10">
+        <div class="container-premium flex flex-col gap-24 md:gap-40 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
                 <div class="text-left-ar lg:col-span-8">
-                    <h2 class="text-9xl md:text-[18rem] font-black italic tracking-tighter uppercase leading-[0.6] text-white mb-16">OMAR.</h2>
-                    <p class="text-zinc-600 font-bold uppercase tracking-[0.6em] text-[10px] md:text-xs">
-                        Growth Architect // Principal Systems Designer
+                    <h2 class="text-8xl md:text-[18rem] font-black italic tracking-tighter uppercase leading-[0.6] text-white mb-16 gradient-text">OMAR.</h2>
+                    <p class="text-zinc-500 font-bold uppercase tracking-[0.5em] text-[10px] md:text-xs">
+                        <span class="lang-en-only">Growth Architect // Principal Systems Designer</span>
+                        <span class="lang-ar-only text-sm tracking-widest">مهندس نمو // كبير مصممي الأنظمة</span>
                     </p>
                 </div>
-                <div class="text-left-ar space-y-20 lg:pt-24 lg:col-span-4">
-                    <div class="flex flex-col gap-12">
-                        <div class="text-white font-black text-4xl tracking-tighter">Cairo // Global</div>
-                        <div class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500">
-                            <a href="mailto:mo.omar477@gmail.com" class="hover:text-white transition-colors">Email</a>
-                            <a href="https://linkedin.com/in/the-growth-architect/" class="hover:text-white transition-colors">LinkedIn</a>
-                            <a href="https://github.com/mohamedomar11111" class="hover:text-white transition-colors">GitHub</a>
+                <div class="text-left-ar space-y-16 lg:pt-24 lg:col-span-4">
+                    <div class="flex flex-col gap-10">
+                        <div class="text-white font-black text-3xl md:text-5xl tracking-tighter">
+                            <span class="lang-en-only">Cairo // Global</span>
+                            <span class="lang-ar-only">القاهرة // عالمياً</span>
                         </div>
-                        <div class="tag-mono opacity-30 leading-loose">
-                            Sovereign Protocol // NODE_v14.2 // 2026<br>
-                            Engineered for Absolute Competitive Advantage
+                        <div class="flex gap-10 text-[10px] font-bold uppercase tracking-[0.4em] text-zinc-500">
+                            <a href="mailto:mo.omar477@gmail.com" class="hover:text-purple-400 transition-colors">Email</a>
+                            <a href="https://linkedin.com/in/the-growth-architect/" class="hover:text-purple-400 transition-colors">LinkedIn</a>
+                            <a href="https://github.com/mohamedomar11111" class="hover:text-purple-400 transition-colors">GitHub</a>
+                        </div>
+                        <div class="tag-mono opacity-40 leading-loose">
+                            <span class="lang-en-only">Sovereign Protocol // NODE_v15.2 // 2026<br>Engineered for Absolute Competitive Advantage</span>
+                            <span class="lang-ar-only text-[10px] leading-relaxed">بروتوكول سيادي // إصدار ١٥.٢ // ٢٠٢٦<br>مصمم للميزة التنافسية المطلقة</span>
                         </div>
                     </div>
                 </div>
@@ -448,7 +571,7 @@
             opacity: 1, y: 0, duration: 1.5, stagger: 0.2, ease: EASE.FLUID, delay: 0.5
         });
 
-        // --- STICKY STACK ENGINE ---
+        // --- STICKY STACK ENGINE: RESPONSIVE ---
         if (!isMobile) {
             const cards = gsap.utils.toArray(".stack-card");
             cards.forEach((card, i) => {
@@ -464,8 +587,9 @@
                 });
 
                 gsap.to(card, {
-                    scale: 0.9,
-                    opacity: 0.4,
+                    scale: 0.95,
+                    opacity: 0.3,
+                    filter: "blur(10px)",
                     ease: "none",
                     scrollTrigger: {
                         trigger: cards[i + 1],
@@ -478,39 +602,55 @@
         }
 
         // --- WORD LIGHTING: THE LOGIC ---
-        const logicText = document.querySelector("#logic-text");
-        const words = logicText.innerText.split(" ");
-        logicText.innerHTML = words.map(w => `<span class='word'>${w}</span>`).join(" ");
-        gsap.to("#logic-text .word", {
-            color: "#fff",
-            fontWeight: "500",
-            duration: 1,
-            stagger: 0.05,
-            scrollTrigger: {
-                trigger: "#logic-text",
-                start: "top 80%",
-                end: "bottom 20%",
-                scrub: 1.2
-            }
-        });
+        function initLighting() {
+            const block = document.querySelector("#logic-text");
+            const currentLang = document.body.getAttribute('data-current-lang');
+            const target = block.querySelector(`.lang-${currentLang}-only`);
+            if (!target) return;
+            
+            const originalHTML = target.innerHTML;
+            const text = target.innerText;
+            const words = text.split(" ");
+            
+            target.innerHTML = words.map(w => `<span class='word'>${w}</span>`).join(" ");
+            
+            gsap.to(target.querySelectorAll('.word'), {
+                color: "#fff",
+                fontWeight: "500",
+                duration: 1,
+                stagger: 0.05,
+                scrollTrigger: {
+                    trigger: block,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    scrub: 1.2
+                }
+            });
+        }
+        initLighting();
 
-        // --- CURSOR PHYSICS: EMIL-STYLE ---
+        // --- CURSOR PHYSICS: VIBRANT ---
         const cursor = document.querySelector('.cursor-ring');
         let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-        const animateCursor = () => {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
-            cursor.style.left = `${ringX}px`;
-            cursor.style.top = `${ringY}px`;
-            requestAnimationFrame(animateCursor);
-        };
-        animateCursor();
+        
+        if (!isMobile) {
+            window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+            const animateCursor = () => {
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
+                cursor.style.left = `${ringX}px`;
+                cursor.style.top = `${ringY}px`;
+                requestAnimationFrame(animateCursor);
+            };
+            animateCursor();
 
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 3, backgroundColor: 'rgba(255,255,255,0.05)', duration: 0.4 }));
-            el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, backgroundColor: 'transparent', duration: 0.4 }));
-        });
+            document.querySelectorAll('a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 3, backgroundColor: 'rgba(168,85,247,0.1)', borderColor: '#a855f7', duration: 0.4 }));
+                el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, backgroundColor: 'transparent', borderColor: '#a855f7', duration: 0.4 }));
+            });
+        } else {
+            cursor.style.display = 'none';
+        }
 
         function toggleLanguage() {
             const current = document.body.getAttribute('data-current-lang');
@@ -518,13 +658,15 @@
             document.body.setAttribute('data-current-lang', next);
             document.documentElement.setAttribute('lang', next);
             document.documentElement.setAttribute('dir', next === 'ar' ? 'rtl' : 'ltr');
+            // Re-init lighting for new text
+            initLighting();
         }
     </script>
     <style>
-        .word { color: #18181b; transition: color 0.8s; }
-        .lang-ar { display: none; }
-        [data-current-lang="ar"] .lang-en { display: none; }
-        [data-current-lang="ar"] .lang-ar { display: block; }
+        .word { color: #27272a; transition: color 0.8s; }
+        .lang-content { display: none; }
+        [data-current-lang="en"] .lang-en-only { display: block; }
+        [data-current-lang="ar"] .lang-ar-only { display: block; }
     </style>
 </body>
 </html>
