@@ -135,11 +135,31 @@
         [data-current-lang="ar"] .lang-ar-only { display: block; }
 
         @media (max-width: 768px) {
-            .display-huge { font-size: clamp(1.6rem, 9vw, 3.2rem); line-height: 1.1; }
-            .container-premium { padding: 0 1.25rem; }
-            .hero-portrait { opacity: 0.15; width: 85vw; right: -15%; }
+            .display-huge { 
+                font-size: clamp(2rem, 12vw, 4rem); 
+                line-height: 1; 
+                position: relative; 
+                z-index: 10;
+                animation: text-shimmer 3s ease-in-out infinite;
+            }
+            @keyframes text-shimmer {
+                0%, 100% { opacity: 1; filter: brightness(1); }
+                50% { opacity: 0.8; filter: brightness(1.4) drop-shadow(0 0 10px rgba(168, 85, 247, 0.4)); }
+            }
+            .container-premium { padding: 0 1.5rem; }
+            .hero-portrait { 
+                opacity: 0.3; 
+                width: 100vw; 
+                right: 0; left: 0; 
+                height: 50vh; 
+                bottom: 0; 
+                object-fit: cover;
+                mask-image: linear-gradient(to top, black 40%, transparent 100%);
+                -webkit-mask-image: linear-gradient(to top, black 40%, transparent 100%);
+            }
             .stack-card { padding: 3rem 1.25rem; }
-            .scene { padding: 2rem 0; }
+            .scene { padding: 4rem 0; min-height: 100svh; }
+            #hero-statement { font-size: 1.25rem; line-height: 1.4; color: #d4d4d8; }
         }
     </style>
 </head>
