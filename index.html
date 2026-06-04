@@ -48,16 +48,21 @@
         h1, h2, h3, h4 { font-family: 'Cairo', sans-serif; letter-spacing: -0.05em; font-weight: 900; }
 
         /* --- TASTE-SKILL: REFINED LAYOUT --- */
-        .container-premium { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem; }
+        .container-premium { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
         .scene { position: relative; width: 100%; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; }
         
         .display-huge {
-            font-size: clamp(3.5rem, 12vw, 12rem);
+            font-size: clamp(2.5rem, 10vw, 9rem);
             font-weight: 900;
-            line-height: 0.8;
-            letter-spacing: -0.06em;
+            line-height: 0.85;
+            letter-spacing: -0.05em;
             text-transform: uppercase;
             font-style: italic;
+            transition: transform 0.8s var(--ease-fluid), filter 0.8s var(--ease-fluid);
+        }
+        .display-huge:hover {
+            transform: skewX(-5deg) scale(1.02);
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.3));
         }
 
         .gradient-text {
@@ -68,7 +73,7 @@
         }
 
         .glass-premium {
-            background: rgba(255, 255, 255, 0.015);
+            background: rgba(255, 255, 255, 0.01);
             backdrop-filter: blur(40px);
             border: 1px solid var(--border-glass);
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
@@ -96,6 +101,7 @@
             justify-content: center;
             background: var(--bg);
             border-top: 1px solid var(--border-glass);
+            padding: 5rem 0;
         }
 
         .hero-portrait {
@@ -105,9 +111,9 @@
             width: 45vw;
             object-fit: contain;
             object-position: right bottom;
-            filter: grayscale(1) contrast(1.15) brightness(0.9);
-            mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%), linear-gradient(to left, black 50%, transparent 100%);
+            filter: grayscale(1) contrast(1.1) brightness(0.8);
+            mask-image: linear-gradient(to top, transparent 0%, black 25%), linear-gradient(to left, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 25%), linear-gradient(to left, black 50%, transparent 100%);
             mask-composite: intersect;
             -webkit-mask-composite: source-in;
             z-index: 1;
@@ -116,8 +122,8 @@
 
         .tag-mono {
             font-family: 'JetBrains Mono', ui-monospace, monospace;
-            font-size: 0.6rem;
-            letter-spacing: 0.4em;
+            font-size: 0.55rem;
+            letter-spacing: 0.3em;
             color: var(--text-muted);
             text-transform: uppercase;
         }
@@ -128,9 +134,11 @@
         [data-current-lang="ar"] .lang-ar-only { display: block; }
 
         @media (max-width: 768px) {
-            .display-huge { font-size: 4rem; }
-            .hero-portrait { opacity: 0.2; width: 70vw; }
-            .stack-card { position: relative; min-height: auto; padding: 4rem 0; }
+            .display-huge { font-size: clamp(2.2rem, 12vw, 4.5rem); line-height: 1; }
+            .container-premium { padding: 0 1.5rem; }
+            .hero-portrait { opacity: 0.2; width: 80vw; right: -10%; }
+            .stack-card { position: relative; min-height: auto; padding: 4rem 1.5rem; }
+            .scene { padding: 4rem 0; }
         }
     </style>
 </head>
