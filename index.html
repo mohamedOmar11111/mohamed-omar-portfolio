@@ -531,55 +531,53 @@
             opacity: 1, y: 0, duration: 1.5, stagger: 0.2, ease: EASE.FLUID, delay: 0.5
         });
 
-        // --- STICKY STACK ENGINE: NOW UNIVERSAL ---
-        const cards = gsap.utils.toArray(".stack-card");
-        cards.forEach((card, i) => {
-            if (i === cards.length - 1) return;
-            
-            ScrollTrigger.create({
-                trigger: card,
-                start: "top top",
-                pin: true,
-                pinSpacing: false,
-                endTrigger: cards[cards.length - 1],
-                end: "top top"
+        function initStack() {
+            const stackCards = gsap.utils.toArray(".stack-card");
+            stackCards.forEach((card, i) => {
+                if (i === stackCards.length - 1) return;
+                ScrollTrigger.create({
+                    trigger: card, start: "top top", pin: true, pinSpacing: false,
+                    endTrigger: stackCards[stackCards.length - 1], end: "top top"
+                });
+                gsap.to(card, {
+                    scale: isMobile ? 0.98 : 0.95, opacity: 0.3, filter: isMobile ? "blur(4px)" : "blur(10px)",
+                    ease: "none",
+                    scrollTrigger: { trigger: stackCards[i + 1], start: "top bottom", end: "top top", scrub: true }
+                });
+            });
+        }
+
+        function initEffects() {
+            // --- FLUID ASSEMBLY ---
+            gsap.utils.toArray(".assemble-item").forEach(item => {
+                gsap.to(item, {
+                    opacity: 1, y: 0, scale: 1, duration: 1.5, ease: "expo.out",
+                    scrollTrigger: { trigger: item, start: "top 90%", toggleActions: "play none none none" }
+                });
             });
 
-            gsap.to(card, {
-                scale: isMobile ? 0.98 : 0.95,
-                opacity: 0.3,
-                filter: isMobile ? "blur(4px)" : "blur(10px)",
-                ease: "none",
-                scrollTrigger: {
-                    trigger: cards[i + 1],
-                    start: "top bottom",
-                    end: "top top",
-                    scrub: true
+            // --- WORD LIGHTING ---
+            const currentLang = document.body.getAttribute('data-current-lang');
+            const logicBlocks = document.querySelectorAll("#logic-text > div");
+            logicBlocks.forEach(block => {
+                if (block.classList.contains(`lang-${currentLang}-only`)) {
+                    const text = block.innerText;
+                    block.innerHTML = text.split(" ").map(w => `<span class='word'>${w}</span>`).join(" ");
+                    gsap.to(block.querySelectorAll('.word'), {
+                        color: "#ffffff", fontWeight: "500", duration: 1, stagger: 0.05,
+                        scrollTrigger: { trigger: block, start: "top 80%", end: "bottom 20%", scrub: 1.2 }
+                    });
                 }
             });
-        });
+        }
 
-        // --- CURSOR ---
-        const cursor = document.querySelector('.cursor-ring');
-        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
-        
+        // INITIAL BOOT
+        initStack();
+        initEffects();
+
+        // --- HERO PORTALLAX ---
         if (!isMobile) {
-            window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-            const animateCursor = () => {
-                ringX += (mouseX - ringX) * 0.15;
-                ringY += (mouseY - ringY) * 0.15;
-                cursor.style.left = `${ringX}px`;
-                cursor.style.top = `${ringY}px`;
-                requestAnimationFrame(animateCursor);
-            };
-            animateCursor();
-
-            document.querySelectorAll('a, button').forEach(el => {
-                el.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 3, backgroundColor: 'rgba(168,85,247,0.1)', duration: 0.4 }));
-                el.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, backgroundColor: 'transparent', duration: 0.4 }));
-            });
-        } else {
-            cursor.style.display = 'none';
+            gsap.to("#hero-img", { y: "-=50", duration: 15, ease: "sine.inOut", repeat: -1, yoyo: true });
         }
 
         function toggleLanguage() {
@@ -588,6 +586,12 @@
             document.body.setAttribute('data-current-lang', next);
             document.documentElement.setAttribute('lang', next);
             document.documentElement.setAttribute('dir', next === 'ar' ? 'rtl' : 'ltr');
+            
+            // RE-INITIALIZE ENGINES
+            ScrollTrigger.getAll().forEach(st => st.kill());
+            initStack();
+            initEffects();
+            ScrollTrigger.refresh();
         }
     </script>
 </body>
