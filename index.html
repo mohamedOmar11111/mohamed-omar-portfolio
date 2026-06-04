@@ -130,9 +130,28 @@
         }
 
         /* LANG LOGIC */
-        .lang-content { display: none; }
+        .lang-en-only, .lang-ar-only { display: none; }
         [data-current-lang="en"] .lang-en-only { display: block; }
+        [data-current-lang="en"] .lang-en-flex { display: flex; }
         [data-current-lang="ar"] .lang-ar-only { display: block; }
+        [data-current-lang="ar"] .lang-ar-flex { display: flex; }
+
+        /* BOX RESPONSIVENESS & ALIGNMENT */
+        .glass-premium {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        #logic .display-huge {
+            margin-top: 10vh; /* Clearance for fixed header */
+        }
+
+        @media (max-width: 1024px) {
+            #logic .display-huge { font-size: clamp(2.5rem, 12vw, 6rem); margin-top: 5vh; }
+            .container-premium { padding: 0 2rem; }
+        }
 
         @media (max-width: 768px) {
             .display-huge { 
@@ -141,6 +160,7 @@
                 position: relative; 
                 z-index: 10;
                 animation: text-shimmer 3s ease-in-out infinite;
+                margin-top: 5vh;
             }
             @keyframes text-shimmer {
                 0%, 100% { opacity: 1; filter: brightness(1); }
@@ -232,36 +252,40 @@
             </div>
         </section>
 
-        <section id="logic" class="scene py-32 md:py-60 border-y border-white/[0.02]">
+        <section id="logic" class="scene py-32 md:py-60 border-y border-white/[0.02] bg-[#05050a]">
             <div class="container-premium grid grid-cols-12 gap-12 items-center">
                 <div class="col-span-12 lg:col-span-8 space-y-12 md:space-y-24">
-                    <h2 class="text-4xl md:text-[10rem] font-black italic tracking-tighter uppercase leading-[0.8] text-white">
-                        <span class="lang-en-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1.5px rgba(168, 85, 247, 0.4);">Fragility</span><br>vs Absolute.</span>
-                        <span class="lang-ar-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1.5px rgba(168, 85, 247, 0.4);">الهشاشة</span><br>ضد الحتمية.</span>
+                    <h2 class="display-huge text-white">
+                        <span class="lang-en-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(168, 85, 247, 0.4);">Fragility</span><br>vs Absolute.</span>
+                        <span class="lang-ar-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(168, 85, 247, 0.4);">الهشاشة</span><br>ضد الحتمية.</span>
                     </h2>
                     <div class="space-y-10 text-zinc-500 text-lg md:text-4xl font-light leading-[1.3] max-w-[40ch]" id="logic-text">
                         <div class="lang-en-only space-y-8">
                             <p>Most enterprises settle for "Hope-Based Marketing". I replace fragility with <strong class="text-white font-medium">Deterministic Revenue Engineering.</strong></p>
                             <p>Leveraging 7 years of MENA deployment, I architect <strong class="text-white font-medium italic">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
                         </div>
-                        <div class="lang-ar-only space-y-8">
+                        <div class="lang-ar-only space-y-8 text-right">
                             <p>أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white font-medium">هندسة إيرادات حتمية.</strong></p>
                             <p>بخبرة ٧ سنين في سوق المينا، مهمتي بسيطة: أبني <strong class="text-white font-medium">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-12 lg:col-span-4 flex flex-col gap-6 md:gap-10">
-                    <div class="glass-premium p-10 md:p-12 border-l-2 border-purple-500/30 hover:border-purple-500 transition-colors group">
+                    <div class="glass-premium p-8 md:p-12 border-l-2 border-purple-500/30 hover:border-purple-500 transition-all duration-500 group">
                         <div class="tag-mono mb-4 group-hover:text-purple-400 transition-colors">PROTOCOL_01</div>
-                        <h4 class="text-white font-black uppercase text-xs md:text-sm tracking-widest mb-4">Systemic Synthesis</h4>
+                        <h4 class="text-white font-black uppercase text-sm md:text-base tracking-widest mb-4">
+                            <span class="lang-en-only">Systemic Synthesis</span><span class="lang-ar-only">التركيب النظامي</span>
+                        </h4>
                         <p class="text-zinc-500 text-xs md:text-sm leading-relaxed font-light">
                             <span class="lang-en-only">Stripping processes to their atomic components and rebuilding them via an elite AI stack.</span>
                             <span class="lang-ar-only">تفكيك العمليات لمكوناتها الذرية وإعادة بنائها باستخدام حزمة ذكاء اصطناعي متطورة.</span>
                         </p>
                     </div>
-                    <div class="glass-premium p-10 md:p-12 border-l-2 border-indigo-500/30 hover:border-indigo-500 transition-colors group">
+                    <div class="glass-premium p-8 md:p-12 border-l-2 border-indigo-500/30 hover:border-indigo-500 transition-all duration-500 group">
                         <div class="tag-mono mb-4 group-hover:text-indigo-400 transition-colors">PROTOCOL_02</div>
-                        <h4 class="text-white font-black uppercase text-xs md:text-sm tracking-widest mb-4">Agentic Workforce</h4>
+                        <h4 class="text-white font-black uppercase text-sm md:text-base tracking-widest mb-4">
+                            <span class="lang-en-only">Agentic Workforce</span><span class="lang-ar-only">القوة العاملة الوكيلة</span>
+                        </h4>
                         <p class="text-zinc-500 text-xs md:text-sm leading-relaxed font-light">
                             <span class="lang-en-only">Orchestrating proprietary multi-agent systems designed for autonomous market auditing.</span>
                             <span class="lang-ar-only">إدارة أنظمة وكلاء متعددة الملكية مصممة للتدقيق المستقل في السوق.</span>
