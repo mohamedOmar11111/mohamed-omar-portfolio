@@ -183,6 +183,166 @@
             #hero-statement { font-size: 1.15rem; line-height: 1.4; color: #d4d4d8; }
             #logic { padding-top: 10vh; }
         }
+
+        /* --- TERMINAL WINDOW --- */
+        .terminal-window {
+            background: rgba(9, 9, 11, 0.7);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+        .terminal-bar {
+            background: rgba(15, 15, 20, 0.9);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+        }
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dot.red { background: #ef4444; }
+        .dot.yellow { background: #f59e0b; }
+        .dot.green { background: #10b981; }
+        .terminal-title {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        .terminal-body {
+            padding: 25px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            height: 400px;
+            overflow-y: auto;
+            background-color: rgba(3, 3, 5, 0.95);
+            text-align: left;
+        }
+        [dir="rtl"] .terminal-body {
+            text-align: left;
+        }
+        .terminal-line {
+            margin-bottom: 10px;
+        }
+        .terminal-prompt {
+            color: #6366f1;
+            margin-right: 8px;
+        }
+        .terminal-input-display {
+            color: #fafafa;
+        }
+        .terminal-cursor {
+            display: inline-block;
+            width: 6px;
+            height: 14px;
+            background: var(--accent);
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+        #terminal-input-field {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: transparent;
+            text-shadow: 0 0 0 transparent;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            opacity: 0;
+        }
+        
+        /* --- SWARM GRAPH --- */
+        .swarm-visual {
+            height: 380px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .graph-nodes-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .nodes-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .node {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            z-index: 2;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+        .node.sensory {
+            background: #6366f1;
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+            animation: pulse-indigo-neon 3s infinite alternate;
+        }
+        .node.cognitive {
+            background: #a855f7;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+            animation: pulse-purple-neon 3s infinite alternate 1s;
+        }
+        .node.execution {
+            background: #ec4899;
+            box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
+            animation: pulse-pink-neon 3s infinite alternate 2s;
+        }
+        
+        @keyframes pulse-indigo-neon {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(99, 102, 241, 0.4); }
+            100% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
+        }
+        @keyframes pulse-purple-neon {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(168, 85, 247, 0.4); }
+            100% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 20px rgba(168, 85, 247, 0.8); }
+        }
+        @keyframes pulse-pink-neon {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(236, 72, 153, 0.4); }
+            100% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 20px rgba(236, 72, 153, 0.8); }
+        }
+        
+        .node-tooltip {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(5, 5, 8, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
     </style>
 </head>
 <body data-current-lang="en">
@@ -210,8 +370,17 @@
                     <a href="#logic" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
                         <span class="lang-en-only">Logic</span><span class="lang-ar-only">المنطق</span>
                     </a>
+                    <a href="#terminal-section" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
+                        <span class="lang-en-only">Terminal</span><span class="lang-ar-only">المنصة</span>
+                    </a>
                     <a href="#strikes" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
                         <span class="lang-en-only">Strikes</span><span class="lang-ar-only">العمليات</span>
+                    </a>
+                    <a href="#swarm-section" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
+                        <span class="lang-en-only">Onyx Hive</span><span class="lang-ar-only">سرب أونيكس</span>
+                    </a>
+                    <a href="#waitlist-section" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
+                        <span class="lang-en-only">Onyx Axis</span><span class="lang-ar-only">قائمة الانتظار</span>
                     </a>
                     <a href="#connect" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
                         <span class="lang-en-only">Command</span><span class="lang-ar-only">تواصل</span>
@@ -292,6 +461,45 @@
                             <span class="lang-en-only">Orchestrating proprietary multi-agent systems designed for autonomous market auditing.</span>
                             <span class="lang-ar-only">إدارة أنظمة وكلاء متعددة الملكية مصممة للتدقيق المستقل في السوق.</span>
                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE TERMINAL (FORENSIC DECK) -->
+        <section id="terminal-section" class="scene py-32 md:py-60 border-b border-white/[0.02] bg-[#030305] flex items-center">
+            <div class="container-premium space-y-12">
+                <div class="flex items-center gap-4">
+                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-purple-500">01.0 // ENGINE TERMINAL</span>
+                </div>
+                <h2 class="text-4xl md:text-7xl font-black italic text-white uppercase tracking-tighter">
+                    <span class="lang-en-only">THE FORENSIC DECK</span>
+                    <span class="lang-ar-only">منصة التحقيق الجنائي</span>
+                </h2>
+                <p class="text-zinc-500 text-sm md:text-lg max-w-[60ch] leading-relaxed font-light">
+                    <span class="lang-en-only">Query the Growth Architect OS. Type <strong class="text-purple-400">help</strong> to view system credentials and audited results.</span>
+                    <span class="lang-ar-only">استجوب نظام تشغيل مهندس النمو. اكتب <strong class="text-purple-400">help</strong> لعرض بيانات الاعتماد والنتائج المدققة.</span>
+                </p>
+                
+                <div class="terminal-window" id="terminal-window-element">
+                    <div class="terminal-bar">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="terminal-title">mohamedomar@growth-architect-hq ~ guest-session</div>
+                    </div>
+                    <div class="terminal-body" id="terminal-logs">
+                        <div class="terminal-line text-zinc-400">Growth Architect OS v15.2.0-stable</div>
+                        <div class="terminal-line text-zinc-600">Type <span class="text-purple-400 font-bold">help</span> to query the system. Click inside to focus.</div>
+                        <br>
+                        <div class="terminal-line input-line" id="terminal-input-line">
+                            <span class="terminal-prompt">guest@ga-terminal:~$</span>
+                            <span class="terminal-input-display" id="typed-display"></span>
+                            <input type="text" id="terminal-input-field" autofocus autocomplete="off" spellcheck="false" aria-label="Terminal input">
+                            <span class="terminal-cursor"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -479,6 +687,134 @@
                 </div>
             </div>
         </section>
+
+        <!-- 4. ONYX HIVE (INTERACTIVE SWARM) -->
+        <section id="swarm-section" class="scene py-32 md:py-60 border-t border-white/[0.02] bg-[#05050a] flex items-center">
+            <div class="container-premium grid grid-cols-12 gap-12 items-center">
+                <div class="col-span-12 lg:col-span-6 space-y-12">
+                    <div class="flex items-center gap-4">
+                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-purple-500">02.0 // AUTONOMOUS SWARM</span>
+                    </div>
+                    <h2 class="text-4xl md:text-7xl font-black italic text-white uppercase tracking-tighter">
+                        <span class="lang-en-only">THE ONYX HIVE</span>
+                        <span class="lang-ar-only">سرب أونيكس</span>
+                    </h2>
+                    <p class="text-zinc-500 text-lg font-light leading-relaxed">
+                        <span class="lang-en-only">A proprietary multi-agent workforce. We deploy <strong>36 autonomous agents</strong> working in structured pipelines to monitor, audit, and optimize GCC revenue engines.</span>
+                        <span class="lang-ar-only">قوة عاملة وكيلة مستقلة. نقوم بتشغيل <strong>٣٦ وكيل ذكي مستقل</strong> يعملون في مسارات منظمة لمراقبة وتحسين محركات الإيرادات في الخليج.</span>
+                    </p>
+                    <ul class="space-y-6 text-zinc-400 font-light text-sm md:text-base">
+                        <li class="border-l-2 border-indigo-500/30 pl-4">
+                            <strong class="text-white font-semibold uppercase tracking-wider block text-xs mb-1">
+                                <span class="lang-en-only">Sensory Layer</span><span class="lang-ar-only">طبقة الاستشعار</span>
+                            </strong>
+                            <span class="lang-en-only">Exa, Firecrawl, and telemetry monitoring regional ad accounts.</span>
+                            <span class="lang-ar-only">أدوات الاستعلام والمسح ومراقبة البيانات الحية للحسابات الإعلانية الإقليمية.</span>
+                        </li>
+                        <li class="border-l-2 border-purple-500/30 pl-4">
+                            <strong class="text-white font-semibold uppercase tracking-wider block text-xs mb-1">
+                                <span class="lang-en-only">Cognitive Layer</span><span class="lang-ar-only">الطبقة الإدراكية</span>
+                            </strong>
+                            <span class="lang-en-only">Strategic reasoning, context engineering, and brand voice validation.</span>
+                            <span class="lang-ar-only">التفكير الاستراتيجي، هندسة السياق، والتحقق من توافق نبرة العلامة التجارية.</span>
+                        </li>
+                        <li class="border-l-2 border-pink-500/30 pl-4">
+                            <strong class="text-white font-semibold uppercase tracking-wider block text-xs mb-1">
+                                <span class="lang-en-only">Execution Layer</span><span class="lang-ar-only">طبقة التنفيذ</span>
+                            </strong>
+                            <span class="lang-en-only">Dynamic page mutations, ad placement shifts, and code commits.</span>
+                            <span class="lang-ar-only">تعديلات الصفحات الحية، توجيه الميزانيات الإعلانية، وتنفيذ الأكواد.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-span-12 lg:col-span-6">
+                    <div class="swarm-visual glass-premium p-8 relative flex flex-col justify-between" id="interactive-swarm-graph">
+                        <div class="graph-nodes-container">
+                            <!-- Sensory nodes (Indigo) -->
+                            <div class="node sensory" style="top: 15%; left: 20%;" data-layer="Sensory" data-info-en="Exa & Firecrawl scrapers monitoring GCC competitors." data-info-ar="ماسحات Exa و Firecrawl لمراقبة المنافسين في الخليج."></div>
+                            <div class="node sensory" style="top: 50%; left: 15%;" data-layer="Sensory" data-info-en="Search velocity and keyword trend trackers." data-info-ar="أدوات تتبع سرعة البحث والكلمات المفتاحية."></div>
+                            <!-- Cognitive nodes (Purple) -->
+                            <div class="node cognitive" style="top: 35%; left: 50%;" data-layer="Cognitive" data-info-en="Strategic decision node modeling waitlist priorities." data-info-ar="عقدة القرار الاستراتيجي لترتيب أولويات الانتظار."></div>
+                            <div class="node cognitive" style="top: 70%; left: 45%;" data-layer="Cognitive" data-info-en="Adversarial content alignment validator." data-info-ar="مدقق التوافق الإعلاني الاستباقي للعلامة التجارية."></div>
+                            <!-- Execution nodes (Pink) -->
+                            <div class="node execution" style="top: 25%; left: 80%;" data-layer="Execution" data-info-en="Self-healing API connection endpoints." data-info-ar="نقاط نهاية API ذاتية الإصلاح لتأمين الاتصال."></div>
+                            <div class="node execution" style="top: 60%; left: 75%;" data-layer="Execution" data-info-en="Dynamic budget allocator shifting ad spend." data-info-ar="موزع الميزانيات الديناميكي لتحسين الإنفاق الإعلاني."></div>
+                            
+                            <svg class="nodes-svg" aria-hidden="true">
+                                <line x1="20%" y1="15%" x2="50%" y2="35%" stroke="rgba(168,85,247,0.15)" stroke-width="1.5"></line>
+                                <line x1="15%" y1="50%" x2="50%" y2="35%" stroke="rgba(168,85,247,0.15)" stroke-width="1.5"></line>
+                                <line x1="15%" y1="50%" x2="45%" y2="70%" stroke="rgba(168,85,247,0.15)" stroke-width="1.5"></line>
+                                <line x1="50%" y1="35%" x2="80%" y2="25%" stroke="rgba(99,102,241,0.15)" stroke-width="1.5"></line>
+                                <line x1="50%" y1="35%" x2="75%" y2="60%" stroke="rgba(99,102,241,0.15)" stroke-width="1.5"></line>
+                                <line x1="45%" y1="70%" x2="75%" y2="60%" stroke="rgba(99,102,241,0.15)" stroke-width="1.5"></line>
+                            </svg>
+                        </div>
+                        <div class="node-tooltip text-center" id="swarm-tooltip">
+                            <span class="lang-en-only">Hover over a node to query the Onyx Hive.</span>
+                            <span class="lang-ar-only">مرر الماوس فوق أي عقدة للاستعلام من السرب.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ONYX AXIS WAITLIST FORM -->
+        <section id="waitlist-section" class="scene py-32 md:py-60 border-t border-white/[0.02] bg-[#030305] flex items-center">
+            <div class="container-premium max-w-4xl space-y-12">
+                <div class="flex items-center justify-center gap-4">
+                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-purple-500">03.0 // ONYX AXIS TERMINAL</span>
+                </div>
+                <div class="text-center space-y-4">
+                    <h2 class="text-4xl md:text-7xl font-black italic text-white uppercase tracking-tighter">
+                        <span class="lang-en-only">APPLY FOR WAITLIST</span>
+                        <span class="lang-ar-only">التقديم لقائمة الانتظار</span>
+                    </h2>
+                    <p class="text-zinc-500 text-sm md:text-lg max-w-[60ch] mx-auto leading-relaxed font-light">
+                        <span class="lang-en-only">Only 100 enterprise terminals allocated annually. We do not accept clients who seek standard agency marketing.</span>
+                        <span class="lang-ar-only">يتم تخصيص ١٠٠ ترخيص فقط سنوياً للمؤسسات. لا نقبل عملاء يبحثون عن تسويق تقليدي.</span>
+                    </p>
+                </div>
+                
+                <div class="glass-premium p-8 md:p-16 max-w-2xl mx-auto border border-purple-500/10 hover:border-purple-500/20 transition-all duration-700">
+                    <form class="space-y-8" id="axis-waitlist-form">
+                        <div class="flex flex-col gap-3">
+                            <label for="input-name" class="tag-mono text-[9px]">
+                                <span class="lang-en-only">SYSTEMS OPERATOR NAME</span><span class="lang-ar-only">اسم مشغل النظام</span>
+                            </label>
+                            <input type="text" id="input-name" required class="bg-black/50 border border-white/5 focus:border-purple-500 p-5 text-white rounded-sm outline-none text-sm font-light transition-all" placeholder="e.g. Tariq Al-Mansoor">
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <label for="input-email" class="tag-mono text-[9px]">
+                                <span class="lang-en-only">SECURE EMAIL ADDRESS</span><span class="lang-ar-only">البريد الإلكتروني الآمن</span>
+                            </label>
+                            <input type="email" id="input-email" required class="bg-black/50 border border-white/5 focus:border-purple-500 p-5 text-white rounded-sm outline-none text-sm font-light transition-all" placeholder="e.g. tariq@enterprise.com">
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <label for="input-company" class="tag-mono text-[9px]">
+                                <span class="lang-en-only">ENTERPRISE DOMAIN / NAME</span><span class="lang-ar-only">نطاق الشركة / الاسم</span>
+                            </label>
+                            <input type="text" id="input-company" required class="bg-black/50 border border-white/5 focus:border-purple-500 p-5 text-white rounded-sm outline-none text-sm font-light transition-all" placeholder="e.g. aqarverse.com">
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <label for="input-revenue" class="tag-mono text-[9px]">
+                                <span class="lang-en-only">ANNUAL REVENUE RUN RATE</span><span class="lang-ar-only">معدل الإيرادات السنوي</span>
+                            </label>
+                            <select id="input-revenue" required class="bg-black/50 border border-white/5 focus:border-purple-500 p-5 text-white rounded-sm outline-none text-sm font-light transition-all">
+                                <option value="" disabled selected class="bg-[#030305]">Select Revenue Vector</option>
+                                <option value="1m-5m" class="bg-[#030305]">1,000,000 - 5,000,000 SAR/AED</option>
+                                <option value="5m-20m" class="bg-[#030305]">5,000,000 - 20,000,000 SAR/AED</option>
+                                <option value="20m+" class="bg-[#030305]">20,000,000+ SAR/AED</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full p-6 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-black text-xs uppercase tracking-[0.4em] rounded-sm transition-all shadow-[0_0_20px_rgba(168,85,247,0.25)]" id="submit-waitlist-btn">
+                            <span class="lang-en-only">INITIALIZE CONNECTION PROTOCOL</span>
+                            <span class="lang-ar-only">تهيئة بروتوكول الاتصال</span>
+                        </button>
+                        <div class="tag-mono text-center text-purple-400 mt-4 h-4" id="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER -->
@@ -574,6 +910,149 @@
         // INITIAL BOOT
         initStack();
         initEffects();
+
+        // --- TERMINAL LOGIC ---
+        const commands = {
+            en: {
+                help: `Available commands:<br>
+- <span class="text-purple-400 font-bold">manifesto</span>: Outputs the Growth Architect Core Thesis.<br>
+- <span class="text-purple-400 font-bold">evidence</span>: Displays audited client proof points.<br>
+- <span class="text-purple-400 font-bold">swarm</span>: Displays Onyx Hive operational status.<br>
+- <span class="text-purple-400 font-bold">clear</span>: Wipes the terminal buffer.<br>
+- <span class="text-purple-400 font-bold">contact</span>: Outputs secure contact vectors.`,
+                manifesto: `<strong>CORE THESIS:</strong><br>
+"Marketing is noise. Architecture is the signal."<br>
+Enterprise scaling in the Gulf region is bottlenecked by manual marketing toil. 
+I engineer **installed revenue systems** that bypass ad agency fatigue. f(Growth) = ∫(Plan + Apply + Unify) dt.`,
+                evidence: `<strong>AUDITED PROOF POINTS:</strong><br>
+1. **Etlaala**: Recovered **+1M SAR** in net profit within 12 months using Bayesian media modeling. Peak campaign CTR hit 14.3%.<br>
+2. **Aqarverse**: Engineered the autonomous scrapers/LLM layer to build off-market real estate inventory without human aggregators.<br>
+3. **Wlmma**: Built Riyadh predictive arbitrage models capturing high-ticket hospitality booking volume.`,
+                swarm: `<strong>ONYX HIVE ORCHESTRATION:</strong><br>
+- Active Agents: 36 autonomous nodes<br>
+- Sensory Layer: Exa Search API, Firecrawl web-scrapers, GCC ad trend detectors.<br>
+- Cognitive Layer: Context engineer core logic, strategic audit cascades.<br>
+- Status: OPERATIONAL | LOW-BURN MODE (20% threshold rate-limit enforced)`,
+                contact: `<strong>SECURE PROTOCOLS:</strong><br>
+- Waitlist: Navigate to section <a href="#waitlist-section" class="text-purple-400 underline">#waitlist-section</a> to apply.<br>
+- Direct Line: mo.omar477@gmail.com<br>
+- LinkedIn: linkedin.com/in/the-growth-architect`
+            },
+            ar: {
+                help: `الأوامر المتاحة:<br>
+- <span class="text-purple-400 font-bold">manifesto</span>: يعرض البيان الأساسي لمهندس النمو.<br>
+- <span class="text-purple-400 font-bold">evidence</span>: يعرض أدلة الأداء والنتائج الموثقة.<br>
+- <span class="text-purple-400 font-bold">swarm</span>: يعرض حالة تشغيل سرب "أونيكس هيف".<br>
+- <span class="text-purple-400 font-bold">clear</span>: يمسح شاشة المنصة.<br>
+- <span class="text-purple-400 font-bold">contact</span>: يعرض قنوات الاتصال الآمنة.`,
+                manifesto: `<strong>البيان الأساسي:</strong><br>
+"التسويق ضوضاء. الهندسة هي الإشارة الحقيقية."<br>
+النمو في الخليج مقيد بالعمل اليدوي في التسويق. أنا أصمم **أنظمة إيرادات حتمية** لتجاوز إجهاد الوكالات التقليدية. f(النمو) = ∫(التخطيط + التطبيق + التوحيد) dt.`,
+                evidence: `<strong>أدلة الأداء والنتائج الموثقة:</strong><br>
+١. **إتلاالة**: استعادة **أكثر من مليون ريال سعودي** كأرباح صافية خلال ١٢ شهر باستخدام النمذجة البيزية للإعلام.<br>
+٢. **عقار فيرس**: بناء طبقة سحب البيانات والذكاء الاصطناعي الذاتية لتوفير العقارات خارج السوق بدون وسطاء.<br>
+٣. **ولَمّا**: بناء نموذج المراجحة التنبؤية للطلب السياحي الفاخر بالرياض.`,
+                swarm: `<strong>تشغيل سرب أونيكس (ONYX HIVE):</strong><br>
+- الوكلاء النشطين: ٣٦ نود مستقل.<br>
+- طبقة الاستشعار: أدوات Exa و Firecrawl ومراقبة اتجاهات الإعلانات.<br>
+- الطبقة الإدراكية: هندسة السياق ومطابقة الهوية الاستراتيجية.<br>
+- الحالة: قيد العمل بالطاقة الآمنة (معدل استهلاك ٢٠٪).`,
+                contact: `<strong>قنوات الاتصال الآمنة:</strong><br>
+- قائمة الانتظار: توجه للقسم <a href="#waitlist-section" class="text-purple-400 underline">#waitlist-section</a> للتقديم.<br>
+- البريد المباشر: mo.omar477@gmail.com<br>
+- لينكد إن: linkedin.com/in/the-growth-architect`
+            }
+        };
+
+        const terminalInput = document.getElementById('terminal-input-field');
+        const typedText = document.getElementById('typed-display');
+        const terminalScreen = document.getElementById('terminal-logs');
+        const inputLine = document.getElementById('terminal-input-line');
+        const terminalWindowElement = document.getElementById('terminal-window-element');
+
+        terminalWindowElement.addEventListener('click', function() {
+            terminalInput.focus();
+        });
+
+        terminalInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const cmd = terminalInput.value.trim().toLowerCase();
+                terminalInput.value = '';
+                typedText.textContent = '';
+                
+                const cmdLine = document.createElement('div');
+                cmdLine.className = 'terminal-line';
+                cmdLine.innerHTML = `<span class="terminal-prompt">guest@ga-terminal:~$</span> ${cmd}`;
+                terminalScreen.insertBefore(cmdLine, inputLine);
+
+                const currentLang = document.body.getAttribute('data-current-lang') || 'en';
+                const langCommands = commands[currentLang];
+
+                if (cmd === 'clear') {
+                    const lines = Array.from(terminalScreen.querySelectorAll('.terminal-line:not(#terminal-input-line)'));
+                    lines.forEach(line => line.remove());
+                    
+                    const introLine = document.createElement('div');
+                    introLine.className = 'terminal-line text-zinc-400';
+                    introLine.innerHTML = currentLang === 'ar' ? 'نظام تشغيل مهندس النمو (تم مسح الذاكرة)<br>' : 'Growth Architect OS v15.2.0-stable (Buffer Cleared)<br>';
+                    terminalScreen.insertBefore(introLine, inputLine);
+                } else if (langCommands[cmd]) {
+                    const respLine = document.createElement('div');
+                    respLine.className = 'terminal-line text-zinc-300';
+                    respLine.innerHTML = langCommands[cmd];
+                    terminalScreen.insertBefore(respLine, inputLine);
+                } else if (cmd !== '') {
+                    const errLine = document.createElement('div');
+                    errLine.className = 'terminal-line text-red-500';
+                    errLine.innerHTML = currentLang === 'ar' ? `الأمر غير معروف: '${cmd}'. اكتب <span class="text-purple-400">help</span> للأوامر المتاحة.` : `Command not recognized: '${cmd}'. Type <span class="text-purple-400">help</span> for commands.`;
+                    terminalScreen.insertBefore(errLine, inputLine);
+                }
+
+                terminalScreen.scrollTop = terminalScreen.scrollHeight;
+            }
+        });
+
+        terminalInput.addEventListener('input', function() {
+            typedText.textContent = terminalInput.value;
+        });
+
+        // --- SWARM HOVER LOGIC ---
+        const nodes = document.querySelectorAll('.node');
+        const tooltip = document.getElementById('swarm-tooltip');
+
+        nodes.forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                const currentLang = document.body.getAttribute('data-current-lang') || 'en';
+                const layer = this.getAttribute('data-layer');
+                const info = this.getAttribute(`data-info-${currentLang}`);
+                const layerText = currentLang === 'ar' ? (layer === 'Sensory' ? 'الاستشعار' : layer === 'Cognitive' ? 'الإدراك' : 'التنفيذ') : layer;
+                tooltip.innerHTML = `<strong class="text-purple-400">${layerText} Node:</strong> ${info}`;
+                this.style.transform = 'translate(-50%, -50%) scale(1.4)';
+            });
+            node.addEventListener('mouseleave', function() {
+                const currentLang = document.body.getAttribute('data-current-lang') || 'en';
+                tooltip.innerHTML = currentLang === 'ar' ? 'مرر الماوس فوق أي عقدة للاستعلام من السرب.' : 'Hover over a node to query the Onyx Hive.';
+                this.style.transform = 'translate(-50%, -50%)';
+            });
+        });
+
+        // --- WAITLIST FORM SUBMISSION ---
+        const waitlistForm = document.getElementById('axis-waitlist-form');
+        const formMessage = document.getElementById('form-message');
+
+        waitlistForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const currentLang = document.body.getAttribute('data-current-lang') || 'en';
+            
+            formMessage.textContent = currentLang === 'ar' ? 'جاري الاتصال بالنظام...' : 'Connecting to Onyx OS...';
+            formMessage.className = 'tag-mono text-center text-purple-400 mt-4';
+            
+            setTimeout(() => {
+                formMessage.textContent = currentLang === 'ar' ? 'تم تسجيل الاتصال بنجاح. بروتوكول الانتظار نشط.' : 'Connection registered. Waitlist handshake successful.';
+                formMessage.className = 'tag-mono text-center text-indigo-400 mt-4';
+                waitlistForm.reset();
+            }, 1500);
+        });
 
         // --- HERO PORTALLAX ---
         if (!isMobile) {
