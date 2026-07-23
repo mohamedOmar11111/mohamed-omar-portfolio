@@ -1,1653 +1,243 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Mohamed Omar | The Growth Architect</title>
-    
-    <!-- SOVEREIGN META STRIKE -->
-    <meta name="description" content="I don't just run campaigns; I architect autonomous revenue engines where brand logic is weaponized by AI."/>
-    <meta property="og:image" content="https://mohamedomar11111.github.io/mohamed-omar-portfolio/assets/mohamed-omar-portrait.jpg">
-    
-    <!-- TASTE-SKILL: TYPOGRAPHY LOCK & LIBS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/inter.css">
-    <link href="https://fonts.cdnfonts.com/css/geist" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-red': '#ef4444',
-                        'brand-blue': '#3b82f6',
-                        'brand-yellow': '#fbbf24',
-                        'brand-bg': '#030305',
-                        'brand-surface': '#09090b',
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;700;900&display=swap');
-        
-        :root {
-            --bg: #030305;
-            --surface: #09090b;
-            --accent: #ef4444; /* Signal Red */
-            --accent-glow: rgba(239, 68, 68, 0.15);
-            --text-main: #fafafa;
-            --text-muted: #71717a;
-            --border-glass: rgba(255, 255, 255, 0.04);
-            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* Sovereign Pure Dark Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 3px;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Geist', 'Inter', system-ui, sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.6;
-            cursor: none;
-            transition: background-color 0.8s var(--ease-fluid);
-        }
-
-        [lang="ar"] body { 
-            font-family: 'Cairo', sans-serif; 
-            direction: rtl; 
-        }
-        h1, h2, h3, h4 { 
-            font-family: 'Cairo', sans-serif; 
-            letter-spacing: -0.05em; 
-            font-weight: 900; 
-        }
-
-        /* --- TASTE-SKILL: REFINED LAYOUT --- */
-        .container-premium { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
-        .scene { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-        
-        /* High-Intensity Grain Overlay */
-        .film-grain {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0.035;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        /* Scanline Overlay styling */
-        .scanlines {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 998;
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
-                rgba(0, 0, 0, 0.25) 50%
-            );
-            background-size: 100% 4px;
-            opacity: 0.15;
-        }
-
-        /* Isometric Grid Background */
-        .grid-overlay {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px), 
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .display-huge {
-            font-size: clamp(2.5rem, 9vw, 8rem);
-            font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -0.05em;
-            text-transform: uppercase;
-            font-style: italic;
-            transition: transform 0.8s var(--ease-fluid), filter 0.8s var(--ease-fluid);
-        }
-        .display-huge:hover {
-            transform: skewX(-3deg) scale(1.01);
-            filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.2));
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #ef4444 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        .glass-premium {
-            background: rgba(9, 9, 11, 0.6);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid var(--border-glass);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-        }
-
-        /* EMIL INTERPOLATED CURSOR */
-        .cursor-ring {
-            width: 24px; height: 24px;
-            border: 1.5px solid var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px var(--accent-glow);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        .cursor-ring.active {
-            width: 44px;
-            height: 44px;
-            background-color: rgba(239, 68, 68, 0.1);
-        }
-
-        /* UNIVERSAL STICKY STACKING CARDS */
-        .stack-card { 
-            position: relative; 
-            min-height: 90vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            background: var(--bg);
-            border-top: 1px solid var(--border-glass);
-            padding: 4rem 0;
-            overflow: hidden;
-            transition: border-color 0.5s ease;
-        }
-        .stack-card:hover {
-            border-top-color: rgba(239, 68, 68, 0.2);
-        }
-
-        .hero-portrait {
-            position: absolute;
-            right: 0; bottom: 0;
-            height: 100%;
-            width: 45vw;
-            object-fit: contain;
-            object-position: right bottom;
-            filter: grayscale(1) contrast(1.15) brightness(0.65);
-            mask-image: linear-gradient(to top, transparent 0%, black 25%), linear-gradient(to left, black 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to top, transparent 0%, black 25%), linear-gradient(to left, black 50%, transparent 100%);
-            mask-composite: intersect;
-            -webkit-mask-composite: source-in;
-            z-index: 1;
-            transition: transform 1.2s var(--ease-fluid), filter 1.2s var(--ease-fluid);
-        }
-        .hero-portrait:hover {
-            filter: grayscale(1) contrast(1.25) brightness(0.85);
-            transform: scale(1.02);
-        }
-
-        .tag-mono {
-            font-family: 'JetBrains Mono', ui-monospace, monospace;
-            font-size: 0.6rem;
-            letter-spacing: 0.25em;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        /* SYSTEM STATUS BEAT */
-        .soundwave-visualizer {
-            display: flex;
-            align-items: flex-end;
-            gap: 2px;
-            height: 14px;
-        }
-        .sound-bar {
-            width: 2px;
-            height: 3px;
-            background-color: var(--text-muted);
-            transition: height 0.1s ease, background-color 0.3s;
-        }
-        .soundwave-visualizer.active .sound-bar {
-            background-color: var(--accent);
-            animation: bounce-bar 0.8s infinite ease-in-out alternate;
-        }
-        .soundwave-visualizer.active .sound-bar:nth-child(2) { animation-delay: 0.15s; }
-        .soundwave-visualizer.active .sound-bar:nth-child(3) { animation-delay: 0.3s; }
-        .soundwave-visualizer.active .sound-bar:nth-child(4) { animation-delay: 0.45s; }
-
-        @keyframes bounce-bar {
-            0% { height: 3px; }
-            100% { height: 14px; }
-        }
-
-        /* --- TERMINAL WINDOW --- */
-        .terminal-window {
-            background: rgba(9, 9, 11, 0.7);
-            border: 1px solid rgba(239, 68, 68, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 2px rgba(255, 255, 255, 0.05);
-        }
-        .terminal-bar {
-            background: rgba(15, 15, 20, 0.9);
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            border-bottom: 1px solid rgba(239, 68, 68, 0.15);
-        }
-        .terminal-dots {
-            display: flex;
-            gap: 8px;
-        }
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        .dot.red { background: #ef4444; }
-        .dot.yellow { background: #f59e0b; }
-        .dot.green { background: #10b981; }
-        .terminal-title {
-            position: absolute;
-            width: 100%;
-            left: 0;
-            text-align: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-        .terminal-body {
-            padding: 25px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            height: 380px;
-            overflow-y: auto;
-            background-color: rgba(3, 3, 5, 0.95);
-            text-align: left;
-        }
-        [dir="rtl"] .terminal-body {
-            text-align: left;
-        }
-        .terminal-line {
-            margin-bottom: 10px;
-        }
-        .terminal-prompt {
-            color: #3b82f6;
-            margin-right: 8px;
-        }
-        .terminal-input-display {
-            color: #fafafa;
-        }
-        .terminal-cursor {
-            display: inline-block;
-            width: 6px;
-            height: 14px;
-            background: var(--accent);
-            animation: blink 0.8s infinite;
-            vertical-align: middle;
-            margin-left: 2px;
-        }
-        #terminal-input-field {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: transparent;
-            text-shadow: 0 0 0 transparent;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            width: 1px;
-            height: 1px;
-            position: absolute;
-            opacity: 0;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* DUAL LANG DISPLAY ENGINES */
-        .lang-en-only, .lang-ar-only { display: none !important; }
-        [data-current-lang="en"] .lang-en-only { display: block !important; }
-        [data-current-lang="en"] .lang-en-flex { display: flex !important; }
-        [data-current-lang="ar"] .lang-ar-only { display: block !important; }
-        [data-current-lang="ar"] .lang-ar-flex { display: flex !important; }
-
-        /* CUSTOM METRIC SLIDER CUSTOMIZATION */
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--accent);
-            cursor: pointer;
-            box-shadow: 0 0 10px var(--accent);
-            transition: transform 0.1s;
-        }
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-        }
-
-        /* --- SWARM GRAPH --- */
-        .swarm-visual {
-            height: 420px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-        }
-        .graph-nodes-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        .nodes-svg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        .node {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            z-index: 2;
-            cursor: pointer;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
-        }
-        .node.sensory {
-            background: #3b82f6;
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.5);
-            animation: pulse-blue-neon 3s infinite alternate;
-        }
-        .node.cognitive {
-            background: #ef4444;
-            box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
-            animation: pulse-red-neon 3s infinite alternate 1s;
-        }
-        .node.execution {
-            background: #fbbf24;
-            box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
-            animation: pulse-yellow-neon 3s infinite alternate 2s;
-        }
-        
-        @keyframes pulse-blue-neon {
-            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(59, 130, 246, 0.4); }
-            100% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
-        }
-        @keyframes pulse-red-neon {
-            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
-            100% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 20px rgba(239, 68, 68, 0.8); }
-        }
-        @keyframes pulse-yellow-neon {
-            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 8px rgba(251, 191, 36, 0.4); }
-            100% { transform: translate(-50%, -50%) scale(1.3); box-shadow: 0 0 20px rgba(251, 191, 36, 0.8); }
-        }
-        
-        .node-tooltip {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(5, 5, 8, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-muted);
-            z-index: 3;
-            transition: all 0.3s ease;
-        }
-
-        /* Dynamic shuffling effect on filter ledger */
-        .ledger-cards-grid {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .ledger-cards-grid.shuffling {
-            opacity: 0;
-            transform: translateY(15px);
-        }
-
-        /* Universal responsive corrections */
-        @media (max-width: 1024px) {
-            #logic .display-huge { font-size: clamp(2.2rem, 10vw, 5rem); }
-            .container-premium { padding: 0 1.5rem; }
-        }
-
-        @media (max-width: 768px) {
-            .display-huge { 
-                font-size: clamp(2rem, 12vw, 3.8rem); 
-                line-height: 1; 
-                position: relative; 
-                z-index: 10;
-            }
-            .container-premium { padding: 0 1.25rem; }
-            .hero-portrait { 
-                opacity: 0.15; 
-                width: 100vw; 
-                right: 0; left: 0; 
-                height: 55vh; 
-                bottom: 0; 
-                object-fit: cover;
-                mask-image: linear-gradient(to top, black 30%, transparent 100%);
-                -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%);
-            }
-            .stack-card { padding: 3rem 1.25rem; min-height: 80vh; }
-            .scene { padding: 3rem 0; min-height: 100svh; }
-            #hero-statement { font-size: 1.15rem; line-height: 1.4; color: #d4d4d8; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mohamed Omar is The Growth Architect: revenue systems engineering for MENA and GCC businesses.">
+  <meta name="author" content="Mohamed Omar">
+  <meta name="theme-color" content="#1237E0">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohamedomar11111.github.io/mohamed-omar-portfolio/">
+  <meta property="og:title" content="Mohamed Omar — The Growth Architect">
+  <meta property="og:description" content="Revenue architecture for businesses that have outgrown campaign thinking.">
+  <meta property="og:image" content="assets/blueprint.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Mohamed Omar — The Growth Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohamed Omar",
+    "jobTitle": "The Growth Architect",
+    "url": "https://mohamedomar11111.github.io/mohamed-omar-portfolio/",
+    "sameAs": [
+      "https://github.com/mohamedOmar11111",
+      "https://www.linkedin.com/in/mohamed-omar-growth"
+    ],
+    "knowsAbout": ["Revenue Engineering", "Growth Architecture", "MENA Growth Strategy", "Agentic Systems"]
+  }
+  </script>
 </head>
-<body data-current-lang="en">
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Film Grain, Scanline, and Custom Cursor Layer -->
-    <div class="film-grain"></div>
-    <div class="scanlines"></div>
-    <div class="grid-overlay"></div>
-    <div class="cursor-ring hidden md:block" id="cursor-ring"></div>
-
-    <!-- HEADER NAV HUD -->
-    <nav class="fixed top-0 left-0 right-0 z-50 py-2.5">
-        <div class="container-premium flex items-center justify-between glass-premium border-b border-white/[0.02] py-2.5 px-6 rounded-b-lg">
-            
-            <!-- Logo Module -->
-            <div class="flex items-center gap-3.5 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-8 h-8 rounded-sm bg-gradient-to-br from-brand-red to-brand-blue flex items-center justify-center font-black text-white shadow-[0_0_15px_rgba(239,68,68,0.3)] group-hover:scale-110 transition-transform duration-500">GA</div>
-                <div class="flex flex-col leading-none">
-                    <span class="text-xs font-black uppercase tracking-tighter text-white">
-                        <span class="lang-en-only">MOHAMED OMAR</span><span class="lang-ar-only">محمد عمر</span>
-                    </span>
-                    <span class="text-[7px] text-zinc-500 font-bold uppercase tracking-[0.4em] mt-1">
-                        <span class="lang-en-only">Growth Architect</span><span class="lang-ar-only">مهندس النمو السيادي</span>
-                    </span>
-                </div>
-            </div>
-            
-            <!-- HUD Mid Status Metrics Panel -->
-            <div class="hidden xl:flex items-center gap-8 font-mono text-[9px] text-zinc-400 border-x border-zinc-800 px-8">
-                <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse"></span>
-                    <span>SYS: <span class="text-white font-bold">SECURE_ONX_v15.2</span></span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span>ARBITRAGE INDEX: <span class="text-brand-blue font-bold">98.4%</span></span>
-                </div>
-            </div>
-
-            <!-- Header Interaction Controllers -->
-            <div class="flex items-center gap-4 md:gap-6">
-                
-                <!-- Atmospheric Sound Control Switch -->
-                <button id="synth-audio-toggle" onclick="toggleAtmosphericAudio()" class="flex items-center gap-3 bg-white/5 border border-white/10 px-3.5 py-1.5 rounded-sm hover:border-brand-red hover:bg-brand-red/10 transition-all duration-300">
-                    <div class="soundwave-visualizer" id="header-audio-visualizer">
-                        <span class="sound-bar"></span>
-                        <span class="sound-bar"></span>
-                        <span class="sound-bar"></span>
-                        <span class="sound-bar"></span>
-                    </div>
-                    <span class="font-mono text-[9px] tracking-widest text-zinc-300">
-                        <span class="lang-en-only">BIOMETRIC HUM</span>
-                        <span class="lang-ar-only">طنين النبض</span>
-                    </span>
-                </button>
-
-                <!-- Navigation Anchors -->
-                <div class="hidden lg:flex items-center gap-6">
-                    <a href="#logic" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Logic</span><span class="lang-ar-only">المنطق</span>
-                    </a>
-                    <a href="#terminal-section" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Terminal</span><span class="lang-ar-only">المنصة</span>
-                    </a>
-                    <a href="#strikes" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Strikes</span><span class="lang-ar-only">العمليات</span>
-                    </a>
-                    <a href="#calibrator" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Calibrator</span><span class="lang-ar-only">المعايير</span>
-                    </a>
-                    <a href="#swarm-section" class="text-[8px] font-bold uppercase tracking-[0.3em] text-zinc-400 hover:text-white transition-colors">
-                        <span class="lang-en-only">Onyx Hive</span><span class="lang-ar-only">سرب أونيكس</span>
-                    </a>
-                </div>
-
-                <button onclick="toggleLanguage()" class="px-4 py-1.5 rounded-sm border border-brand-red/20 text-[9px] font-black uppercase text-brand-red hover:bg-brand-red hover:text-white transition-all duration-500">
-                    <span class="lang-en-only">العربية</span><span class="lang-ar-only">English</span>
-                </button>
-            </div>
-        </div>
+  <header class="site-header" data-header>
+    <a class="wordmark" href="#top" aria-label="Mohamed Omar, home">
+      <span class="wordmark-mark" aria-hidden="true">M</span>
+      <span>Mohamed Omar<br><small>The Growth Architect</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#proof">Proof</a>
+      <a href="#method">Method</a>
+      <a href="#fit">Fit</a>
     </nav>
+    <a class="header-cta" href="#strategy-call">Book a strategy call <span aria-hidden="true">↗</span></a>
+  </header>
 
-    <main>
-        
-        <!-- 1. HERO & STRATEGIC BRIEFING CAROUSEL -->
-        <section class="scene overflow-hidden bg-brand-bg border-b border-zinc-900 pt-20">
-            <img src="assets/mohamed-omar-portrait.jpg" class="hero-portrait" alt="Mohamed Omar" id="hero-img" onerror="this.src='https://placehold.co/800x1200/18181b/ffffff?text=MOHAMED+OMAR'">
-            
-            <div class="container-premium relative z-10 grid grid-cols-12 gap-8 items-center min-h-[85vh]">
-                <div class="col-span-12 lg:col-span-8 space-y-6">
-                    <div class="tag-mono mb-4 opacity-0 hero-reveal" id="hero-tag">System_Node // Architect_v15.2</div>
-                    
-                    <h1 class="display-huge text-white mb-6 opacity-0 hero-reveal" id="hero-title">
-                        <span class="block">The Growth</span>
-                        <span class="gradient-text italic">Architect.</span>
-                    </h1>
-
-                    <div class="max-w-3xl opacity-0 hero-reveal" id="hero-statement">
-                        <p class="text-xl md:text-4xl font-light text-zinc-400 leading-[1.1] mb-12 italic">
-                            <span class="lang-en-only">"I don't just run campaigns; I architect <strong class="text-white font-medium">autonomous revenue engines</strong> where brand logic is weaponized by AI."</span>
-                            <span class="lang-ar-only">"أنا مش مجرد بدير حملات؛ أنا بصمم <strong class="text-white font-medium">محركات أرباح مستقلة</strong>، بسلّح فيها فلسفة الهوية بقوة الذكاء الاصطناعي."</span>
-                        </p>
-                    </div>
-
-                    <!-- STRATEGIC DIRECTIVE HUD BRIEFING -->
-                    <div class="glass-premium p-6 border border-white/5 max-w-2xl opacity-0 hero-reveal" id="hero-directive-carousel">
-                        <div class="flex justify-between items-center border-b border-white/5 pb-3 mb-4 font-mono text-[9px]">
-                            <span class="text-brand-red font-bold tracking-widest uppercase">// ACTIVE INTEL DIRECTIVE</span>
-                            <span class="text-zinc-500" id="directive-counter">01 / 03</span>
-                        </div>
-                        
-                        <div class="min-h-[80px]" id="directive-carousel-display">
-                            <!-- Directive items injected dynamically -->
-                        </div>
-                        
-                        <div class="flex justify-between items-center mt-4 pt-3 border-t border-white/5">
-                            <div class="flex gap-2">
-                                <button onclick="cycleDirective(-1)" class="border border-white/5 hover:border-brand-red p-2 text-zinc-400 hover:text-white transition-all">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                                </button>
-                                <button onclick="cycleDirective(1)" class="border border-white/5 hover:border-brand-red p-2 text-zinc-400 hover:text-white transition-all">
-                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                                </button>
-                            </div>
-                            <span class="font-mono text-[8px] text-zinc-600 uppercase">SYS SECURE SECTOR_GTM</span>
-                        </div>
-                    </div>
-
-                    <div class="opacity-0 hero-reveal pt-4 flex flex-col sm:flex-row gap-4" id="hero-cta">
-                        <a href="#waitlist-section" class="inline-flex items-center justify-center gap-4 px-10 py-5 bg-white text-black font-black text-xs uppercase tracking-[0.3em] rounded-sm hover:bg-brand-red hover:text-white transition-all duration-500 shadow-2xl">
-                            <span class="lang-en-only">Command Your Engine</span>
-                            <span class="lang-ar-only">قُد محركك الآن</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        </a>
-                        <a href="#strikes" class="inline-flex items-center justify-center gap-4 px-10 py-5 border border-white/10 text-white font-bold text-xs uppercase tracking-[0.3em] rounded-sm hover:border-brand-red transition-all duration-500">
-                            <span class="lang-en-only">Explore Strikes Stack</span>
-                            <span class="lang-ar-only">استكشف العمليات المجدولة</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. RE-ENGINEERING LOGIC -->
-        <section id="logic" class="scene py-32 md:py-60 border-y border-white/[0.02] bg-[#05050a]">
-            <div class="container-premium grid grid-cols-12 gap-12 items-center">
-                
-                <div class="col-span-12 lg:col-span-8 space-y-12 md:space-y-24">
-                    <h2 class="display-huge text-white">
-                        <span class="lang-en-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(239, 68, 68, 0.4);">Fragility</span><br>vs Absolute.</span>
-                        <span class="lang-ar-only"><span class="text-zinc-900" style="-webkit-text-stroke: 1px rgba(239, 68, 68, 0.4);">الهشاشة</span><br>ضد الحتمية.</span>
-                    </h2>
-                    
-                    <div class="space-y-10 text-zinc-500 text-lg md:text-3xl font-light leading-[1.3] max-w-[40ch]" id="logic-text">
-                        <div class="lang-en-only space-y-8">
-                            <p>Most enterprises settle for "Hope-Based Marketing". I replace fragility with <strong class="text-white font-medium">Deterministic Revenue Engineering.</strong></p>
-                            <p>Leveraging 7 years of MENA deployment, I architect <strong class="text-white font-medium italic">self-maintaining growth loops</strong> that don't just perform—they dominate.</p>
-                        </div>
-                        <div class="lang-ar-only space-y-8 text-right">
-                            <p>أغلب الشركات بتعتمد على "التسويق القائم على الأمل"؛ بيعملوا حملات ويدعوا إنها تجيب نتيجة. أنا ببدل الهشاشة دي بـ <strong class="text-white font-medium">هندسة إيرادات حتمية.</strong></p>
-                            <p>بخبرة ٧ سنين في سوق المينا، مهمتي بسيطة: أبني <strong class="text-white font-medium">دوائر نمو ذاتية الصيانة</strong> مش بس بتشتغل، دي بتسيطر على السوق.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Strategic Protocols -->
-                <div class="col-span-12 lg:col-span-4 flex flex-col gap-6 md:gap-10">
-                    <div class="glass-premium p-8 md:p-10 border-l-2 border-brand-red/30 hover:border-brand-red transition-all duration-500 group">
-                        <div class="tag-mono mb-4 group-hover:text-brand-red transition-colors">PROTOCOL_01</div>
-                        <h4 class="text-white font-black uppercase text-sm md:text-base tracking-widest mb-4">
-                            <span class="lang-en-only">Systemic Synthesis</span><span class="lang-ar-only">التركيب النظامي</span>
-                        </h4>
-                        <p class="text-zinc-500 text-xs md:text-sm leading-relaxed font-light">
-                            <span class="lang-en-only">Stripping processes to their atomic components and rebuilding them via an elite AI stack.</span>
-                            <span class="lang-ar-only">تفكيك العمليات لمكوناتها الذرية وإعادة بنائها باستخدام حزمة ذكاء اصطناعي متطورة.</span>
-                        </p>
-                    </div>
-
-                    <div class="glass-premium p-8 md:p-10 border-l-2 border-brand-blue/30 hover:border-brand-blue transition-all duration-500 group">
-                        <div class="tag-mono mb-4 group-hover:text-brand-blue transition-colors">PROTOCOL_02</div>
-                        <h4 class="text-white font-black uppercase text-sm md:text-base tracking-widest mb-4">
-                            <span class="lang-en-only">Agentic Workforce</span><span class="lang-ar-only">القوة العاملة الوكيلة</span>
-                        </h4>
-                        <p class="text-zinc-500 text-xs md:text-sm leading-relaxed font-light">
-                            <span class="lang-en-only">Orchestrating proprietary multi-agent systems designed for autonomous market auditing.</span>
-                            <span class="lang-ar-only">إدارة أنظمة وكلاء متعددة الملكية مصممة للتدقيق المستقل في السوق.</span>
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 3. INTERACTIVE TERMINAL (FORENSIC DECK) -->
-        <section id="terminal-section" class="scene py-32 md:py-60 border-b border-white/[0.02] bg-[#030305] flex items-center">
-            <div class="container-premium space-y-12">
-                <div class="flex items-center gap-4">
-                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-red">01.0 // ENGINE TERMINAL</span>
-                </div>
-                <h2 class="text-4xl md:text-7xl font-black italic text-white uppercase tracking-tighter">
-                    <span class="lang-en-only">THE FORENSIC DECK</span>
-                    <span class="lang-ar-only">منصة التحقيق الجنائي</span>
-                </h2>
-                <p class="text-zinc-500 text-sm md:text-lg max-w-[60ch] leading-relaxed font-light">
-                    <span class="lang-en-only">Query the Growth Architect OS. Type <strong class="text-brand-red">help</strong> to view system credentials and audited results.</span>
-                    <span class="lang-ar-only">استجوب نظام تشغيل مهندس النمو. اكتب <strong class="text-brand-red">help</strong> لعرض بيانات الاعتماد والنتائج المدققة.</span>
-                </p>
-                
-                <div class="terminal-window" id="terminal-window-element">
-                    <div class="terminal-bar">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <div class="terminal-title">mohamedomar@growth-architect-hq ~ guest-session</div>
-                    </div>
-                    <div class="terminal-body" id="terminal-logs">
-                        <div class="terminal-line text-zinc-400">Growth Architect OS v15.2.0-stable</div>
-                        <div class="terminal-line text-zinc-600">Type <span class="text-brand-red font-bold">help</span> to query the system. Click inside to focus.</div>
-                        <br>
-                        <div class="terminal-line input-line" id="terminal-input-line">
-                            <span class="terminal-prompt">guest@ga-terminal:~$</span>
-                            <span class="terminal-input-display" id="typed-display"></span>
-                            <input type="text" id="terminal-input-field" autocomplete="off" spellcheck="false" aria-label="Terminal input">
-                            <span class="terminal-cursor"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. STRIKES: THE UNIVERSAL STACKING CARDS SYSTEM WITH INTEGRATED LEDGER FILTERS -->
-        <section id="strikes" class="py-24 border-b border-zinc-900 bg-[#030305] relative">
-            <div class="container-premium mb-12">
-                <div class="flex flex-col xl:flex-row justify-between items-start xl:items-end gap-8 mb-12">
-                    <div>
-                        <div class="flex items-center gap-3 font-mono text-xs text-brand-red mb-2">// TRACK RECORD</div>
-                        <h2 class="font-display text-5xl md:text-7xl font-black uppercase tracking-tight text-white italic">OPERATIONS LEDGER</h2>
-                        <p class="font-mono text-zinc-500 text-xs tracking-wider mt-1">// THE ARCHITECT'S 10 CRITICAL REVENUE STRIKES</p>
-                    </div>
-                    
-                    <!-- Mechanical Ledger Filter Controllers -->
-                    <div class="flex flex-wrap gap-2 font-mono text-xs z-10">
-                        <button class="ledger-filter-btn active border border-brand-red/20 px-4 py-2 hover:border-brand-red transition-all bg-white text-black" onclick="filterLedger('all', this)">
-                            [ <span class="lang-en-only">ALL STRIKES</span><span class="lang-ar-only">كل العمليات</span> ]
-                        </button>
-                        <button class="ledger-filter-btn border border-white/5 px-4 py-2 hover:border-white transition-all text-zinc-400" onclick="filterLedger('gtm', this)">
-                            [ <span class="lang-en-only">GTM & OPERATIONS</span><span class="lang-ar-only">التسويق والعمليات</span> ]
-                        </button>
-                        <button class="ledger-filter-btn border border-white/5 px-4 py-2 hover:border-white transition-all text-zinc-400" onclick="filterLedger('data', this)">
-                            [ <span class="lang-en-only">DATA & SYSTEM</span><span class="lang-ar-only">البيانات والأنظمة</span> ]
-                        </button>
-                        <button class="ledger-filter-btn border border-white/5 px-4 py-2 hover:border-white transition-all text-zinc-400" onclick="filterLedger('proptech', this)">
-                            [ <span class="lang-en-only">PROPTECH & VENTURES</span><span class="lang-ar-only">العقارات والتأسيس</span> ]
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stacking Container -->
-            <div class="stacking-cards-wrapper" id="ledger-shuffler">
-                
-                <!-- STRIKE 01 -->
-                <div class="stack-card strike-item" data-category="gtm text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">01</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_01 // 2025 // ACTIVE</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">Etlaala Travel</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Head of Marketing</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Directing marketing architecture for a top-tier firm. Achieved <strong class="text-white font-medium">SAR 1,000,000 profit recovery</strong> through kernel re-engineering.</div>
-                                <div class="lang-ar-only text-right">قيادة منظومة التسويق لشركة سياحة كبرى. تحقيق <strong class="text-white font-medium">استعادة أرباح بمليون ريال</strong> عن طريق إعادة هندسة الإيرادات.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 02 -->
-                <div class="stack-card strike-item" data-category="gtm data text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">02</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_02 // 2024 // COMPLETED</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">Penta Studio</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Head of Digital</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Orchestrated digital transformation. Managed <strong class="text-white font-medium">$800K+ annual deployment</strong> with 45% accuracy gain.</div>
-                                <div class="lang-ar-only text-right">التحول الرقمي لعملاء إقليميين كبار. إدارة ميزانية <strong class="text-white font-medium">أكتر من ٨٠٠ ألف دولار سنوياً</strong>.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 03 -->
-                <div class="stack-card strike-item" data-category="proptech text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">03</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_03 // 2023 // SUCCESS</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">MOPHEX</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Product Marketing Manager</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Launched next-gen PropTech platform. Scaled <strong class="text-white font-medium">leads by 300%</strong> and slashed analysis time by 70%.</div>
-                                <div class="lang-ar-only text-right">إطلاق منصة PropTech. زيادة <strong class="text-white font-medium">الـ Leads بنسبة ٣٠٠٪</strong> وتوفير ٧٠٪ من وقت التحليل.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 04 -->
-                <div class="stack-card strike-item" data-category="proptech data text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">04</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_04 // 2021-2023 // FOUNDER</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">Menaverse</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Founder & Strategist</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-lg md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Scaled regional consultancy to <strong class="text-white font-medium">$500K ARR</strong>. Built Onyx Hive OS for autonomous monitoring.</div>
-                                <div class="lang-ar-only text-right">الوصول بالوكالة لـ <strong class="text-white font-medium">نص مليون دولار سنوياً</strong>. بناء نظام Onyx Hive للأتمتة.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 05 -->
-                <div class="stack-card strike-item" data-category="proptech data text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">05</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_05 // PROPTECH // SCALE</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">Aqarverse</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Strategic Advisor</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-xl md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Architected AI semantic authority nodes. Secured dominant citation graphs via <strong class="text-white font-medium">GEO</strong>.</div>
-                                <div class="lang-ar-only text-right">تصميم نود "السلطة الدلالية". السيطرة على نتائج الـ AI باستخدام تقنيات GEO المتقدمة.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 06 -->
-                <div class="stack-card strike-item" data-category="gtm text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">06</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_06 // EDUCATION // SYDNEY</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">UNSW Sydney</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Master of Digital Marketing</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-xl md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Mastered global digital logic in Sydney. Fused <strong class="text-white font-medium">high-level theory</strong> with growth systems.</div>
-                                <div class="lang-ar-only text-right">إتقان منطق التسويق العالمي في سيدني. الدمج بين نظريات الإدارة وأنظمة النمو.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 07 -->
-                <div class="stack-card strike-item" data-category="data text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">07</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_07 // DATA // EXPANSION</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">ICS Calibration</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Head of Digital Dept.</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-xl md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Established data pipelines for UAE and Qatar expansion. Managed <strong class="text-white font-medium">high-fidelity audits</strong>.</div>
-                                <div class="lang-ar-only text-right">تأسيس بنية البيانات للتوسع في الإمارات وقطر. إدارة عمليات التدقيق التحليلي بدقة.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 08 -->
-                <div class="stack-card strike-item" data-category="gtm text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">08</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_08 // RETENTION // 2023</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">ShfrtNjah</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Head of Digital</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-xl md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Engineered promotional cycles beating retention benchmarks by <strong class="text-white font-medium">35%</strong>.</div>
-                                <div class="lang-ar-only text-right">تصميم دورات ترويجية تفوقت على معدلات الاستبقاء القياسية بنسبة ٣٥٪.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 09 -->
-                <div class="stack-card strike-item" data-category="gtm text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">09</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_09 // LEADERSHIP // CDO</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">CDO Executive</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Executive Diploma // IMTF</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-xl md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Certified CDO. Focused on omnichannel dominance and <strong class="text-white font-medium">sustainable profit engines</strong>.</div>
-                                <div class="lang-ar-only text-right">حاصل على دبلوم CDO. التركيز على الهيمنة وتصميم محركات أرباح مستدامة.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- STRIKE 10 -->
-                <div class="stack-card strike-item" data-category="data text-left-ar">
-                    <div class="container-premium grid grid-cols-12 gap-6 md:gap-12 items-center">
-                        <div class="col-span-12 md:col-span-2">
-                            <span class="display-huge gradient-text opacity-10">10</span>
-                        </div>
-                        <div class="col-span-12 md:col-span-10 space-y-6 md:space-y-12">
-                            <div class="tag-mono">Strike_10 // ADVISORY // AI FLOWS</div>
-                            <h3 class="text-4xl md:text-[8rem] font-black text-white italic uppercase leading-none tracking-tighter">Grow Digital</h3>
-                            <p class="text-zinc-500 font-mono text-[10px] uppercase tracking-[0.4em] border-b border-white/5 pb-4 md:pb-8">Senior Strategic Advisor</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 text-zinc-400 text-xl md:text-3xl font-light leading-tight">
-                                <div class="lang-en-only">Neutralizing operational noise via custom <strong class="text-white font-medium">agentic flows</strong> and dash infrastructures.</div>
-                                <div class="lang-ar-only text-right">تصفية الضوضاء التشغيلية عبر بناء تدفقات وكلاء ذكية وبنية بيانات متقدمة.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 5. THE INTERACTIVE REVENUE CALIBRATOR & GROWTH STACK -->
-        <section id="calibrator" class="py-24 bg-brand-bg border-b border-zinc-900 relative">
-            <div class="container-premium">
-                
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="font-mono text-xs text-brand-red font-bold tracking-widest">// MODEL SCALING ARBITRAGE</span>
-                    <h2 class="font-display text-5xl md:text-7xl font-black uppercase tracking-tight text-white italic mt-2">REVENUE MATRIX</h2>
-                    <p class="font-sans text-zinc-400 mt-4 leading-relaxed text-sm md:text-base text-center">
-                        <span class="lang-en-only">Select your enterprise's current target scale value. Dynamically query and load the optimized hardware stack, core friction point, and GTM directive tailored to your phase.</span>
-                        <span class="lang-ar-only">اختر مستوى حجم إيرادات مؤسستك الحالي. استعلم فورياً وحمل البنية التحتية، نقاط الاحتكاك الأساسية، وخريطة Roadmap المناسبة لمرحلتك.</span>
-                    </p>
-                </div>
-
-                <!-- Slider Interface Panel -->
-                <div class="max-w-4xl mx-auto glass-premium p-8 md:p-12 border border-white/5 rounded-xl">
-                    
-                    <div class="flex justify-between font-mono text-[10px] text-zinc-500 mb-6 px-2">
-                        <span id="scale-lbl-1" class="transition-all duration-300 font-bold">100K - 1M SAR/AED</span>
-                        <span id="scale-lbl-2" class="transition-all duration-300 text-brand-red font-black">1M - 5M SAR/AED</span>
-                        <span id="scale-lbl-3" class="transition-all duration-300 font-bold">5M - 20M+ SAR/AED</span>
-                    </div>
-
-                    <!-- Styled Range Input -->
-                    <div class="relative w-full mb-12">
-                        <input type="range" min="1" max="3" step="1" value="2" id="scale-range-slider" class="w-full accent-brand-red bg-zinc-800 cursor-pointer h-1.5 rounded-lg appearance-none">
-                    </div>
-
-                    <!-- Interactive Status Bar -->
-                    <div class="bg-zinc-950 p-4 border border-zinc-900 mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                        <span class="font-mono text-[10px] text-zinc-500 tracking-wider">
-                            <span class="lang-en-only">ACTIVE CALIBRATION METRIC:</span>
-                            <span class="lang-ar-only">معيار المعايرة النشط:</span>
-                        </span>
-                        <span id="scale-phase-indicator" class="font-mono text-xs font-black text-brand-red tracking-widest uppercase">STAGE 2 // ENHANCED DOMINANCE</span>
-                    </div>
-
-                    <!-- Dynamic Details Panel Injected via JS -->
-                    <div id="scale-output-matrix" class="grid grid-cols-1 md:grid-cols-2 gap-4 transition-all duration-300">
-                        <!-- Content loaded dynamically -->
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-        <!-- 6. ONYX HIVE (INTERACTIVE SWARM) -->
-        <section id="swarm-section" class="scene py-32 md:py-60 border-t border-white/[0.02] bg-[#05050a] flex items-center">
-            <div class="container-premium grid grid-cols-12 gap-12 items-center">
-                <div class="col-span-12 lg:col-span-6 space-y-12">
-                    <div class="flex items-center gap-4">
-                        <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-red">02.0 // AUTONOMOUS SWARM</span>
-                    </div>
-                    <h2 class="text-4xl md:text-7xl font-black italic text-white uppercase tracking-tighter">
-                        <span class="lang-en-only">THE ONYX HIVE</span>
-                        <span class="lang-ar-only">سرب أونيكس</span>
-                    </h2>
-                    <p class="text-zinc-500 text-lg font-light leading-relaxed">
-                        <span class="lang-en-only">A proprietary multi-agent workforce. We deploy <strong>36 autonomous agents</strong> working in structured pipelines to monitor, audit, and optimize GCC revenue engines.</span>
-                        <span class="lang-ar-only">قوة عاملة وكيلة مستقلة. نقوم بتشغيل <strong>٣٦ وكيل ذكي مستقل</strong> يعملون في مسارات منظمة لمراقبة وتحسين محركات الإيرادات في الخليج.</span>
-                    </p>
-                    <ul class="space-y-6 text-zinc-400 font-light text-sm md:text-base">
-                        <li class="border-l-2 border-brand-blue/30 pl-4">
-                            <strong class="text-white font-semibold uppercase tracking-wider block text-xs mb-1">
-                                <span class="lang-en-only">Sensory Layer</span><span class="lang-ar-only">طبقة الاستشعار</span>
-                            </strong>
-                            <span class="lang-en-only">Exa, Firecrawl, and telemetry monitoring regional ad accounts.</span>
-                            <span class="lang-ar-only">أدوات الاستعلام والمسح ومراقبة البيانات الحية للحسابات الإعلانية الإقليمية.</span>
-                        </li>
-                        <li class="border-l-2 border-brand-red/30 pl-4">
-                            <strong class="text-white font-semibold uppercase tracking-wider block text-xs mb-1">
-                                <span class="lang-en-only">Cognitive Layer</span><span class="lang-ar-only">الطبقة الإدراكية</span>
-                            </strong>
-                            <span class="lang-en-only">Strategic reasoning, context engineering, and brand voice validation.</span>
-                            <span class="lang-ar-only">التفكير الاستراتيجي، هندسة السياق، والتحقق من توافق نبرة العلامة التجارية.</span>
-                        </li>
-                        <li class="border-l-2 border-brand-yellow/30 pl-4">
-                            <strong class="text-white font-semibold uppercase tracking-wider block text-xs mb-1">
-                                <span class="lang-en-only">Execution Layer</span><span class="lang-ar-only">طبقة التنفيذ</span>
-                            </strong>
-                            <span class="lang-en-only">Dynamic page mutations, ad placement shifts, and code commits.</span>
-                            <span class="lang-ar-only">تعديلات الصفحات الحية، توجيه الميزانيات الإعلانية، وتنفيذ الأكواد.</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-span-12 lg:col-span-6">
-                    <div class="swarm-visual glass-premium p-8 relative flex flex-col justify-between" id="interactive-swarm-graph">
-                        <div class="graph-nodes-container">
-                            <!-- Sensory nodes (Blue) -->
-                            <div class="node sensory" style="top: 15%; left: 20%;" data-layer="Sensory" data-info-en="Exa & Firecrawl scrapers monitoring GCC competitors." data-info-ar="ماسحات Exa و Firecrawl لمراقبة المنافسين في الخليج."></div>
-                            <div class="node sensory" style="top: 50%; left: 15%;" data-layer="Sensory" data-info-en="Search velocity and keyword trend trackers." data-info-ar="أدوات تتبع سرعة البحث والكلمات المفتاحية."></div>
-                            <!-- Cognitive nodes (Red) -->
-                            <div class="node cognitive" style="top: 35%; left: 50%;" data-layer="Cognitive" data-info-en="Strategic decision node modeling waitlist priorities." data-info-ar="عقدة القرار الاستراتيجي لترتيب أولويات الانتظار."></div>
-                            <div class="node cognitive" style="top: 70%; left: 45%;" data-layer="Cognitive" data-info-en="Adversarial content alignment validator." data-info-ar="مدقق التوافق الإعلاني الاستباقي للعلامة التجارية."></div>
-                            <!-- Execution nodes (Yellow) -->
-                            <div class="node execution" style="top: 25%; left: 80%;" data-layer="Execution" data-info-en="Self-healing API connection endpoints." data-info-ar="نقاط نهاية API ذاتية الإصلاح لتأمين الاتصال."></div>
-                            <div class="node execution" style="top: 60%; left: 75%;" data-layer="Execution" data-info-en="Dynamic budget allocator shifting ad spend." data-info-ar="موزع الميزانيات الديناميكي لتحسين الإنفاق الإعلاني."></div>
-                            
-                            <svg class="nodes-svg" aria-hidden="true">
-                                <line x1="20%" y1="15%" x2="50%" y2="35%" stroke="rgba(239,68,68,0.15)" stroke-width="1.5"></line>
-                                <line x1="15%" y1="50%" x2="50%" y2="35%" stroke="rgba(239,68,68,0.15)" stroke-width="1.5"></line>
-                                <line x1="15%" y1="50%" x2="45%" y2="70%" stroke="rgba(239,68,68,0.15)" stroke-width="1.5"></line>
-                                <line x1="50%" y1="35%" x2="80%" y2="25%" stroke="rgba(59,130,246,0.15)" stroke-width="1.5"></line>
-                                <line x1="50%" y1="35%" x2="75%" y2="60%" stroke="rgba(59,130,246,0.15)" stroke-width="1.5"></line>
-                                <line x1="45%" y1="70%" x2="75%" y2="60%" stroke="rgba(59,130,246,0.15)" stroke-width="1.5"></line>
-                            </svg>
-                        </div>
-                        <div class="node-tooltip text-center" id="swarm-tooltip">
-                            <span class="lang-en-only">Hover over a node to query the Onyx Hive.</span>
-                            <span class="lang-ar-only">مرر الماوس فوق أي عقدة للاستعلام من السرب.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. ONYX AXIS WAITLIST FORM -->
-        <section id="waitlist-section" class="scene py-32 md:py-60 border-t border-white/[0.02] bg-[#030305] flex items-center">
-            <div class="container-premium max-w-4xl space-y-12">
-                <div class="flex items-center justify-center gap-4">
-                    <span class="text-xs font-bold uppercase tracking-[0.3em] text-brand-red">03.0 // ONYX AXIS TERMINAL</span>
-                </div>
-                <div class="text-center space-y-4">
-                    <h2 class="text-4xl md:text-7xl font-black italic text-white uppercase tracking-tighter">
-                        <span class="lang-en-only">APPLY FOR WAITLIST</span>
-                        <span class="lang-ar-only">التقديم لقائمة الانتظار</span>
-                    </h2>
-                    <p class="text-zinc-500 text-sm md:text-lg max-w-[60ch] mx-auto leading-relaxed font-light">
-                        <span class="lang-en-only">Only 100 enterprise terminals allocated annually. We do not accept clients who seek standard agency marketing.</span>
-                        <span class="lang-ar-only font-light">يتم تخصيص ١٠٠ ترخيص فقط سنوياً للمؤسسات. لا نقبل عملاء يبحثون عن حلول تسويق تقليدية.</span>
-                    </p>
-                </div>
-                
-                <div class="glass-premium p-8 md:p-16 max-w-2xl mx-auto border border-brand-red/10 hover:border-brand-red/20 transition-all duration-700 rounded-xl">
-                    <form class="space-y-8" id="axis-waitlist-form">
-                        <div class="flex flex-col gap-3">
-                            <label for="input-name" class="tag-mono text-[9px]">
-                                <span class="lang-en-only">SYSTEMS OPERATOR NAME</span><span class="lang-ar-only">اسم مشغل النظام</span>
-                            </label>
-                            <input type="text" id="input-name" required class="bg-black/50 border border-white/5 focus:border-brand-red p-5 text-white rounded-sm outline-none text-sm font-light transition-all" placeholder="e.g. Tariq Al-Mansoor">
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <label for="input-email" class="tag-mono text-[9px]">
-                                <span class="lang-en-only">SECURE EMAIL ADDRESS</span><span class="lang-ar-only">البريد الإلكتروني الآمن</span>
-                            </label>
-                            <input type="email" id="input-email" required class="bg-black/50 border border-white/5 focus:border-brand-red p-5 text-white rounded-sm outline-none text-sm font-light transition-all" placeholder="e.g. tariq@enterprise.com">
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <label for="input-company" class="tag-mono text-[9px]">
-                                <span class="lang-en-only">ENTERPRISE DOMAIN / NAME</span><span class="lang-ar-only">نطاق الشركة / الاسم</span>
-                            </label>
-                            <input type="text" id="input-company" required class="bg-black/50 border border-white/5 focus:border-brand-red p-5 text-white rounded-sm outline-none text-sm font-light transition-all" placeholder="e.g. aqarverse.com">
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <label for="input-revenue" class="tag-mono text-[9px]">
-                                <span class="lang-en-only">ANNUAL REVENUE RUN RATE</span><span class="lang-ar-only">معدل الإيرادات السنوي</span>
-                            </label>
-                            <select id="input-revenue" required class="bg-black/50 border border-white/5 focus:border-brand-red p-5 text-white rounded-sm outline-none text-sm font-light transition-all">
-                                <option value="" disabled selected class="bg-[#030305]">Select Revenue Vector</option>
-                                <option value="1m-5m" class="bg-[#030305]">1,000,000 - 5,000,000 SAR/AED</option>
-                                <option value="5m-20m" class="bg-[#030305]">5,000,000 - 20,000,000 SAR/AED</option>
-                                <option value="20m+" class="bg-[#030305]">20,000,000+ SAR/AED</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="w-full p-6 bg-gradient-to-r from-brand-red to-brand-blue hover:from-brand-red hover:to-brand-blue text-white font-black text-xs uppercase tracking-[0.4em] rounded-sm transition-all shadow-[0_0_20px_rgba(239,68,68,0.25)]" id="submit-waitlist-btn">
-                            <span class="lang-en-only">INITIALIZE CONNECTION PROTOCOL</span>
-                            <span class="lang-ar-only">تهيئة بروتوكول الاتصال</span>
-                        </button>
-                        <div class="tag-mono text-center text-brand-red mt-4 h-4" id="form-message"></div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- STICKY ACTION HUD BAR -->
-    <div id="sticky-hud-action-bar" class="fixed bottom-0 left-0 w-full bg-black/95 border-t border-zinc-800 py-3 px-6 z-50 transform translate-y-full transition-transform duration-500 ease-out flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="flex items-center gap-3">
-            <span class="w-2 h-2 rounded-full bg-brand-red animate-ping"></span>
-            <span class="font-mono text-[9px] text-zinc-400 uppercase tracking-[0.2em]" id="hud-ticker-alert">
-                <span class="lang-en-only">[ALERT] HIGH AD ATTRIBUTION FRICTION IDENTIFIED IN GCC SPEND PATHS</span>
-                <span class="lang-ar-only">[تنبيه] تم رصد احتكاك مالي حاد في تتبع عوائد إعلانات الخليج</span>
-            </span>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="context-line"><span>Cairo → Riyadh → Dubai</span><span>Revenue systems / MENA</span></p>
+        <h1 id="hero-title">Growth is not a campaign problem.</h1>
+        <p class="hero-answer">It is an architecture problem.</p>
+        <div class="hero-bottom">
+          <p>Mohamed Omar designs the systems behind acquisition, authority, and commercial growth for businesses that have outgrown random tactics.</p>
+          <a class="button button-dark" href="#strategy-call">Diagnose the growth system <span aria-hidden="true">↘</span></a>
         </div>
-        <div class="flex gap-4 w-full sm:w-auto font-mono text-[9px]">
-            <a href="#waitlist-section" class="w-full sm:w-auto text-center bg-brand-red hover:bg-brand-blue text-white uppercase tracking-widest px-6 py-2.5 transition-all shadow-lg shadow-brand-red/20">
-                <span class="lang-en-only font-bold">APPLY SECURE ACCESS</span>
-                <span class="lang-ar-only font-bold">تأمين حجز ترخيص</span>
-            </a>
+      </div>
+
+      <div class="hero-figure" aria-label="A forensic map connecting market signal, revenue architecture, and commercial outcome">
+        <svg viewBox="0 0 720 720" role="img" aria-labelledby="map-title map-desc">
+          <title id="map-title">Revenue architecture evidence map</title>
+          <desc id="map-desc">A geometric diagram connecting market signals to a central architecture core and measurable revenue outcomes.</desc>
+          <rect width="720" height="720" fill="#1237E0"/>
+          <g fill="none" stroke="#F2F0E9" stroke-width="2" opacity=".75">
+            <path d="M82 130H310L360 205V360"/>
+            <path d="M638 132H520L430 245V360"/>
+            <path d="M96 590H275L360 510V360"/>
+            <path d="M630 575H510L420 495V360"/>
+            <circle cx="360" cy="360" r="132"/>
+            <circle cx="360" cy="360" r="78"/>
+            <path d="M228 360H492M360 228V492"/>
+          </g>
+          <g fill="#F2F0E9" font-family="Public Sans, sans-serif" font-size="18" font-weight="700">
+            <text x="80" y="112">MARKET SIGNAL</text>
+            <text x="500" y="112">POSITION</text>
+            <text x="82" y="626">ACQUISITION</text>
+            <text x="500" y="611">REVENUE</text>
+          </g>
+          <g transform="translate(360 360)">
+            <rect x="-48" y="-48" width="96" height="96" fill="#EF3E2F" transform="rotate(45)"/>
+            <circle r="16" fill="#101218"/>
+          </g>
+          <g fill="#EF3E2F">
+            <circle cx="82" cy="130" r="8"/>
+            <circle cx="638" cy="132" r="8"/>
+            <circle cx="96" cy="590" r="8"/>
+            <circle cx="630" cy="575" r="8"/>
+          </g>
+          <text x="360" y="680" text-anchor="middle" fill="#F2F0E9" font-family="Archivo Black, sans-serif" font-size="34">ARCHITECT THE SYSTEM</text>
+        </svg>
+        <p class="figure-caption"><span>Forensic model 01</span><span>Signal → System → Revenue</span></p>
+      </div>
+    </section>
+
+    <section class="proof-section" id="proof" aria-labelledby="proof-title">
+      <header class="section-intro reveal">
+        <p>Selected evidence</p>
+        <h2 id="proof-title">Claims are cheap.<br>Commercial movement is not.</h2>
+      </header>
+
+      <div class="proof-ledger">
+        <article class="proof-row reveal">
+          <div class="proof-index">Etlaala</div>
+          <div class="proof-result"><strong>+1M</strong><span>SAR net profit</span></div>
+          <div class="proof-detail">
+            <p>Moved a travel operation from a monthly deficit into a profitable acquisition system.</p>
+            <p class="proof-meta">12 months · +1400% recovery</p>
+          </div>
+        </article>
+        <article class="proof-row reveal">
+          <div class="proof-index">Aqarverse</div>
+          <div class="proof-result"><strong>4.57</strong><span>AED per lead</span></div>
+          <div class="proof-detail">
+            <p>Built a sharper PropTech acquisition narrative around verified inventory, trust, and measurable return.</p>
+            <p class="proof-meta">503K reach · 201 leads</p>
+          </div>
+        </article>
+        <article class="proof-row reveal">
+          <div class="proof-index">Grow Edge</div>
+          <div class="proof-result"><strong>690K</strong><span>campaign reach</span></div>
+          <div class="proof-detail">
+            <p>Repositioned career training as professional sovereignty for ambitious MENA operators.</p>
+            <p class="proof-meta">Education · authority system</p>
+          </div>
+        </article>
+      </div>
+      <p class="proof-note">Figures reflect verified internal operating records. Context matters; outcomes are not presented as universal guarantees.</p>
+    </section>
+
+    <section class="thesis" aria-labelledby="thesis-title">
+      <div class="thesis-stamp" aria-hidden="true">MO<br>GA</div>
+      <div>
+        <p class="section-label">The operating thesis</p>
+        <h2 id="thesis-title">Marketing creates activity.<br><span>Architecture creates leverage.</span></h2>
+        <p>Campaigns decay. Systems learn. The work is to connect market signal, positioning, acquisition, and follow-through so revenue does not depend on heroic human effort.</p>
+      </div>
+    </section>
+
+    <section class="method-section" id="method" aria-labelledby="method-title">
+      <header class="section-intro reveal">
+        <p>How the work moves</p>
+        <h2 id="method-title">Diagnose first.<br>Then engineer.</h2>
+      </header>
+      <div class="method-flow">
+        <article class="method-step reveal">
+          <span>01</span>
+          <h3>Find the leak</h3>
+          <p>Audit the revenue path, message, media, data, and follow-through. Separate symptoms from the structural constraint.</p>
+        </article>
+        <article class="method-step reveal">
+          <span>02</span>
+          <h3>Design the system</h3>
+          <p>Set the commercial thesis, decision logic, acquisition architecture, and human checkpoints around one measurable outcome.</p>
+        </article>
+        <article class="method-step reveal">
+          <span>03</span>
+          <h3>Install leverage</h3>
+          <p>Build the workflows, agents, content nodes, and reporting layers that keep the system operating after the meeting ends.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="fit-section" id="fit" aria-labelledby="fit-title">
+      <div class="fit-copy reveal">
+        <p class="section-label">Good fit / wrong fit</p>
+        <h2 id="fit-title">This is not outsourced posting.</h2>
+        <p>It is senior growth architecture for a business with real demand, operational complexity, and a costly commercial constraint.</p>
+      </div>
+      <div class="fit-columns">
+        <div class="fit-list good reveal">
+          <h3>We should talk if</h3>
+          <ul>
+            <li>Growth activity is high, but revenue logic is fragmented.</li>
+            <li>Your MENA expansion needs regional precision, not translated templates.</li>
+            <li>You want infrastructure your team can operate—not dependency on an agency.</li>
+          </ul>
         </div>
+        <div class="fit-list wrong reveal">
+          <h3>Not the right fit if</h3>
+          <ul>
+            <li>You need a low-cost social posting package.</li>
+            <li>You want guaranteed outcomes without access to operating data.</li>
+            <li>You are looking for tactics before diagnosis.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="call-section" id="strategy-call" aria-labelledby="call-title">
+      <div class="call-number" aria-hidden="true">30</div>
+      <div class="call-copy">
+        <p>Strategy call · 30 minutes</p>
+        <h2 id="call-title">Bring the constraint.<br>Leave with the diagnosis.</h2>
+        <p>Send the current growth problem, the market, and the commercial target. If the fit is real, we will define the next move.</p>
+        <div class="call-actions">
+          <a class="button button-signal" href="mailto:mo.omar477@gmail.com?subject=Strategy%20Call%20Request%20%E2%80%94%20Growth%20Architecture&body=Company%3A%0AMarket%3A%0AThe%20commercial%20constraint%3A%0ATarget%20outcome%3A">Request a strategy call <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="mailto:mo.omar477@gmail.com">mo.omar477@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Mohamed Omar</strong>
+      <span>The Growth Architect</span>
     </div>
+    <div class="footer-links">
+      <a href="https://github.com/mohamedOmar11111" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/mohamed-omar-growth" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="llms.txt">llms.txt</a>
+    </div>
+    <p>© 2026 · Cairo / MENA</p>
+  </footer>
 
-    <!-- FOOTER -->
-    <footer id="connect" class="py-60 px-8 relative overflow-hidden bg-[#030305] border-t border-brand-red/10">
-        <div class="container-premium flex flex-col gap-40 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-32 items-start">
-                <div class="text-left-ar lg:col-span-8">
-                    <h2 class="text-9xl md:text-[18rem] font-black italic tracking-tighter uppercase leading-[0.6] text-white mb-16 gradient-text">OMAR.</h2>
-                    <p class="text-zinc-600 font-bold uppercase tracking-[0.6em] text-[10px] md:text-xs">
-                        Growth Architect // Principal Systems Designer
-                    </p>
-                </div>
-                <div class="text-left-ar space-y-20 lg:pt-24 lg:col-span-4">
-                    <div class="flex flex-col gap-12">
-                        <div class="text-white font-black text-4xl tracking-tighter">Cairo // Global</div>
-                        <div class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.5em] text-zinc-500">
-                            <a href="mailto:mo.omar477@gmail.com" class="hover:text-white transition-colors">Email</a>
-                            <a href="https://linkedin.com/in/the-growth-architect/" class="hover:text-white transition-colors" target="_blank" rel="noopener">LinkedIn</a>
-                            <a href="https://github.com/mohamedomar11111" class="hover:text-white transition-colors" target="_blank" rel="noopener">GitHub</a>
-                        </div>
-                        <div class="tag-mono opacity-30 leading-loose">
-                            Sovereign Protocol // NODE_v15.2 // 2026<br>
-                            Engineered for Absolute Competitive Advantage
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <script>
+    const header = document.querySelector('[data-header]');
+    const reveals = document.querySelectorAll('.reveal');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        const isMobileDevice = window.matchMedia('(pointer: coarse)').matches;
-        
-        // --- SCREEN COORDINATES MOUSE INTERPOLATOR (Cursor Ring) ---
-        const mousePointerRing = document.getElementById('cursor-ring');
-        
-        if (!isMobileDevice && mousePointerRing) {
-            document.addEventListener('mousemove', (e) => {
-                gsap.to(mousePointerRing, {
-                    x: e.clientX,
-                    y: e.clientY,
-                    duration: 0.1,
-                    ease: "power2.out"
-                });
-            });
-
-            // Expand cursor size on interactive buttons/anchors
-            const clickables = document.querySelectorAll('a, button, select, input, [role="button"]');
-            clickables.forEach(item => {
-                item.addEventListener('mouseenter', () => mousePointerRing.classList.add('active'));
-                item.addEventListener('mouseleave', () => mousePointerRing.classList.remove('active'));
-            });
-        } else {
-            if (mousePointerRing) mousePointerRing.style.display = 'none';
-        }
-
-        // --- WEB AUDIO API ATMOSPHERIC BIOMETRIC SYNTHESIZER ---
-        let internalAudioContext = null;
-        let ambientSynthesizerGain = null;
-        let heartBeatTimerId = null;
-        let lowestAtmosphericDroneOsc = null;
-        let isSystemAudioEngaged = false;
-
-        function assembleSystemAudioSynthesizer() {
-            try {
-                internalAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-                ambientSynthesizerGain = internalAudioContext.createGain();
-                ambientSynthesizerGain.gain.setValueAtTime(0, internalAudioContext.currentTime);
-                ambientSynthesizerGain.connect(internalAudioContext.destination);
-
-                // Setup 55Hz Low Sub Bass Atmospheric Drone
-                lowestAtmosphericDroneOsc = internalAudioContext.createOscillator();
-                lowestAtmosphericDroneOsc.type = 'sine';
-                lowestAtmosphericDroneOsc.frequency.setValueAtTime(55, internalAudioContext.currentTime); // Low A hum
-                
-                let subSynthesizerGain = internalAudioContext.createGain();
-                subSynthesizerGain.gain.setValueAtTime(0.08, internalAudioContext.currentTime);
-                lowestAtmosphericDroneOsc.connect(subSynthesizerGain);
-                subSynthesizerGain.connect(ambientSynthesizerGain);
-                lowestAtmosphericDroneOsc.start();
-
-                // Heartbeat pulse simulation timer loop
-                heartBeatTimerId = setInterval(() => {
-                    if (isSystemAudioEngaged && internalAudioContext && internalAudioContext.state === 'running') {
-                        triggerBiometricPulse(75, 0.05, 0.15); // Low-mid frequency synthetic kick pulse
-                    }
-                }, 850); // Steady resting pulse rate
-
-            } catch (err) {
-                console.error("Native Web Audio interfaces not fully compliant in sandbox browser.", err);
-            }
-        }
-
-        function triggerBiometricPulse(frequency, duration, volume) {
-            if (!internalAudioContext) return;
-            let soundOscillatorInstance = internalAudioContext.createOscillator();
-            let soundGainInstance = internalAudioContext.createGain();
-            
-            soundOscillatorInstance.connect(soundGainInstance);
-            soundGainInstance.connect(ambientSynthesizerGain);
-            
-            soundOscillatorInstance.type = 'triangle';
-            soundOscillatorInstance.frequency.setValueAtTime(frequency, internalAudioContext.currentTime);
-            soundOscillatorInstance.frequency.exponentialRampToValueAtTime(0.01, internalAudioContext.currentTime + duration);
-            
-            soundGainInstance.gain.setValueAtTime(volume, internalAudioContext.currentTime);
-            soundGainInstance.gain.linearRampToValueAtTime(0, internalAudioContext.currentTime + duration);
-            
-            soundOscillatorInstance.start();
-            soundOscillatorInstance.stop(internalAudioContext.currentTime + duration);
-        }
-
-        function toggleAtmosphericAudio() {
-            const visualizerNode = document.getElementById('header-audio-visualizer');
-            
-            if (!internalAudioContext) {
-                assembleSystemAudioSynthesizer();
-            }
-
-            if (!isSystemAudioEngaged) {
-                if (internalAudioContext.state === 'suspended') {
-                    internalAudioContext.resume();
-                }
-                ambientSynthesizerGain.gain.linearRampToValueAtTime(0.7, internalAudioContext.currentTime + 1.2);
-                visualizerNode.classList.add('active');
-                isSystemAudioEngaged = true;
-            } else {
-                ambientSynthesizerGain.gain.linearRampToValueAtTime(0, internalAudioContext.currentTime + 0.6);
-                visualizerNode.classList.remove('active');
-                isSystemAudioEngaged = false;
-            }
-        }
-
-        // --- ENTRANCE TRANSITION SEQUENCING ---
-        gsap.to(".hero-reveal", {
-            opacity: 1, 
-            y: 0, 
-            duration: 1.2, 
-            stagger: 0.15, 
-            ease: "cubic-bezier(0.16, 1, 0.3, 1)", 
-            delay: 0.3
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      document.documentElement.classList.add('has-motion');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
         });
+      }, { threshold: 0.14 });
+      reveals.forEach((element) => observer.observe(element));
+    }
 
-        // --- UNIVERSAL STACK CARDS SCROLL PINNING TRIGGER ---
-        let currentStackTriggers = [];
-
-        function initStack() {
-            // Kill existing triggers before rebuilding
-            currentStackTriggers.forEach(trigger => trigger.kill());
-            currentStackTriggers = [];
-
-            const stackCards = gsap.utils.toArray(".stack-card");
-            
-            // Filter visible ones
-            const visibleCards = stackCards.filter(card => card.style.display !== 'none');
-
-            visibleCards.forEach((card, i) => {
-                if (i === visibleCards.length - 1) return;
-
-                const pinTrigger = ScrollTrigger.create({
-                    trigger: card,
-                    start: "top top",
-                    pin: true,
-                    pinSpacing: false,
-                    endTrigger: visibleCards[visibleCards.length - 1],
-                    end: "top top"
-                });
-                currentStackTriggers.push(pinTrigger);
-
-                const tween = gsap.to(card, {
-                    scale: isMobileDevice ? 0.98 : 0.95,
-                    opacity: 0.3,
-                    filter: isMobileDevice ? "blur(4px)" : "blur(10px)",
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: visibleCards[i + 1],
-                        start: "top bottom",
-                        end: "top top",
-                        scrub: true
-                    }
-                });
-                currentStackTriggers.push(tween.scrollTrigger);
-            });
-        }
-
-        // --- PORTRAIT PARALLAX DRIFT & SCROLL DRIVEN COLOR SHIFTS ---
-        window.addEventListener('scroll', () => {
-            const accumulatedScrollY = window.scrollY || document.documentElement.scrollTop;
-            
-            const portraitImg = document.getElementById('hero-img');
-            if (portraitImg && !isMobileDevice) {
-                portraitImg.style.transform = `translateY(${accumulatedScrollY * 0.08}px)`;
-            }
-
-            // Global color shifts on critical sections (to bloody crimson-noir on Waitlist section)
-            const waitlistSection = document.getElementById('waitlist-section');
-            if (waitlistSection) {
-                const waitlistTopBoundary = waitlistSection.offsetTop;
-                const currentGlobalScroll = window.scrollY + window.innerHeight;
-                
-                if (currentGlobalScroll >= waitlistTopBoundary) {
-                    document.body.style.backgroundColor = '#110204'; 
-                } else {
-                    document.body.style.backgroundColor = '#030305'; 
-                }
-            }
-
-            // Sticky Bottom command HUD reveal
-            const stickyCommandHud = document.getElementById('sticky-hud-action-bar');
-            if (accumulatedScrollY > 700) {
-                stickyCommandHud.classList.remove('translate-y-full');
-            } else {
-                stickyCommandHud.classList.add('translate-y-full');
-            }
-        });
-
-        // --- HERO STRATEGIC DIRECTIVE CAROUSEL DATA & LOGIC ---
-        const strategicDirectivesDatabase = [
-            {
-                tag: "DIRECTIVE_01 // GTM_ENGINE_WARFARE",
-                title_en: "ALGORITHMIC GTM DEPLOYMENT",
-                title_ar: "نشر أنظمة تسويق خوارزمية GTM",
-                desc_en: "Weaponizing structured performance frameworks to strip regional customer acquisition latency by 45%. Removing hope from financial scaling.",
-                desc_ar: "تطوير واستغلال أطر الأداء المنظمة لتقليص زمن الاستجابة في الاستحواذ بنسبة ٤٥٪. استبعاد 'الأمل والصدف' من عمليات النمو المالي."
-            },
-            {
-                tag: "DIRECTIVE_02 // SYSTEM_SWARM_AUDITING",
-                title_en: "MULTI-AGENT HARVEST CHANNELS",
-                title_ar: "تشغيل قنوات وكلاء الاستحواذ المستقلة",
-                desc_en: "Deploying deep web structural scrapers and conversational reasoning nodes to map competitive metrics in real-time across the GCC.",
-                desc_ar: "تشغيل ماسحات برمجية وهياكل تفكير ذكية لمراقبة المنافسين وتحليل بيانات السوق الخليجي فوريًا وبشكل مستقل."
-            },
-            {
-                tag: "DIRECTIVE_03 // ARBITRAGE_SCALING",
-                title_en: "BAYESIAN MEDIA BUDGETING",
-                title_ar: "النمذجة الرياضية البيزية للميزانيات",
-                desc_en: "Bypassing standard ad-agency creative fatigue. Direct mathematical allocation prioritizing verified net revenue capture loops over high ad CTRs.",
-                desc_ar: "تجاوز إرهاق الوكالات الإبداعية التقليدي. توجيه الميزانيات رياضيًا نحو العائد الصافي الحقيقي للعمليات."
-            }
-        ];
-
-        let activeDirectiveIndex = 0;
-
-        function renderActiveDirective() {
-            const currentLang = document.body.getAttribute('data-current-lang') || 'en';
-            const directive = strategicDirectivesDatabase[activeDirectiveIndex];
-            const container = document.getElementById('directive-carousel-display');
-            const counter = document.getElementById('directive-counter');
-            
-            counter.innerText = `0${activeDirectiveIndex + 1} / 0${strategicDirectivesDatabase.length}`;
-            
-            container.innerHTML = `
-                <div class="transition-opacity duration-300">
-                    <span class="font-mono text-[9px] text-brand-red tracking-wider block mb-2">${directive.tag}</span>
-                    <h4 class="text-white font-black uppercase tracking-tight text-lg mb-2">
-                        ${currentLang === 'ar' ? directive.title_ar : directive.title_en}
-                    </h4>
-                    <p class="text-zinc-400 text-xs leading-relaxed">
-                        ${currentLang === 'ar' ? directive.desc_ar : directive.desc_en}
-                    </p>
-                </div>
-            `;
-        }
-
-        function cycleDirective(direction) {
-            activeDirectiveIndex = (activeDirectiveIndex + direction + strategicDirectivesDatabase.length) % strategicDirectivesDatabase.length;
-            renderActiveDirective();
-        }
-
-        // --- SOVEREIGN OPERATIONS LEDGER FILTER ENGINE ---
-        function filterLedger(category, activeBtn) {
-            const shufflerGrid = document.getElementById('ledger-shuffler');
-            const filterButtons = document.querySelectorAll('.ledger-filter-btn');
-            
-            filterButtons.forEach(btn => {
-                btn.className = "ledger-filter-btn border border-white/5 px-4 py-2 hover:border-white transition-all text-zinc-400";
-            });
-            activeBtn.className = "ledger-filter-btn active border border-brand-red/20 px-4 py-2 hover:border-brand-red transition-all bg-white text-black";
-
-            shufflerGrid.classList.add('shuffling');
-
-            setTimeout(() => {
-                const ledgerItems = shufflerGrid.querySelectorAll('.strike-item');
-                
-                ledgerItems.forEach(card => {
-                    const cardCategoriesString = card.getAttribute('data-category');
-                    if (category === 'all' || cardCategoriesString.includes(category)) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                // Smoothly fade grid nodes back in and refresh GSAP pinning positions
-                shufflerGrid.classList.remove('shuffling');
-                initStack();
-                ScrollTrigger.refresh();
-            }, 300);
-        }
-
-        // --- DYNAMIC REVENUE CALIBRATOR MATRIX DATA & LOGIC ---
-        const scalingPhaseDataset = {
-            1: {
-                title_en: "STAGE 1 // FOUNDATION SEEDING",
-                title_ar: "المرحلة الأولى // تأسيس البداية والتمكين",
-                elements: [
-                    { name_en: "BOTTLENECK CHALLENGE", name_ar: "نقطة الاحتكاك الكبرى", value_en: "Manual operational workflows and broken pixel tracking matrices in local ad structures.", value_ar: "مسارات العمل التشغيلية اليدوية وتلف تتبع البكسل المباشر للإعلانات." },
-                    { name_en: "CORE ENGINE DIRECTIVE", name_ar: "توجيه المحرك الأساسي", value_en: "Establish baseline semantic search visibility graphs and clean event structures.", value_ar: "تأسيس تتبع الأحداث الخوارزمي الموثق والظهور الدلالي للعلامة." },
-                    { name_en: "RECOMMENDED TECH STACK", name_ar: "البنية البرمجية المقترحة", value_en: "Exa, custom API Webhooks, Google Cloud Compute nodes.", value_ar: "أنظمة Exa، نقاط اتصال API المخصصة، نودز الحوسبة السحابية لغوغل." },
-                    { name_en: "TARGET ARBITRAGE RATIO", name_ar: "معدل العائد المستهدف", value_en: "Aim for stable 3.5x - 5.0x GTM Media yield efficiency benchmarks.", value_ar: "استهداف كفاءة عائد مالي يتراوح بين ٣.٥ إلى ٥ أضعاف الميزانية." }
-                ]
-            },
-            2: {
-                title_en: "STAGE 2 // ENHANCED DOMINANCE",
-                title_ar: "المرحلة الثانية // تعزيز السيطرة والانتشار",
-                elements: [
-                    { name_en: "BOTTLENECK CHALLENGE", name_ar: "نقطة الاحتكاك الكبرى", value_en: "Ad creative fatigue rates and manual audience re-allocation delays in GTM teams.", value_ar: "معدلات تآكل إبداع الحملات وتأخر إعادة توجيه الجمهور يدويًا بالفريق." },
-                    { name_en: "CORE ENGINE DIRECTIVE", name_ar: "توجيه المحرك الأساسي", value_en: "Deploy autonomous budget arbitraging layers and algorithmic asset optimization flows.", value_ar: "تشغيل مسارات موازنة الإعلانات المؤتمتة ذاتياً وخوارزميات تحسين الأصول." },
-                    { name_en: "RECOMMENDED TECH STACK", name_ar: "البنية البرمجية المقترحة", value_en: "Onyx Hive Multi-Agent system, Firecrawl, custom LangGraph nodes.", value_ar: "سرب أونيكس للوكلاء المستقلين، أدوات مسح Firecrawl، هياكل LangGraph." },
-                    { name_en: "TARGET ARBITRAGE RATIO", name_ar: "معدل العائد المستهدف", value_en: "Certified net-revenue scalability targeting 6.0x - 8.5x compound returns.", value_ar: "استهداف نمو حقيقي وصافٍ للإيرادات بمعدل ٦ إلى ٨.٥ ضعف." }
-                ]
-            },
-            3: {
-                title_en: "STAGE 3 // MASTER ARCHITECT SYSTEMS",
-                title_ar: "المرحلة الثالثة // الأنظمة الشاملة والسيادية",
-                elements: [
-                    { name_en: "BOTTLENECK CHALLENGE", name_ar: "نقطة الاحتكاك الكبرى", value_en: "Enterprise reporting alignment gaps and high attribution noise levels.", value_ar: "فجوات توافق البيانات المالية للمؤسسة وضوضاء تتبع مسار العميل النهائي." },
-                    { name_en: "CORE ENGINE DIRECTIVE", name_ar: "توجيه المحرك الأساسي", value_en: "Unified custom GTM dashboards with integrated Bayesian predictive marketing projections.", value_ar: "بناء لوحات بيانات GTM الموحدة ودمج التنبؤ بالنمذجة البيزية للطلب." },
-                    { name_en: "RECOMMENDED TECH STACK", name_ar: "البنية البرمجية المقترحة", value_en: "Proprietary Onyx OS dashboard layers, secure enterprise database pipelines.", value_ar: "لوحات نظام تشغيل أونيكس الحصرية، مسارات البيانات فائقة الأمان." },
-                    { name_en: "TARGET ARBITRAGE RATIO", name_ar: "معدل العائد المستهدف", value_en: "Absolute margin optimization and guaranteed sovereign market positioning.", value_ar: "التحسين المطلق للهامش الربحي وتأمين سيادة صلبة داخل السوق." }
-                ]
-            }
-        };
-
-        const calibratorSlider = document.getElementById('scale-range-slider');
-        const calibratorOutputMatrix = document.getElementById('scale-output-matrix');
-        const calibratorPhaseIndicator = document.getElementById('scale-phase-indicator');
-        
-        const scaleLabel1 = document.getElementById('scale-lbl-1');
-        const scaleLabel2 = document.getElementById('scale-lbl-2');
-        const scaleLabel3 = document.getElementById('scale-lbl-3');
-
-        function updateCalibratorDisplay(stageKey) {
-            const currentLang = document.body.getAttribute('data-current-lang') || 'en';
-            calibratorOutputMatrix.style.opacity = '0';
-            calibratorOutputMatrix.style.transform = 'translateY(10px)';
-            
-            const phaseDataset = scalingPhaseDataset[stageKey];
-            calibratorPhaseIndicator.innerText = currentLang === 'ar' ? phaseDataset.title_ar : phaseDataset.title_en;
-
-            // Highlight corresponding labels on active stage value
-            scaleLabel1.className = "transition-all duration-300 " + (stageKey == 1 ? "text-brand-red font-black" : "text-zinc-500 font-bold");
-            scaleLabel2.className = "transition-all duration-300 " + (stageKey == 2 ? "text-brand-red font-black" : "text-zinc-500 font-bold");
-            scaleLabel3.className = "transition-all duration-300 " + (stageKey == 3 ? "text-brand-red font-black" : "text-zinc-500 font-bold");
-
-            setTimeout(() => {
-                let dynamicGridHTML = '';
-                phaseDataset.elements.forEach(el => {
-                    dynamicGridHTML += `
-                        <div class="border border-white/5 p-6 bg-zinc-950/80 hover:border-brand-red/20 transition-all duration-300 rounded-lg text-left-ar">
-                            <h4 class="font-display font-black text-sm uppercase tracking-wider text-white mb-2 flex items-center gap-2">
-                                <span class="w-1.5 h-3.5 bg-brand-red inline-block rounded-sm"></span>
-                                ${currentLang === 'ar' ? el.name_ar : el.name_en}
-                            </h4>
-                            <p class="font-mono text-zinc-400 text-xs leading-relaxed font-light">${currentLang === 'ar' ? el.value_ar : el.value_en}</p>
-                        </div>
-                    `;
-                });
-                calibratorOutputMatrix.innerHTML = dynamicGridHTML;
-                calibratorOutputMatrix.style.opacity = '1';
-                calibratorOutputMatrix.style.transform = 'translateY(0)';
-            }, 300);
-        }
-
-        calibratorSlider.addEventListener('input', (e) => {
-            updateCalibratorDisplay(e.target.value);
-        });
-
-        // --- GROWTH ARCHITECT OS SYSTEM TERMINAL LOGIC ---
-        const growTerminalAvailableCommands = {
-            en: {
-                help: `Available commands:<br>
-- <span class="text-brand-red font-bold">manifesto</span>: Outputs the Growth Architect Core Thesis.<br>
-- <span class="text-brand-red font-bold">evidence</span>: Displays audited client proof points.<br>
-- <span class="text-brand-red font-bold">swarm</span>: Displays Onyx Hive operational status.<br>
-- <span class="text-brand-red font-bold">clear</span>: Wipes the terminal buffer.<br>
-- <span class="text-brand-red font-bold">contact</span>: Outputs secure contact vectors.`,
-                manifesto: `<strong>CORE THESIS:</strong><br>
-"Marketing is noise. Architecture is the signal."<br>
-Enterprise scaling in the Gulf region is bottlenecked by manual marketing toil. 
-I engineer **installed revenue systems** that bypass ad agency fatigue. f(Growth) = ∫(Plan + Apply + Unify) dt.`,
-                evidence: `<strong>AUDITED PROOF POINTS:</strong><br>
-1. **Etlaala**: Recovered **+1M SAR** in net profit within 12 months using Bayesian media modeling. Peak campaign CTR hit 14.3%.<br>
-2. **Aqarverse**: Engineered the autonomous scrapers/LLM layer to build off-market real estate inventory without human aggregators.<br>
-3. **Wlmma**: Built Riyadh predictive arbitrage models capturing high-ticket hospitality booking volume.`,
-                swarm: `<strong>ONYX HIVE ORCHESTRATION:</strong><br>
-- Active Agents: 36 autonomous nodes<br>
-- Sensory Layer: Exa Search API, Firecrawl web-scrapers, GCC ad trend detectors.<br>
-- Cognitive Layer: Context engineer core logic, strategic audit cascades.<br>
-- Status: OPERATIONAL | LOW-BURN MODE (20% threshold rate-limit enforced)`,
-                contact: `<strong>SECURE PROTOCOLS:</strong><br>
-- Waitlist: Navigate to section <a href="#waitlist-section" class="text-brand-red underline">#waitlist-section</a> to apply.<br>
-- Direct Line: mo.omar477@gmail.com<br>
-- LinkedIn: linkedin.com/in/the-growth-architect`
-            },
-            ar: {
-                help: `الأوامر المتاحة:<br>
-- <span class="text-brand-red font-bold">manifesto</span>: يعرض البيان الأساسي لمهندس النمو.<br>
-- <span class="text-brand-red font-bold">evidence</span>: يعرض أدلة الأداء والنتائج الموثقة.<br>
-- <span class="text-brand-red font-bold">swarm</span>: يعرض حالة تشغيل سرب "أونيكس هيف".<br>
-- <span class="text-brand-red font-bold">clear</span>: يمسح شاشة المنصة.<br>
-- <span class="text-brand-red font-bold">contact</span>: يعرض قنوات الاتصال الآمنة.`,
-                manifesto: `<strong>البيان الأساسي:</strong><br>
-"التسويق ضوضاء. الهندسة هي الإشارة الحقيقية."<br>
-النمو في الخليج مقيد بالعمل اليدوي في التسويق. أنا أصمم **أنظمة إيرادات حتمية** لتجاوز إجهاد الوكالات التقليدية. f(النمو) = ∫(التخطيط + التطبيق + التوحيد) dt.`,
-                evidence: `<strong>أدلة الأداء والنتائج الموثقة:</strong><br>
-١. **إتلاالة**: استعادة **أكثر من مليون ريال سعودي** كأرباح صافية خلال ١٢ شهر باستخدام النمذجة البيزية للإعلام.<br>
-٢. **عقار فيرس**: بناء طبقة سحب البيانات والذكاء الاصطناعي الذاتية لتوفير العقارات خارج السوق بدون وسطاء.<br>
-٣. **ولَمّا**: بناء نموذج المراجحة التنبؤية للطلب السياحي الفاخر بالرياض.`,
-                swarm: `<strong>تشغيل سرب أونيكس (ONYX HIVE):</strong><br>
-- الوكلاء النشطين: ٣٦ نود مستقل.<br>
-- طبقة الاستشعار: أدوات Exa و Firecrawl ومراقبة اتجاهات الإعلانات.<br>
-- الطبقة الإدراكية: هندسة السياق ومطابقة الهوية الاستراتيجية.<br>
-- الحالة: قيد العمل بالطاقة الآمنة (معدل استهلاك ٢٠٪).`,
-                contact: `<strong>قنوات الاتصال الآمنة:</strong><br>
-- قائمة الانتظار: توجه للقسم <a href="#waitlist-section" class="text-brand-red underline">#waitlist-section</a> للتقديم.<br>
-- البريد المباشر: mo.omar477@gmail.com<br>
-- لينكد إن: linkedin.com/in/the-growth-architect`
-            }
-        };
-
-        const terminalInputFieldNode = document.getElementById('terminal-input-field');
-        const typedCommandDisplayNode = document.getElementById('typed-display');
-        const terminalOutputLogsNode = document.getElementById('terminal-logs');
-        const inputLineWrapperNode = document.getElementById('terminal-input-line');
-        const interactiveTerminalWindow = document.getElementById('terminal-window-element');
-
-        interactiveTerminalWindow.addEventListener('click', () => {
-            terminalInputFieldNode.focus();
-        });
-
-        terminalInputFieldNode.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const commandTextClean = terminalInputFieldNode.value.trim().toLowerCase();
-                terminalInputFieldNode.value = '';
-                typedCommandDisplayNode.textContent = '';
-                
-                const historicCommandLineElement = document.createElement('div');
-                historicCommandLineElement.className = 'terminal-line';
-                historicCommandLineElement.innerHTML = `<span class="terminal-prompt">guest@ga-terminal:~$</span> ${commandTextClean}`;
-                terminalOutputLogsNode.insertBefore(historicCommandLineElement, inputLineWrapperNode);
-
-                const currentLanguageSelector = document.body.getAttribute('data-current-lang') || 'en';
-                const localizedCommandsSet = growTerminalAvailableCommands[currentLanguageSelector];
-
-                if (commandTextClean === 'clear') {
-                    const clearTargetLines = Array.from(terminalOutputLogsNode.querySelectorAll('.terminal-line:not(#terminal-input-line)'));
-                    clearTargetLines.forEach(line => line.remove());
-                    
-                    const systemBootClearedNoticeElement = document.createElement('div');
-                    systemBootClearedNoticeElement.className = 'terminal-line text-zinc-400';
-                    systemBootClearedNoticeElement.innerHTML = currentLanguageSelector === 'ar' ? 'نظام تشغيل مهندس النمو (تم مسح الذاكرة)<br>' : 'Growth Architect OS v15.2.0-stable (Buffer Cleared)<br>';
-                    terminalOutputLogsNode.insertBefore(systemBootClearedNoticeElement, inputLineWrapperNode);
-                } else if (localizedCommandsSet[commandTextClean]) {
-                    const outputResponseLineElement = document.createElement('div');
-                    outputResponseLineElement.className = 'terminal-line text-zinc-300';
-                    outputResponseLineElement.innerHTML = localizedCommandsSet[commandTextClean];
-                    terminalOutputLogsNode.insertBefore(outputResponseLineElement, inputLineWrapperNode);
-                } else if (commandTextClean !== '') {
-                    const errorNoticeLineElement = document.createElement('div');
-                    errorNoticeLineElement.className = 'terminal-line text-brand-red';
-                    errorNoticeLineElement.innerHTML = currentLanguageSelector === 'ar' ? `الأمر غير معروف: '${commandTextClean}'. اكتب <span class="text-brand-red">help</span> للأوامر المتاحة.` : `Command not recognized: '${commandTextClean}'. Type <span class="text-brand-red">help</span> for commands.`;
-                    terminalOutputLogsNode.insertBefore(errorNoticeLineElement, inputLineWrapperNode);
-                }
-
-                terminalOutputLogsNode.scrollTop = terminalOutputLogsNode.scrollHeight;
-            }
-        });
-
-        terminalInputFieldNode.addEventListener('input', () => {
-            typedCommandDisplayNode.textContent = terminalInputFieldNode.value;
-        });
-
-        // --- THE ONYX HIVE SWARM INTERACTIVE DATA TOOLTIP ENGINE ---
-        const swarmNodes = document.querySelectorAll('.node');
-        const swarmTooltipElement = document.getElementById('swarm-tooltip');
-
-        swarmNodes.forEach(node => {
-            node.addEventListener('mouseenter', function() {
-                const activeLanguageKey = document.body.getAttribute('data-current-lang') || 'en';
-                const layerClass = this.getAttribute('data-layer');
-                const informationalText = this.getAttribute(`data-info-${activeLanguageKey}`);
-                const layerLabelTranslated = activeLanguageKey === 'ar' ? (layerClass === 'Sensory' ? 'الاستشعار والالتقاط' : layerClass === 'Cognitive' ? 'الإدراك الاستراتيجي' : 'التنفيذ المباشر') : layerClass;
-                
-                swarmTooltipElement.innerHTML = `<strong class="text-brand-red">${layerLabelTranslated} Node:</strong> ${informationalText}`;
-                this.style.transform = 'translate(-50%, -50%) scale(1.4)';
-            });
-            node.addEventListener('mouseleave', function() {
-                const activeLanguageKey = document.body.getAttribute('data-current-lang') || 'en';
-                swarmTooltipElement.innerHTML = activeLanguageKey === 'ar' ? 'مرر الماوس فوق أي عقدة للاستعلام من سرب أونيكس.' : 'Hover over a node to query the Onyx Hive.';
-                this.style.transform = 'translate(-50%, -50%)';
-            });
-        });
-
-        // --- THE ONYX AXIS WAITING LIST SECURED REGISTRATION HANDLER ---
-        const waitingListFormElement = document.getElementById('axis-waitlist-form');
-        const waitlistStatusMessageOutput = document.getElementById('form-message');
-
-        waitingListFormElement.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const currentLanguage = document.body.getAttribute('data-current-lang') || 'en';
-            
-            waitlistStatusMessageOutput.textContent = currentLanguage === 'ar' ? 'جاري الاتصال بالنظام وبدء التحقق الجنائي...' : 'Connecting to Onyx OS pipeline...';
-            waitlistStatusMessageOutput.className = 'tag-mono text-center text-brand-red mt-4 animate-pulse';
-            
-            setTimeout(() => {
-                waitlistStatusMessageOutput.textContent = currentLanguage === 'ar' ? 'تم تأمين المصافحة الرقمية. بروتوكول حجز الترخيص نشط.' : 'Connection secured. Waitlist handshake successful.';
-                waitlistStatusMessageOutput.className = 'tag-mono text-center text-green-400 mt-4';
-                waitingListFormElement.reset();
-            }, 1600);
-        });
-
-        // --- DUAL-LANGUAGE PROTOCOL ENGINE TOGGLE ---
-        function toggleLanguage() {
-            const currentSelectedLanguage = document.body.getAttribute('data-current-lang');
-            const targetLanguage = currentSelectedLanguage === 'en' ? 'ar' : 'en';
-            
-            document.body.setAttribute('data-current-lang', targetLanguage);
-            document.documentElement.setAttribute('lang', targetLanguage);
-            document.documentElement.setAttribute('dir', targetLanguage === 'ar' ? 'rtl' : 'ltr');
-            
-            renderActiveDirective();
-            updateCalibratorDisplay(calibratorSlider.value);
-            
-            // Reset terminal context display placeholders dynamically
-            const errorCommandsText = targetLanguage === 'ar' ? 'نظام تشغيل مهندس النمو (تم مسح الذاكرة)<br>' : 'Growth Architect OS v15.2.0-stable (Buffer Cleared)<br>';
-            terminalOutputLogsNode.querySelector('.terminal-line').innerHTML = targetLanguage === 'ar' ? 'منصة استعلام نظام تشغيل مهندس النمو v15.2' : 'Growth Architect OS v15.2.0-stable';
-            
-            // Reinitialize ScrollTrigger pins dynamically to adjust dimensions mapping text heights
-            initStack();
-            ScrollTrigger.refresh();
-        }
-
-        // Boot-time configuration triggers
-        renderActiveDirective();
-        updateCalibratorDisplay(2);
-        initStack();
-    </script>
+    const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  </script>
 </body>
 </html>
