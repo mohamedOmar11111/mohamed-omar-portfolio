@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Mohamed Omar is The Growth Architect: revenue systems engineering for MENA and GCC businesses.">
   <meta name="author" content="Mohamed Omar">
-  <meta name="theme-color" content="#1237E0">
+  <meta name="theme-color" content="#4B28C8">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mohamedomar11111.github.io/mohamed-omar-portfolio/">
   <meta property="og:title" content="Mohamed Omar — The Growth Architect">
@@ -64,8 +64,8 @@
         <svg viewBox="0 0 720 720" role="img" aria-labelledby="map-title map-desc">
           <title id="map-title">Revenue architecture evidence map</title>
           <desc id="map-desc">A geometric diagram connecting market signals to a central architecture core and measurable revenue outcomes.</desc>
-          <rect width="720" height="720" fill="#1237E0"/>
-          <g fill="none" stroke="#F2F0E9" stroke-width="2" opacity=".75">
+          <rect width="720" height="720" fill="#4B28C8"/>
+          <g fill="none" stroke="#F4F7FF" stroke-width="2" opacity=".75">
             <path d="M82 130H310L360 205V360"/>
             <path d="M638 132H520L430 245V360"/>
             <path d="M96 590H275L360 510V360"/>
@@ -74,23 +74,23 @@
             <circle cx="360" cy="360" r="78"/>
             <path d="M228 360H492M360 228V492"/>
           </g>
-          <g fill="#F2F0E9" font-family="Public Sans, sans-serif" font-size="18" font-weight="700">
+          <g fill="#F4F7FF" font-family="Public Sans, sans-serif" font-size="18" font-weight="700">
             <text x="80" y="112">MARKET SIGNAL</text>
             <text x="500" y="112">POSITION</text>
             <text x="82" y="626">ACQUISITION</text>
             <text x="500" y="611">REVENUE</text>
           </g>
           <g transform="translate(360 360)">
-            <rect x="-48" y="-48" width="96" height="96" fill="#EF3E2F" transform="rotate(45)"/>
-            <circle r="16" fill="#101218"/>
+            <rect x="-48" y="-48" width="96" height="96" fill="#B8FF2C" transform="rotate(45)"/>
+            <circle r="16" fill="#0B1020"/>
           </g>
-          <g fill="#EF3E2F">
+          <g fill="#B8FF2C">
             <circle cx="82" cy="130" r="8"/>
             <circle cx="638" cy="132" r="8"/>
             <circle cx="96" cy="590" r="8"/>
             <circle cx="630" cy="575" r="8"/>
           </g>
-          <text x="360" y="680" text-anchor="middle" fill="#F2F0E9" font-family="Archivo Black, sans-serif" font-size="34">ARCHITECT THE SYSTEM</text>
+          <text x="360" y="680" text-anchor="middle" fill="#F4F7FF" font-family="Archivo Black, sans-serif" font-size="34">ARCHITECT THE SYSTEM</text>
         </svg>
         <p class="figure-caption"><span>Forensic model 01</span><span>Signal → System → Revenue</span></p>
       </div>
@@ -219,6 +219,10 @@
 
   <script>
     const header = document.querySelector('[data-header]');
+    const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+    const navSections = navLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
     const reveals = document.querySelectorAll('.reveal');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -238,6 +242,20 @@
     const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
     updateHeader();
     window.addEventListener('scroll', updateHeader, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach((link) => {
+            const isCurrent = link.getAttribute('href') === `#${entry.target.id}`;
+            if (isCurrent) link.setAttribute('aria-current', 'true');
+            else link.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+      navSections.forEach((section) => navObserver.observe(section));
+    }
   </script>
 </body>
 </html>

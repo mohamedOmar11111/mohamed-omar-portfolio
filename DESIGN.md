@@ -2,11 +2,11 @@
 name: Mohamed Omar — The Growth Architect
 description: A boardroom evidence dossier for revenue architecture.
 colors:
-  mineral-paper: "#F2F0E9"
-  sovereign-cobalt: "#1237E0"
-  evidence-red: "#EF3E2F"
-  ink: "#101218"
-  quiet-ink: "#4D515C"
+  cold-white: "#F4F7FF"
+  ultraviolet-core: "#4B28C8"
+  signal-lime: "#B8FF2C"
+  graphite: "#0B1020"
+  quiet-graphite: "#454C63"
   white: "#FFFFFF"
 typography:
   display:
@@ -31,13 +31,13 @@ spacing:
   xl: "96px"
 components:
   button-primary:
-    backgroundColor: "{colors.ink}"
+    backgroundColor: "{colors.graphite}"
     textColor: "{colors.white}"
     rounded: "{rounded.precise}"
     padding: "14px 20px"
   button-signal:
-    backgroundColor: "{colors.evidence-red}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.signal-lime}"
+    textColor: "{colors.graphite}"
     rounded: "{rounded.precise}"
     padding: "14px 20px"
 ---
@@ -48,12 +48,12 @@ components:
 
 **Creative North Star: "The Boardroom Evidence Dossier"**
 
-The portfolio feels like a decisive report opened five minutes before a commercial decision: bright enough for daylight, dense only where evidence demands it, and marked with controlled cobalt and red annotations. It rejects generic AI-tool landing pages, hacker-terminal cosplay, neon-on-black cyberpunk, decorative glassmorphism, and agency card grids.
+The portfolio feels like a decisive report opened five minutes before a commercial decision: bright enough for daylight, dense only where evidence demands it, and energized by ultraviolet fields and signal-lime interventions. It rejects generic AI-tool landing pages, hacker-terminal cosplay, neon-on-black cyberpunk, decorative glassmorphism, and agency card grids.
 
 **Key Characteristics:**
 
 - Large, compressed declarations balanced by calm body copy.
-- Cobalt fields establish ownership; red marks action and evidence.
+- Ultraviolet fields establish ownership; signal lime marks action and live state.
 - Rectilinear layouts, exposed rules, and asymmetric evidence blocks.
 - Motion is brief, directional, and never required to read the page.
 
@@ -62,17 +62,17 @@ The portfolio feels like a decisive report opened five minutes before a commerci
 The palette is committed, daylight-first, and high contrast.
 
 ### Primary
-- **Sovereign Cobalt:** Owns major fields and establishes authority.
+- **Ultraviolet Core:** Owns major fields and establishes futuristic authority.
 
 ### Secondary
-- **Evidence Red:** Reserved for proof marks, active states, and the strategy-call conversion.
+- **Signal Lime:** Reserved for active navigation, decisive marks, and strategy-call conversion.
 
 ### Neutral
-- **Mineral Paper:** The working surface; never cream or luxury beige.
-- **Ink:** Primary typography and structural lines.
-- **Quiet Ink:** Supporting copy where contrast remains AA compliant.
+- **Cold White:** The working surface; digitally crisp and free of warm paper tones.
+- **Graphite:** Primary typography and structural lines.
+- **Quiet Graphite:** Supporting copy where contrast remains AA compliant.
 
-**The Red Pen Rule.** Evidence Red appears only where a reviewer would mark a decisive fact or next action.
+**The Live Signal Rule.** Signal Lime appears only where the interface is active, decisive, or ready for the next action.
 
 ## 3. Typography
 
@@ -121,8 +121,8 @@ The system is flat by default. Depth comes from overlapping cobalt fields, hard 
 
 ### Do:
 - **Do** lead with verified commercial evidence.
-- **Do** use Sovereign Cobalt for large committed surfaces.
-- **Do** reserve Evidence Red for decisive facts and booking actions.
+- **Do** use Ultraviolet Core for large committed surfaces.
+- **Do** reserve Signal Lime for active states and booking actions.
 - **Do** preserve keyboard access, focus visibility, and reduced-motion behavior.
 
 ### Don't:
