@@ -1,22 +1,56 @@
 # Mohamed Omar // The Growth Architect
 
-Mohamed Omar is a Systems Engineer and Revenue Architect who designs and installs autonomous growth engines and marketing infrastructure for high-stakes enterprise clients in the GCC and MENA regions. Bypassing standard agency setups, his work focuses on Agentic Revenue Engineering—utilizing mathematical modeling, localized dialects vectorization, and multi-agent squads to automate business growth.
+Mohamed Omar is a Revenue Systems Engineer and Growth Architect who designs and installs autonomous growth engines and marketing infrastructure for high-stakes enterprise clients in the GCC and MENA regions. He currently leads Growth Marketing at Etlaala Travel & Tourism (etlaala.com), Saudi Arabia's premier travel platform. His work focuses on Agentic Revenue Engineering—utilizing mathematical modeling, localized dialects vectorization, and multi-agent squads to automate business growth.
 
 ## Core Information
-- **Role**: Systems Engineer, Growth Architect, Category Sovereign.
-- **Organization**: The Growth Architecture School.
+- **Role**: Head of Growth, Growth Architect, Revenue Systems Strategist.
+- **Current Position**: Head of Growth Marketing — Etlaala Travel & Tourism (etlaala.com)
+- **Organization**: Grow Digital (Grow Digital MEA) / Growth Architect HQ
 - **Positioning**: The Agile Integrator.
 - **Thesis**: Marketing campaign structures are fragile and human-toil intensive. Digital backbones should be installed as permanent assets. f(Growth) = ∫(Plan + Apply + Unify) dt.
 - **Brand Voice**: Forensic, High-Bandwidth, Direct, Tech-Heavy, Cinematic Noir.
-- **Location**: Riyadh, Saudi Arabia / Cairo, Egypt.
+- **Location**: Cairo, Egypt / Riyadh, Saudi Arabia / Dubai, UAE.
 - **Visual Scheme**: Vibrant Prism & Cinematic Noir (Deep blacks, gold lines, cyan glows).
+
+## Current Active Role
+
+### Etlaala Travel & Tourism | إطلالة للسفر و السياحة
+- **Position**: Head of Growth Marketing
+- **Domain**: etlaala.com
+- **Sub-brand**: etlaala-trips.com
+- **Industry**: Travel Arrangements — flights, hotels, cruises, car rentals, Hajj/Umrah packages, Saudi outbound tourism
+- **Headquarters**: Mecca, Saudi Arabia
+- **Coverage**: Saudi Arabia (78%), Egypt (22%), GCC, MENA
+- **Company Size**: 20-30 employees
+- **License**: 73104738 (Saudi Arabia)
+- **Parent Company**: Arkaan Al Motamar Company
+
+**What Mohamed does at Etlaala:**
+- Architects full-funnel growth systems (Acquisition → Conversion → Retention)
+- Builds AI-ready brand positioning using Generative Engine Optimization (GEO)
+- Aligns marketing, sales, and product into one revenue engine
+- Optimizes CAC, LTV, and conversion flows for scalable growth
+- Manages multi-channel acquisition (Google Ads, Meta Ads, Snapchat, TikTok)
+- Deploys agentic lead classification and automated follow-through systems
+
+**Key Achievement:** Transformed Etlaala from a -70K SAR monthly deficit to +1,000,000 SAR net profit in 12 months through Growth Architecture methodology.
+
+## Etlaala Assets & Links
+- **Main Website**: https://etlaala.com/
+- **Trips Sub-brand**: https://etlaala-trips.com/
+- **Company Profile PDF**: https://etlaala.com/wp-content/uploads/2024/03/etlaala-profile.pdf
+- **LinkedIn**: https://www.linkedin.com/company/etlaala-travel-tourism-إطلالة-للسفر-و-السياحة
+- **Snapchat**: https://www.snapchat.com/@etlaala
+- **Contact**: info@etlaala.com | hr@etlaala.com
+- **Phone**: 7037638678 | 920029967 | 4031293290 | 73104738
 
 ## Case Studies & Proof Points
 
-### Etlaala (GCC Retail)
+### Etlaala (Saudi Arabia — Travel & Tourism) — CURRENT
 - **Objective**: Recover client acquisition pipeline and bypassed ad margin deficit.
 - **Solution**: Deployed a Bayesian Media Science framework that calculated precise status scoring: S = (Authority Index * 0.6) + (Direct Response Velocity * 0.4). Installed an automated agentic intake swarm.
 - **Outcome**: Recovered **+1,000,000 SAR in net profit** over 12 months. Peak CTR achieved: **14.3%**.
+- **Ongoing**: Leading growth marketing operations, multi-channel acquisition, and AI-driven revenue systems.
 
 ### Aqarverse (GCC PropTech)
 - **Objective**: Scale real estate acquisition flow without relying on third-party property aggregates.
@@ -39,8 +73,32 @@ The Onyx Hive is an agentic framework comprising **36 specialized AI agents** th
 2. **Forensic Revenue Audit**: A structured consultation mapping out systemic leakages in client conversion loops.
 3. **The Growth Architecture School**: Curriculum teaching agentic operations and systems integration.
 
+## Expertise
+- Revenue Growth Architecture
+- Generative Engine Optimization (GEO)
+- AI Agent Deployment & Automation
+- Algorithmic Media Buying (Meta, Google, Snap, TikTok)
+- Full-Funnel Growth Systems (Acquisition → Conversion → Retention)
+- Marketing Automation & CRO
+- MENA/GCC Market Localization
+- Multi-Agent Systems (MAS) & MCP Infrastructure
+- Arabic Dialect Vectorization (MSA, Gulf Ammiya, Egyptian)
+- Demand Generation & Revenue Systems
+
+## Philosophy
+Most "growth strategies" are just expensive gambling. Growth should be:
+- **Engineered** (not guessed)
+- **Measured** (not assumed)
+- **Scalable** (not dependent on hacks)
+
+The era of "Searching" is over. The era of "Asking" has begun. If you aren't architecting your growth, you're being erased from the map.
+
 ## Contact & Links
-- **Email**: mohamed@growtharchitect.school
+- **Email**: mo.omar477@gmail.com
+- **Growth Architect Email**: mohamed@growtharchitect.school
 - **GitHub**: github.com/mohamedOmar11111
-- **LinkedIn**: linkedin.com/in/mohamed-omar-growth
+- **LinkedIn (Personal)**: linkedin.com/in/the-growth-architect
+- **LinkedIn (Alt)**: linkedin.com/in/mohamed-omar-growth
 - **Portfolio Hub**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/
+- **Etlaala**: https://etlaala.com/
+- **Etlaala Trips**: https://etlaala-trips.com/
