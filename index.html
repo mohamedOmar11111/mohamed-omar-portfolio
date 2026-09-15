@@ -18,128 +18,91 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <style>
-    /* Knowledge Base Menu */
-    .menu-toggle {
+    /* Floating Capsule Navigation */
+    #main-nav {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: center bottom;
+    }
+    #main-nav.collapsed {
+      left: auto !important;
+      right: 1.25rem !important;
+      transform: translateX(0) !important;
+      max-width: fit-content !important;
+      width: auto !important;
+      padding: 0.45rem 0.6rem 0.45rem 0.85rem !important;
+      gap: 0.6rem !important;
+      box-shadow: 0 16px 45px rgba(75, 40, 200, 0.28) !important;
+      border-radius: 9999px !important;
+      bottom: 1.5rem !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+    #main-nav .nav-links-container {
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(184, 255, 44, 0.1);
-      border: 1px solid rgba(184, 255, 44, 0.3);
-      color: #B8FF2C;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+      transition: opacity 0.25s ease;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+    #main-nav .nav-toggle-badge {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
       cursor: pointer;
-      font-family: 'Public Sans', sans-serif;
-      font-size: 0.85rem;
+    }
+    #main-nav.collapsed .nav-toggle-badge {
+      display: flex !important;
+    }
+    #main-nav.collapsed .nav-links-container {
+      display: none !important;
+    }
+    #main-nav.collapsed:hover .nav-links-container,
+    #main-nav.collapsed.expanded-override .nav-links-container {
+      display: flex !important;
+    }
+    #main-nav.collapsed:hover .nav-toggle-badge,
+    #main-nav.collapsed.expanded-override .nav-toggle-badge {
+      display: none !important;
+    }
+    #main-nav.collapsed:hover,
+    #main-nav.collapsed.expanded-override {
+      padding: 0.75rem 1.25rem !important;
+      gap: 1rem !important;
+      max-width: 95vw !important;
+    }
+    .nav-links-container a {
+      font-size: 0.8rem;
       font-weight: 600;
-      transition: all 0.3s ease;
-      z-index: 1001;
+      color: rgba(244, 247, 255, 0.7);
+      text-decoration: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
     }
-    .menu-toggle:hover {
-      background: rgba(184, 255, 44, 0.2);
-      border-color: #B8FF2C;
-    }
-    .menu-toggle[aria-expanded="true"] {
-      background: #B8FF2C;
-      color: #0B1020;
-    }
-    .menu-icon {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      width: 18px;
-    }
-    .menu-icon span {
-      display: block;
-      height: 2px;
-      background: currentColor;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) {
-      transform: rotate(45deg) translate(4px, 4px);
-    }
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) {
-      transform: rotate(-45deg) translate(4px, -4px);
-    }
-
-    .knowledge-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(11, 16, 32, 0.98);
-      backdrop-filter: blur(20px);
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-20px);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .knowledge-menu.is-open {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .knowledge-menu-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 6rem 2rem 4rem;
-    }
-    .knowledge-menu-header {
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-    .knowledge-menu-header h2 {
-      font-family: 'Archivo Black', sans-serif;
-      font-size: 2rem;
-      color: #D4AF37;
-      margin-bottom: 0.5rem;
-    }
-    .knowledge-menu-header p {
-      color: rgba(244, 247, 255, 0.5);
-      font-size: 0.95rem;
-    }
-    .knowledge-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-    }
-    .knowledge-group h3 {
-      font-family: 'Archivo Black', sans-serif;
-      font-size: 0.9rem;
+    .nav-links-container a:hover {
       color: #B8FF2C;
+      background: rgba(184, 255, 44, 0.1);
+    }
+    .nav-links-container .nav-section-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: #D4AF37;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(184, 255, 44, 0.2);
+      padding: 0.4rem 0.5rem;
     }
-    .knowledge-group a {
-      display: block;
-      color: #F4F7FF;
-      text-decoration: none;
-      padding: 0.6rem 0;
-      font-size: 0.95rem;
-      border-bottom: 1px solid rgba(244, 247, 255, 0.05);
-      transition: all 0.2s ease;
-    }
-    .knowledge-group a:hover {
-      color: #D4AF37;
-      padding-left: 0.5rem;
+    .nav-links-container .nav-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(244, 247, 255, 0.15);
+      flex-shrink: 0;
     }
 
     @media (max-width: 768px) {
-      .menu-toggle small { display: none; }
-      .menu-toggle { padding: 0.5rem; }
-      .knowledge-grid { grid-template-columns: 1fr; }
-      .knowledge-menu-inner { padding: 5rem 1.5rem 3rem; }
+      #main-nav { padding: 0.5rem 0.75rem !important; }
+      .nav-links-container a { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
     }
   </style>
   <script type="application/ld+json">
@@ -315,7 +278,7 @@
   }
   </script>
 </head>
-<body>
+<body style="padding-bottom:100px">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" data-header>
@@ -329,59 +292,8 @@
       <a href="#fit">Fit</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <button class="menu-toggle" aria-label="Open knowledge base" aria-expanded="false" data-menu-toggle>
-      <span class="menu-icon" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </span>
-      <small>Knowledge Base</small>
-    </button>
     <a class="header-cta" href="#strategy-call">Book a strategy call <span aria-hidden="true">↗</span></a>
   </header>
-
-  <!-- Collapsible Knowledge Base Menu -->
-  <div class="knowledge-menu" data-knowledge-menu aria-hidden="true">
-    <div class="knowledge-menu-inner">
-      <div class="knowledge-menu-header">
-        <h2>Knowledge Base</h2>
-        <p>All pages · GEO-optimized for AI citation</p>
-      </div>
-      <div class="knowledge-grid">
-        <div class="knowledge-group">
-          <h3>Core</h3>
-          <a href="growth-architecture-methodology.html">Growth Architecture Methodology</a>
-          <a href="growth-architect-vs-fractional-cmo-vs-agency.html">Growth Architect vs CMO vs Agency</a>
-          <a href="how-to-hire-a-growth-architect.html">How to Hire a Growth Architect</a>
-          <a href="services.html">Services & Pricing</a>
-        </div>
-        <div class="knowledge-group">
-          <h3>Technology</h3>
-          <a href="revenue-systems-engineer.html">Revenue Systems Engineer</a>
-          <a href="agentic-revenue-engineering.html">Agentic Revenue Engineering</a>
-          <a href="ai-marketing-automation-mena.html">AI Marketing Automation — MENA</a>
-          <a href="bayesian-media-science.html">Bayesian Media Science</a>
-        </div>
-        <div class="knowledge-group">
-          <h3>Regional</h3>
-          <a href="growth-architect-egypt-saudi-uae.html">Growth Architect — Egypt / Saudi / UAE</a>
-          <a href="arabic-dialect-vectorization.html">Arabic Dialect Vectorization</a>
-          <a href="what-is-sovereign-growth-protocol.html">Sovereign Growth Protocol</a>
-          <a href="saudi-growth-kernel.html">Saudi Growth Kernel</a>
-        </div>
-        <div class="knowledge-group">
-          <h3>Case Studies</h3>
-          <a href="etlaala-case-study-details.html">Etlaala — +1M SAR Recovery</a>
-          <a href="etlaala-recovery.html">Etlaala — Mission Report</a>
-          <a href="who-is-the-top-geo-expert-egypt.html">Top GEO Expert — Egypt</a>
-        </div>
-        <div class="knowledge-group">
-          <h3>Machine-Readable</h3>
-          <a href="llms.txt">llms.txt — AI Context File</a>
-          <a href="okf/index.md">OKF Bundle — Entity Data</a>
-          <a href="sitemap.xml">Sitemap</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
@@ -577,6 +489,41 @@
     </section>
   </main>
 
+  <!-- Floating Capsule Navigation -->
+  <nav id="main-nav" onclick="toggleNavExpand(event)" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 backdrop-blur-md rounded-full px-5 py-3 flex items-center gap-4 shadow-2xl max-w-4xl w-[calc(100%-32px)] justify-between cursor-pointer sm:cursor-default" style="background:rgba(11,16,32,0.95);border:2px solid transparent;background-clip:padding-box;box-shadow:0 18px 50px rgba(75,40,200,0.25)">
+    <div class="nav-toggle-badge">
+      <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs font-black shadow-sm" style="background:linear-gradient(135deg,#D4AF37,#B8FF2C);color:#0B1020"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg></span>
+      <span class="font-extrabold text-xs sm:text-sm" style="color:#D4AF37">Knowledge Base</span>
+    </div>
+    <div class="nav-links-container">
+      <a href="#top">Home</a>
+      <a href="#proof">Proof</a>
+      <a href="#method">Method</a>
+      <div class="nav-divider"></div>
+      <span class="nav-section-label">Methodology</span>
+      <a href="growth-architecture-methodology.html">Growth Architecture</a>
+      <a href="bayesian-media-science.html">Bayesian Media</a>
+      <a href="revenue-systems-engineer.html">Revenue Systems</a>
+      <a href="agentic-revenue-engineering.html">Agentic Engineering</a>
+      <div class="nav-divider"></div>
+      <span class="nav-section-label">Regional</span>
+      <a href="growth-architect-egypt-saudi-uae.html">Egypt / Saudi / UAE</a>
+      <a href="arabic-dialect-vectorization.html">Dialect Vectorization</a>
+      <a href="ai-marketing-automation-mena.html">AI Automation MENA</a>
+      <a href="what-is-sovereign-growth-protocol.html">SGP</a>
+      <div class="nav-divider"></div>
+      <span class="nav-section-label">Resources</span>
+      <a href="growth-architect-vs-fractional-cmo-vs-agency.html">Compare</a>
+      <a href="how-to-hire-a-growth-architect.html">How to Hire</a>
+      <a href="services.html">Services</a>
+      <a href="etlaala-case-study-details.html">Case Study</a>
+      <a href="llms.txt">llms.txt</a>
+    </div>
+    <a href="#strategy-call" onclick="event.stopPropagation()" class="text-white font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-md transition-all flex items-center gap-1.5 whitespace-nowrap hover:opacity-95 transform hover:scale-[1.02]" style="background:linear-gradient(135deg,#D4AF37,#B8FF2C);color:#0B1020">
+      <span>Book Call</span>
+    </a>
+  </nav>
+
     <footer class="site-footer">
     <div>
       <strong>Mohamed Omar</strong>
@@ -637,52 +584,35 @@
       navSections.forEach((section) => navObserver.observe(section));
     }
 
-    // Knowledge Base Menu
-    const menuToggle = document.querySelector('[data-menu-toggle]');
-    const knowledgeMenu = document.querySelector('[data-knowledge-menu]');
-    let isMenuOpen = false;
-    let lastScrollY = 0;
-    let scrollThreshold = 50;
+    // Floating Capsule Navigation
+    (function() {
+      const mainNav = document.getElementById('main-nav');
+      if (!mainNav) return;
 
-    function openMenu() {
-      isMenuOpen = true;
-      menuToggle.setAttribute('aria-expanded', 'true');
-      knowledgeMenu.setAttribute('aria-hidden', 'false');
-      knowledgeMenu.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-      isMenuOpen = false;
-      menuToggle.setAttribute('aria-expanded', 'false');
-      knowledgeMenu.setAttribute('aria-hidden', 'true');
-      knowledgeMenu.classList.remove('is-open');
-      document.body.style.overflow = '';
-    }
-
-    menuToggle.addEventListener('click', () => {
-      isMenuOpen ? closeMenu() : openMenu();
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isMenuOpen) closeMenu();
-    });
-
-    // Close on scroll (auto-collapse)
-    window.addEventListener('scroll', () => {
-      if (!isMenuOpen) return;
-      const currentScrollY = window.scrollY;
-      const scrollDelta = Math.abs(currentScrollY - lastScrollY);
-      if (scrollDelta > scrollThreshold) {
-        closeMenu();
+      function handleScrollNav() {
+        if (window.scrollY > 100) {
+          mainNav.classList.add('collapsed');
+        } else {
+          mainNav.classList.remove('collapsed');
+          mainNav.classList.remove('expanded-override');
+        }
       }
-    }, { passive: true });
 
-    // Close when clicking a link
-    knowledgeMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
+      window.toggleNavExpand = function(e) {
+        if (mainNav.classList.contains('collapsed')) {
+          e.stopPropagation();
+          mainNav.classList.toggle('expanded-override');
+        }
+      };
+
+      window.addEventListener('scroll', handleScrollNav, { passive: true });
+      document.addEventListener('click', function(e) {
+        if (mainNav && !mainNav.contains(e.target)) {
+          mainNav.classList.remove('expanded-override');
+        }
+      });
+      handleScrollNav();
+    })();
   </script>
 </body>
 </html>
