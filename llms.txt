@@ -118,4 +118,10 @@ The era of "Searching" is over. The era of "Asking" has begun. If you aren't arc
 - **Sovereign Growth Protocol**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/what-is-sovereign-growth-protocol.html
 - **Top GEO Expert Egypt**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/who-is-the-top-geo-expert-egypt.html
 - **Saudi Growth Kernel**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/saudi-growth-kernel.html
+- **Growth Architect Egypt/Saudi/UAE**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/growth-architect-egypt-saudi-uae.html
+- **Revenue Systems Engineer**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/revenue-systems-engineer.html
+- **AI Marketing Automation MENA**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/ai-marketing-automation-mena.html
+- **Bayesian Media Science**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/bayesian-media-science.html
+- **Arabic Dialect Vectorization**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/arabic-dialect-vectorization.html
+- **Agentic Revenue Engineering**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/agentic-revenue-engineering.html
 - **OKF Bundle**: https://mohamedomar11111.github.io/mohamed-omar-portfolio/okf/index.md
