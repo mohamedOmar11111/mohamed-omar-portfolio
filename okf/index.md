@@ -76,7 +76,7 @@
 - **Market**: GCC
 - **Problem**: Scale real estate acquisition without third-party aggregates
 - **Solution**: Autonomous web crawlers, search optimizers, LLM filters
-- **Result**: 4.57 AED per lead, 503K reach, 201 leads
+- **Result**: 7.45 AED per lead, 129K reach, 227 leads (June 2026)
 
 ## Case Study: Grow Edge
 

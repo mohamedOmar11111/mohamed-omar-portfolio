@@ -63,7 +63,7 @@ Onyx Hive is a multi-agent AI framework comprising 36 specialized agents organiz
 ### Aqarverse (GCC PropTech)
 - **Objective**: Scale real estate acquisition flow without relying on third-party property aggregates.
 - **Solution**: Developed autonomous web crawlers, search optimizers, and LLM filters to ingest off-market inventory data.
-- **Outcome**: 4.57 AED per lead, 503K reach, 201 leads. Created a self-healing node for real-time inventory discovery.
+- **Outcome**: 7.45 AED per lead, 129K reach, 227 leads (June 2026). Created a self-healing node for real-time inventory discovery.
 
 ### Grow Edge (MENA Education)
 - **Objective**: Reposition career training as professional sovereignty for ambitious MENA operators.
