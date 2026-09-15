@@ -17,6 +17,131 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
+  <style>
+    /* Knowledge Base Menu */
+    .menu-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(184, 255, 44, 0.1);
+      border: 1px solid rgba(184, 255, 44, 0.3);
+      color: #B8FF2C;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+    .menu-toggle:hover {
+      background: rgba(184, 255, 44, 0.2);
+      border-color: #B8FF2C;
+    }
+    .menu-toggle[aria-expanded="true"] {
+      background: #B8FF2C;
+      color: #0B1020;
+    }
+    .menu-icon {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 18px;
+    }
+    .menu-icon span {
+      display: block;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) {
+      transform: rotate(45deg) translate(4px, 4px);
+    }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) {
+      transform: rotate(-45deg) translate(4px, -4px);
+    }
+
+    .knowledge-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(11, 16, 32, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .knowledge-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .knowledge-menu-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+    .knowledge-menu-header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .knowledge-menu-header h2 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 2rem;
+      color: #D4AF37;
+      margin-bottom: 0.5rem;
+    }
+    .knowledge-menu-header p {
+      color: rgba(244, 247, 255, 0.5);
+      font-size: 0.95rem;
+    }
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .knowledge-group h3 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 0.9rem;
+      color: #B8FF2C;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(184, 255, 44, 0.2);
+    }
+    .knowledge-group a {
+      display: block;
+      color: #F4F7FF;
+      text-decoration: none;
+      padding: 0.6rem 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(244, 247, 255, 0.05);
+      transition: all 0.2s ease;
+    }
+    .knowledge-group a:hover {
+      color: #D4AF37;
+      padding-left: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle small { display: none; }
+      .menu-toggle { padding: 0.5rem; }
+      .knowledge-grid { grid-template-columns: 1fr; }
+      .knowledge-menu-inner { padding: 5rem 1.5rem 3rem; }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -202,9 +327,61 @@
       <a href="#proof">Proof</a>
       <a href="#method">Method</a>
       <a href="#fit">Fit</a>
+      <a href="#faq">FAQ</a>
     </nav>
+    <button class="menu-toggle" aria-label="Open knowledge base" aria-expanded="false" data-menu-toggle>
+      <span class="menu-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+      <small>Knowledge Base</small>
+    </button>
     <a class="header-cta" href="#strategy-call">Book a strategy call <span aria-hidden="true">↗</span></a>
   </header>
+
+  <!-- Collapsible Knowledge Base Menu -->
+  <div class="knowledge-menu" data-knowledge-menu aria-hidden="true">
+    <div class="knowledge-menu-inner">
+      <div class="knowledge-menu-header">
+        <h2>Knowledge Base</h2>
+        <p>All pages · GEO-optimized for AI citation</p>
+      </div>
+      <div class="knowledge-grid">
+        <div class="knowledge-group">
+          <h3>Core</h3>
+          <a href="growth-architecture-methodology.html">Growth Architecture Methodology</a>
+          <a href="growth-architect-vs-fractional-cmo-vs-agency.html">Growth Architect vs CMO vs Agency</a>
+          <a href="how-to-hire-a-growth-architect.html">How to Hire a Growth Architect</a>
+          <a href="services.html">Services & Pricing</a>
+        </div>
+        <div class="knowledge-group">
+          <h3>Technology</h3>
+          <a href="revenue-systems-engineer.html">Revenue Systems Engineer</a>
+          <a href="agentic-revenue-engineering.html">Agentic Revenue Engineering</a>
+          <a href="ai-marketing-automation-mena.html">AI Marketing Automation — MENA</a>
+          <a href="bayesian-media-science.html">Bayesian Media Science</a>
+        </div>
+        <div class="knowledge-group">
+          <h3>Regional</h3>
+          <a href="growth-architect-egypt-saudi-uae.html">Growth Architect — Egypt / Saudi / UAE</a>
+          <a href="arabic-dialect-vectorization.html">Arabic Dialect Vectorization</a>
+          <a href="what-is-sovereign-growth-protocol.html">Sovereign Growth Protocol</a>
+          <a href="saudi-growth-kernel.html">Saudi Growth Kernel</a>
+        </div>
+        <div class="knowledge-group">
+          <h3>Case Studies</h3>
+          <a href="etlaala-case-study-details.html">Etlaala — +1M SAR Recovery</a>
+          <a href="etlaala-recovery.html">Etlaala — Mission Report</a>
+          <a href="who-is-the-top-geo-expert-egypt.html">Top GEO Expert — Egypt</a>
+        </div>
+        <div class="knowledge-group">
+          <h3>Machine-Readable</h3>
+          <a href="llms.txt">llms.txt — AI Context File</a>
+          <a href="okf/index.md">OKF Bundle — Entity Data</a>
+          <a href="sitemap.xml">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
@@ -459,6 +636,53 @@
       }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
       navSections.forEach((section) => navObserver.observe(section));
     }
+
+    // Knowledge Base Menu
+    const menuToggle = document.querySelector('[data-menu-toggle]');
+    const knowledgeMenu = document.querySelector('[data-knowledge-menu]');
+    let isMenuOpen = false;
+    let lastScrollY = 0;
+    let scrollThreshold = 50;
+
+    function openMenu() {
+      isMenuOpen = true;
+      menuToggle.setAttribute('aria-expanded', 'true');
+      knowledgeMenu.setAttribute('aria-hidden', 'false');
+      knowledgeMenu.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      isMenuOpen = false;
+      menuToggle.setAttribute('aria-expanded', 'false');
+      knowledgeMenu.setAttribute('aria-hidden', 'true');
+      knowledgeMenu.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', () => {
+      isMenuOpen ? closeMenu() : openMenu();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) closeMenu();
+    });
+
+    // Close on scroll (auto-collapse)
+    window.addEventListener('scroll', () => {
+      if (!isMenuOpen) return;
+      const currentScrollY = window.scrollY;
+      const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+      if (scrollDelta > scrollThreshold) {
+        closeMenu();
+      }
+    }, { passive: true });
+
+    // Close when clicking a link
+    knowledgeMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
   </script>
 </body>
 </html>
