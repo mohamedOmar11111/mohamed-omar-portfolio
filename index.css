@@ -429,6 +429,40 @@ main { overflow: hidden; }
 }
 
 /* ============================================================
+   BRAND SIGNAL UTILITIES
+   Tailwind-Play pages (index_ar, knowledge-hub, whitepaper-sgp,
+   index_ai_growth) inject their stylesheet at runtime, after this
+   file. These overrides pin the accent palette to the brand tokens
+   so those pages cannot drift back to stock cyan/orange/purple.
+   !important is required because Tailwind's style block lands later.
+   ============================================================ */
+.text-signal { color: var(--signal) !important; }
+.text-signal-deep { color: var(--signal-deep) !important; }
+.bg-signal { background-color: var(--signal) !important; }
+.bg-signal-deep { background-color: var(--signal-deep) !important; }
+.from-signal {
+  --tw-gradient-from: var(--signal) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: transparent var(--tw-gradient-to-position) !important;
+}
+.to-signal-deep {
+  --tw-gradient-to: var(--signal-deep) var(--tw-gradient-to-position) !important;
+}
+.bg-surface { background-color: var(--paper-bright) !important; }
+.bg-surface-deep { background-color: var(--paper) !important; }
+
+.border-signal\/20 { border-color: rgba(201, 243, 29, .2) !important; }
+.border-signal\/30 { border-color: rgba(201, 243, 29, .3) !important; }
+.border-signal\/40 { border-color: rgba(201, 243, 29, .4) !important; }
+.border-signal-deep\/40 { border-color: rgba(173, 212, 12, .4) !important; }
+.hover\:bg-signal\/10:hover { background-color: rgba(201, 243, 29, .1) !important; }
+
+/* Neutral utility pins — keep muted text above AA on the dark canvas */
+.text-zinc-500, .text-slate-400, .text-slate-500 { color: #8e8e93 !important; }
+.text-zinc-400, .text-slate-300 { color: #b4b4b8 !important; }
+.text-zinc-300 { color: #d4d4d6 !important; }
+.text-zinc-600, .text-zinc-800 { color: #6e6e74 !important; }
+
+/* ============================================================
    DIXOR EFFECTS LAYER
    Grain · lime glow · gradient text · glass · hairlines
    ============================================================ */
