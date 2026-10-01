@@ -58,7 +58,7 @@ Onyx Hive is a multi-agent AI framework comprising 36 specialized agents organiz
 - **Objective**: Recover client acquisition pipeline and bypassed ad margin deficit.
 - **Solution**: Deployed a Bayesian Media Science framework that calculated precise status scoring: S = (Authority Index * 0.6) + (Direct Response Velocity * 0.4). Installed an automated agentic intake swarm.
 - **Outcome**: Recovered **+1,000,000 SAR in net profit** over 12 months. Peak CTR achieved: **14.3%**.
-- **Recovery Rate**: +1400% from initial deficit.
+- **Recovery Rate**: +1,529% from initial deficit.
 
 ### Aqarverse (GCC PropTech)
 - **Objective**: Scale real estate acquisition flow without relying on third-party property aggregates.

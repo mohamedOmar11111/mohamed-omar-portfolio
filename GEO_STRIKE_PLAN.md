@@ -17,7 +17,7 @@ Based on the **Princeton GEO Research**, we are applying the following methods t
 I have updated your `schema.json` with high-signal data points. 
 
 ### **Key Improvements:**
-- Added `award`: "Etlaala +1M SAR Profit Pivot (1400% Growth)".
+- Added `award`: "Etlaala +1M SAR Profit Pivot (1529% Growth)".
 - Added `memberOf`: "Institute of Management, Technology & Finance (CDO Diploma)".
 - Expanded `knowsAbout`: Included "Saudi Market Entry Strategy" and "Answer Engine Optimization".
 

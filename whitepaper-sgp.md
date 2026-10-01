@@ -43,7 +43,7 @@ To dominate AI-generated search (ChatGPT, Perplexity, Gemini), the SGP implement
 ## 3. CASE STUDY: THE ETLAALA RECOVERY
 *   **The Problem:** -70k SAR monthly deficit and a fragmented human team.
 *   **The Solution:** Deployed a **Python-based Intent Classification Swarm**. Re-engineered the revenue engine using Bayesian Media Science.
-*   **The Result:** +1,000,000 SAR Net Profit (+1400% recovery) within 12 months.
+*   **The Result:** +1,000,000 SAR Net Profit (+1,529% recovery) within 12 months.
 
 ---
 
