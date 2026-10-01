@@ -429,6 +429,18 @@ main { overflow: hidden; }
 }
 
 /* ============================================================
+   RTL — index_ar.html
+   The shared components are authored LTR; mirror the box and
+   reading direction rather than overriding each property.
+   ============================================================ */
+[dir="rtl"] .case-card { text-align: right; }
+[dir="rtl"] .case-card::after { background: linear-gradient(260deg, transparent, rgba(255, 255, 255, .07), transparent); }
+[dir="rtl"] .case-card:hover::after { left: -130%; right: 130%; }
+[dir="rtl"] .vault th,
+[dir="rtl"] .vault td { text-align: right; }
+[dir="rtl"] .vault td:nth-child(2) { text-align: right; }
+
+/* ============================================================
    BRAND SIGNAL UTILITIES
    Tailwind-Play pages (index_ar, knowledge-hub, whitepaper-sgp,
    index_ai_growth) inject their stylesheet at runtime, after this
